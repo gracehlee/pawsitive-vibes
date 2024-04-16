@@ -14,11 +14,11 @@ tasks for this week.
 
 ## Deliverables
 
--   [ ] Wire-frame diagrams
--   [ ] API documentation
+-   [X] Wire-frame diagrams
+-   [X] API documentation
 -   [ ] Project is deployed to Caprover (BE, DB) & GitLab-pages (FE)
 -   [ ] GitLab issue board is setup and in use (or project management tool of choice)
--   [ ] Journals
+-   [X] Journals
 
 ## Project layout
 
@@ -112,7 +112,8 @@ python -m venv .venv
 Then activate the virtual environment
 
 ```bash
-source .venv/bin/activate
+source .venv/bin/activate # MacOS
+.venv\Scripts\Activate.ps1 # Windows
 ```
 
 And finally install the dependencies
@@ -144,7 +145,9 @@ but you can figure it out yourself from your GitLab project URL.
 If this is your project URL
 
 https://gitlab.com/GROUP_NAME/PROJECT_NAME
+https://gitlab.com/pawsitive-vibes/pawsitive-vibes
 
 then your GitLab pages URL will be
 
 https://GROUP_NAME.gitlab.io/PROJECT_NAME
+https://pawsitive-vibes.gitlab.io/pawsitive-vibes
