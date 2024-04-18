@@ -12,8 +12,8 @@ CREATE TABLE users (
 
 CREATE TABLE pets (
     id SERIAL NOT NULL UNIQUE,
-    dog_name TEXT NOT NULL,
-    image_url TEXT NOT NULL,
+    pet_name TEXT NOT NULL,
+    image_url TEXT DEFAULT NULL,
     for_sale BOOLEAN NOT NULL DEFAULT FALSE,
     price INTEGER DEFAULT NULL,
     owner_id INTEGER NOT NULL REFERENCES users("id") ON DELETE CASCADE

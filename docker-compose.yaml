@@ -1,6 +1,7 @@
 volumes:
     database_volume:
         name: database_volume
+        external: true
 
 services:
     db:
