@@ -4,11 +4,11 @@ from models.pets import PetIn, PetOut, PetInUpdate
 from queries.pet_queries import PetQueries
 from utils.authentication import JWTUserData, try_get_jwt_user_data
 
-router = APIRouter()
+router = APIRouter(prefix="/api",  tags=["Pets"])
 
 
 @router.post("/pets", response_model=PetOut, status_code=201)
-def create_pet(
+async def create_pet(
     pet: PetIn,
     repo: PetQueries = Depends(),
     user: Optional[JWTUserData] = Depends(try_get_jwt_user_data)
@@ -23,7 +23,7 @@ def create_pet(
 
 
 @router.get("/pets", response_model=List[PetOut])
-def get_all_pets(
+async def get_all_pets(
     repo: PetQueries = Depends(),
     user: Optional[JWTUserData] = Depends(try_get_jwt_user_data)
 ):
@@ -37,7 +37,7 @@ def get_all_pets(
 
 
 @router.get("/pets/{pet_id}", response_model=PetOut)
-def get_pet_by_id(
+async def get_pet_by_id(
     pet_id: int,
     repo: PetQueries = Depends(),
     user: Optional[JWTUserData] = Depends(try_get_jwt_user_data)
@@ -52,7 +52,7 @@ def get_pet_by_id(
 
 
 @router.put("/pets/{pet_id}", response_model=PetOut)
-def update_pet_by_id(
+async def update_pet_by_id(
     pet_id: int,
     pet_update: PetInUpdate,
     repo: PetQueries = Depends(),
@@ -68,7 +68,7 @@ def update_pet_by_id(
 
 
 @router.delete("/pets/{pet_id}")
-def delete_pet_by_id(
+async def delete_pet_by_id(
     pet_id: int,
     repo: PetQueries = Depends(),
     user: Optional[JWTUserData] = Depends(try_get_jwt_user_data)

@@ -16,7 +16,7 @@ pool = ConnectionPool(DATABASE_URL)
 
 
 class PetQueries:
-    def get_all(self) -> List[PetOut]:
+    def get_all_users(self) -> List[PetOut]:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as db:

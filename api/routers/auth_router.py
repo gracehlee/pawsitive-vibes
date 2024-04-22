@@ -1,5 +1,6 @@
 """
 User Authentication API Router
+create, sign in, authenticate, sign out
 """
 from fastapi import (
     Depends,
