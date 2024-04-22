@@ -11,7 +11,7 @@ steps = [
             email TEXT NOT NULL UNIQUE,
             phone_number TEXT NOT NULL,
             bio TEXT DEFAULT NULL,
-            date_created DATETIME NOT NULL
+            date_created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
         );
         """,
         # "Down" SQL statement

@@ -4,7 +4,6 @@ Database Queries for Pets
 import os
 import psycopg
 from psycopg_pool import ConnectionPool
-from psycopg.rows import class_row
 from typing import Optional, List
 from models.pets import PetOut, PetInUpdate, PetIn
 
@@ -23,7 +22,14 @@ class PetQueries:
                 with conn.cursor() as db:
                     db.execute(
                         """
-                        SELECT id, pet_name, image_url, for_sale, price, owner_id
+                        SELECT (
+                            id
+                            , pet_name
+                            , image_url
+                            , for_sale
+                            , price
+                            , owner_id
+                        )
                         FROM pets
                         ORDER BY id;
                         """
@@ -50,7 +56,14 @@ class PetQueries:
                 with conn.cursor() as db:
                     db.execute(
                         """
-                        SELECT id, pet_name, image_url, for_sale, price, owner_id
+                        SELECT (
+                            id
+                            , pet_name
+                            , image_url
+                            , for_sale
+                            , price
+                            , owner_id
+                        )
                         FROM pets
                         WHERE id = %s;
                         """,
@@ -78,9 +91,22 @@ class PetQueries:
                 with conn.cursor() as db:
                     db.execute(
                         """
-                        INSERT INTO pets (pet_name, image_url, for_sale, price, owner_id)
+                        INSERT INTO pets (
+                            pet_name
+                            , image_url
+                            , for_sale
+                            , price
+                            , owner_id
+                        )
                         VALUES (%s, %s, %s, %s, %s)
-                        RETURNING id, pet_name, image_url, for_sale, price, owner_id;
+                        RETURNING (
+                            id
+                            , pet_name
+                            , image_url
+                            , for_sale
+                            , price
+                            , owner_id
+                        )
                         """,
                         [
                             pet.pet_name,
@@ -126,7 +152,14 @@ class PetQueries:
                         UPDATE pets
                         SET {', '.join(fields)}
                         WHERE id = %s
-                        RETURNING id, pet_name, image_url, for_sale, price, owner_id;
+                        RETURNING (
+                            id
+                            , pet_name
+                            , image_url
+                            , for_sale
+                            , price
+                            , owner_id
+                        )
                         """,
                         values,
                     )

@@ -14,7 +14,8 @@ def create_pet(
     user: Optional[JWTUserData] = Depends(try_get_jwt_user_data)
 ):
     if not user:
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Only logged-in users may add pets.")
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
+                            detail="Only logged-in users may add pets.")
     created_pet = repo.create(pet)
     if not created_pet:
         raise HTTPException(status_code=500, detail="Failed to create pet")
@@ -27,7 +28,8 @@ def get_all_pets(
     user: Optional[JWTUserData] = Depends(try_get_jwt_user_data)
 ):
     if not user:
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Only logged-in users may view pets.")
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
+                            detail="Only logged-in users may view pets.")
     pets = repo.get_all()
     if not pets:
         raise HTTPException(status_code=404, detail="Pets not found.")
@@ -41,7 +43,8 @@ def get_pet_by_id(
     user: Optional[JWTUserData] = Depends(try_get_jwt_user_data)
 ):
     if not user:
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Only logged-in users may view pets.")
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
+                            detail="Only logged-in users may view pets.")
     pet = repo.get_one(pet_id)
     if not pet:
         raise HTTPException(status_code=404, detail="Pet not found")
@@ -56,7 +59,8 @@ def update_pet_by_id(
     user: Optional[JWTUserData] = Depends(try_get_jwt_user_data)
 ):
     if not user:
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Only logged-in users may update pets.")
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
+                            detail="Only logged-in users may update pets.")
     updated_pet = repo.update(pet_id, pet_update)
     if not updated_pet:
         raise HTTPException(status_code=404, detail="Pet not found")
@@ -70,7 +74,8 @@ def delete_pet_by_id(
     user: Optional[JWTUserData] = Depends(try_get_jwt_user_data)
 ):
     if not user:
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Only logged-in users may delete pets.")
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
+                            detail="Only logged-in users may delete pets.")
     success = repo.delete(pet_id)
     if not success:
         raise HTTPException(status_code=404, detail="Pet not found")

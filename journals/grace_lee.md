@@ -2,12 +2,17 @@
 
 ## 4.12.2024
 
+
 Set Up Day
 
 -   Our group successfully worked on our wireframe diagrams and discussed API endpoints.
 -   Our group successfully set up our GitLab repositories and downloaded our project base.
 
+-   Our group successfully worked on our wireframe diagrams and discussed API endpoints.
+-   Our group successfully set up our GitLab repositories and downloaded our project base.
+
 ## 4.15.2024
+
 
 Today I worked on:
 
@@ -35,4 +40,13 @@ I completed the SQL Database table showing the relations between our data tables
 
 ![sql relationships table](./images/sql_relationships.png)
 
-Our group split up endpoints to work on. I've already finished all of the pets endpoints for models, queries, and routers; Kyle will be working on the users endpoints, Austin will be working on the services endpoints, and James will be working on the testimonials endpoints. We are hoping to set up our React front-end so we can start testing our database set up. 
+Our group split up endpoints to work on. I've already finished all of the pets endpoints for models, queries, and routers; Kyle will be working on the users endpoints, Austin will be working on the services endpoints, and James will be working on the testimonials endpoints. We are hoping to set up our React front-end so we can start testing our database set up.
+
+
+## 4.20.2024
+
+Today I worked on:
+
+I created the base template for an index.js to create a root for our app, and also created a base template for App.js. I created a folder to hold the base App.js that came with the project files, in case we need to reference anything from it. I'm hoping and planning to modify some Bootstrap HTML formatting to create basic form templates for our various forms, before we also adjust the design to match our client's needs. I have yet to get to it, but I've looked through more of the project files and found that the app favicon icon is decided by the index.html file. Eventually, I hope to re-create a paw icon from the client's logo to be used as the favicon for a more professional business look.
+
+## 4.22.2024
