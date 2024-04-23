@@ -1,4 +1,5 @@
 ## 4.15.24 - 4.18.24
+Group independently worked on the first endpoint (pets - POST), compared, and then moved onto other endpoints
 Created api/queries/pets.py and pool.py
 Created api/routers/pets.py
 Created PetsIn, PetsOut, PetsRepository
@@ -13,3 +14,5 @@ Created endpoints for users - get all, get one, update and delete
 
 ## 4.22.2024 - 4.26.2024
 Submitting user endpoints
+Working on Frontend for user endpoints
+Created user signup form with additional fields. Checking it works

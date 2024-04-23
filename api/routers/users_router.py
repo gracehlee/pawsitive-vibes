@@ -21,10 +21,10 @@ router = APIRouter(prefix="", tags=["Users"])
 @router.get("/api/users", response_model=List[UserOut])
 async def get_all_users(
     repo: UserQueries = Depends(),
-    current_user: JWTUserData = Depends(try_get_jwt_user_data)
+    # current_user: JWTUserData = Depends(try_get_jwt_user_data)
 ):
-    if not current_user:
-        raise HTTPException(status_code=400, detail="Unauthorized")
+    # if not current_user:
+    #     raise HTTPException(status_code=400, detail="Unauthorized")
     users = repo.get_all()
     if not users:
         raise HTTPException(status_code=404, detail="Users not found.")

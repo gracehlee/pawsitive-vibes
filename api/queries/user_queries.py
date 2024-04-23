@@ -87,7 +87,7 @@ class UserQueries:
         first_name: str,
         last_name: str,
         email: str,
-        phone_number: str,
+        phone_number: int,
         bio: Optional[str] = None
     ) -> UserWithPw:
         """

@@ -7,8 +7,6 @@ import SignUpForm from './components/SignUpForm'
 import App from './App.jsx'
 import AuthProvider from './components/AuthProvider'
 
-import './index.css'
-
 const BASE_URL = import.meta.env.BASE_URL
 if (!BASE_URL) {
     throw new Error('BASE_URL is not defined')
