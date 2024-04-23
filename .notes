@@ -1,0 +1,315 @@
+### Create a new Testimonial
+
+# * Endpoint path: /testimonials
+# * Endpoint method: POST
+
+# * For business owner only
+# * Headers:
+#   * Authorization: Bearer token
+
+# * Request body:
+#     ```json
+#     {
+#       "rating": int,
+#       "description": str,
+#       "name": str
+#     }
+#     ```
+
+# * Response: An indication of success or failure
+# * Response shape:
+#     ```json
+#     {
+#       "success": boolean,
+#       "message": str
+#     }
+#     ```
+
+# * Testimonial created
+# 		```json
+# 		{
+# 			"rating": int,
+# 			"description": str,
+# 			"name": str, 
+# 			"id": int
+# 		}
+# 		```
+
+
+# create contact form
+### Create a contact form
+
+* Endpoint path: /contactform
+* Endpoint method: POST
+
+* Headers:
+  * Authorization: Bearer token
+
+* Request body:
+    ```json
+    {
+      "first_name": string,
+      "last_name": str,
+      "email": str,
+      "phone_number": str
+    }
+    ```
+
+* Response: An indication of success or failure
+* Response shape:
+    ```json
+    {
+      "success": boolean,
+      "message": "Submitted"
+    }
+    ```
+
+
+### Get a list of dogs
+
+* Endpoint path: /aussies
+* Endpoint method: GET
+
+* Headers:
+  * Authorization: Bearer token
+
+* Response: A list of dogs
+* Response shape:
+    ```json
+    {
+      "dogs": [
+        {
+          "dog_name": string,
+          # don't know if we actually want this attribute
+          "available": boolean,
+          "owner": string,
+          "image_url": string,
+        }
+      ]
+    }
+    ```
+
+
+Wireframe endpoints
+If your endpoint needs to know who the person is, then include the Headers/Authorization part.
+If your endpoint is a POST, PUT, or PATCH, include the Request shape (JSON) part.
+Testimonials
+Carousel image urls
+Google Maps API
+Contact Form
+Services
+Dogs
+Profile
+-------------------------------------
+            Testimonials
+-------------------------------------
+### Create a new Testimonial
+* Endpoint path: /testimonials
+* Endpoint method: POST
+* For business owner only
+* Headers:
+  * Authorization: Bearer token
+* Request body:
+    ```json
+    {
+      "rating": int,
+      "description": str,
+      "name": str
+    }
+    ```
+* Response: An indication of success or failure
+* Response shape:
+    ```json
+    {
+      "success": boolean,
+      "message": str
+    }
+    ```
+-------------------------------------
+### Get Testimonials
+* Endpoint path: /testimonials
+* Endpoint method: GET
+* For business owner only
+* Headers:
+  * Authorization: Bearer token
+* Response: A list of testimonials
+* Response shape:
+        ```json
+        {
+            "testimonials": [
+                {
+                    "rating": int,
+                    "description": str,
+                    "name": str,
+                    "id": int
+                },
+                {
+                    "rating": int,
+                    "description": str,
+                    "name": str,
+                    "id": int
+                },
+                ...
+            ]
+        }
+        ```
+* Endpoint path: /testimonials/id:int/
+* Endpoint method: GET
+* For business owner only
+* Headers:
+  * Authorization: Bearer token
+* Response: A testimonial's details
+* Response shape:
+        ```json
+        {
+                "rating": int,
+                "description": str,
+                "name": str,
+                "id": int
+        }
+        ```
+-------------------------------------
+### Edit a Testimonial
+* Endpoint path: /testimonials/id:int/
+* Endpoint method: PUT
+* For business owner only
+* Headers:
+  * Authorization: Bearer token
+* Request with any property to update
+* Request body:
+    ```json
+    {
+      "rating": int,
+      "description": str,
+      "name": str
+    }
+    ```
+* Response: Updated testimonial
+* Response shape:
+        ```json
+        {
+            "rating": int,
+            "description": str,
+            "name": str,
+            "id": int
+        }
+        ```
+-------------------------------------
+### Delete a Testimonial
+* Endpoint path: /testimonials/id:int/
+* Endpoint method: DELETE
+* For business owner only
+* Headers:
+  * Authorization: Bearer token
+* No request body needed
+* Response: An indication of success or failure
+* Response shape:
+    ```json
+    {
+      "success": boolean,
+      "message": str
+    }
+    ```
+-------------------------------------
+            Carousel image urls ..... Or hard-coded for simplicity?
+-------------------------------------
+- Get
+-------------------------------------
+- Post
+-------------------------------------
+- Delete
+-------------------------------------
+            Google Maps API
+-------------------------------------
+- Get
+-------------------------------------
+            Contact Form
+-------------------------------------
+### Create a contact form
+* Endpoint path: /contactform
+* Endpoint method: POST
+* Headers:
+  * Authorization: Bearer token
+* Request body:
+    ```json
+    {
+      "first_name": string,
+      "last_name": str,
+      "email": str,
+      "phone_number": str
+    }
+    ```
+* Response: An indication of success or failure
+* Response shape:
+    ```json
+    {
+      "success": boolean,
+      "message": "Submitted"
+    }
+    ```
+-------------------------------------
+            Services
+-------------------------------------
+- Get
+-------------------------------------
+- Post
+-------------------------------------
+- Put
+-------------------------------------
+- Delete
+-------------------------------------
+            Dogs
+-------------------------------------
+### Get a list of dogs
+* Endpoint path: /aussies
+* Endpoint method: GET
+* Headers:
+  * Authorization: Bearer token
+* Response: A list of dogs
+* Response shape:
+    ```json
+    {
+      "dogs": [
+        {
+          "dog_name": string,
+          # don't know if we actually want this attribute
+          "available": boolean,
+          "owner": string,
+          "image_url": string,
+        }
+      ]
+    }
+    ```
+-------------------------------------
+ ### Get a singular dog listing
+* Endpoint path: /aussies/int:id/
+* Endpoint method: GET
+* Headers:
+  * Authorization: Bearer token
+* Response: A dog listing
+* Response shape:
+    ```json
+    {
+            "dog_name": string,
+        "available": boolean,
+        "owner": string,
+        "image_url": string
+    }
+    ```
+-------------------------------------
+- Post
+-------------------------------------
+- Put
+-------------------------------------
+- Delete
+-------------------------------------
+        Profile / Create / Update
+-------------------------------------
+- Get
+-------------------------------------
+- Post
+-------------------------------------
+- Put
+-------------------------------------
+- Delete
+
