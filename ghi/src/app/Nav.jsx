@@ -8,6 +8,12 @@ function Nav() {
                 <NavLink className="navbar-brand" to="/">
                     Pawsitive Vibes
                 </NavLink>
+                <NavLink className="navbar-brand" to="/signup">
+                    Sign Up
+                </NavLink>
+                <NavLink className="navbar-brand" to="/signin">
+                    Sign In
+                </NavLink>
             </div>
         </nav>
     )

@@ -1,13 +1,24 @@
 import Nav from './app/Nav'
 import './App.css'
+import Home from './app/Home'
 import ErrorNotification from './components/ErrorNotification'
+import { Routes, Route, BrowserRouter } from 'react-router-dom'
+import SignInForm from './components/SignInForm'
+import SignUpForm from './components/SignUpForm'
 
 function App() {
     return (
-        <div>
-            <ErrorNotification />
-            <Nav />
-        </div>
+        <BrowserRouter>
+            <div>
+                <ErrorNotification />
+                <Nav />
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/signup" element={<SignUpForm />} />
+                    <Route path="/signin" element={<SignInForm />} />
+                </Routes>
+            </div>
+        </BrowserRouter>
     )
 }
 

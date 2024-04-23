@@ -1,7 +1,6 @@
 import os
 import psycopg
 from psycopg_pool import ConnectionPool
-from psycopg.rows import class_row
 from typing import Optional, List
 from models.services import ServiceIn, ServiceInUpdate, ServiceOut
 
@@ -12,6 +11,7 @@ if not DATABASE_URL:
 
 pool = ConnectionPool(DATABASE_URL)
 
+
 class ServiceRepository:
     def create(self, service: ServiceIn) -> Optional[ServiceOut]:
         try:
@@ -19,7 +19,12 @@ class ServiceRepository:
                 with conn.cursor() as db:
                     db.execute(
                         """
-                        INSERT INTO services (service, picture_url, duration, cost)
+                        INSERT INTO services (
+                            service
+                            , picture_url
+                            , duration
+                            , cost
+                        )
                         VALUES (%s, %s, %s, %s)
                         RETURNING id, service, picture_url, duration, cost;
                         """,
@@ -44,7 +49,7 @@ class ServiceRepository:
         except psycopg.Error as e:
             print(e)
             return None
-        
+
     def get_all(self) -> List[ServiceOut]:
         try:
             with pool.connection() as conn:
@@ -70,7 +75,7 @@ class ServiceRepository:
         except psycopg.Error as e:
             print(e)
             return []
-        
+
     def get_one(self, service_id: int) -> Optional[ServiceOut]:
         try:
             with pool.connection() as conn:
@@ -97,22 +102,23 @@ class ServiceRepository:
         except psycopg.Error as e:
             print(e)
             return None
-        
-    def update(self, service_id: int, service: ServiceInUpdate) -> Optional[ServiceOut]:
+
+    def update(
+        self,
+        service_id: int,
+        service: ServiceInUpdate
+    ) -> Optional[ServiceOut]:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as db:
                     fields = []
                     values = []
-
                     properties = ["service", "picture_url", "duration", "cost"]
                     for property in properties:
                         if getattr(service, property) is not None:
                             fields.append(f"{property} = %s")
                             values.append(getattr(service, property))
-                    
                     values.append(service_id)
-
                     db.execute(
                         f"""
                         UPDATE services
@@ -136,7 +142,7 @@ class ServiceRepository:
         except psycopg.Error as e:
             print(e)
             return None
-        
+
     def delete(self, id: int) -> bool:
         try:
             with pool.connection() as conn:
