@@ -4,10 +4,10 @@ from queries.service_queries import ServiceRepository
 from utils.authentication import JWTUserData, try_get_jwt_user_data
 from models.services import ServiceIn, ServiceInUpdate, ServiceOut
 
-router = APIRouter()
+router = APIRouter(prefix="", tags=["Services"])
 
 
-@router.post("/services", response_model=ServiceOut)
+@router.post("/api/services", response_model=ServiceOut)
 def create_service(
     service: ServiceIn,
     repo: ServiceRepository = Depends(),
@@ -21,20 +21,20 @@ def create_service(
     return created_service
 
 
-@router.get("/services", response_model=List[ServiceOut])
+@router.get("/api/services", response_model=List[ServiceOut])
 def get_all_services(
     repo: ServiceRepository = Depends()
 ):
     return repo.get_all()
 
-@router.get("/services/{service_id}", response_model=ServiceOut)
+@router.get("/api/services/{service_id}", response_model=ServiceOut)
 def get_service_by_id(
     service_id: int,
     repo: ServiceRepository = Depends()
 ):
     return repo.get_one(service_id)
 
-@router.put("/services/{service_id}", response_model=ServiceOut)
+@router.put("/api/services/{service_id}", response_model=ServiceOut)
 def update_service_by_id(
     service_id: int,
     service_update: ServiceInUpdate,
@@ -49,7 +49,7 @@ def update_service_by_id(
     return updated_service
 
 
-@router.delete("/services/{service_id}")
+@router.delete("/api/services/{service_id}")
 def delete_service_by_id(
     service_id: int,
     repo: ServiceRepository = Depends(),
