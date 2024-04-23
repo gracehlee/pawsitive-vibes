@@ -2,17 +2,12 @@
 
 ## 4.12.2024
 
-
 Set Up Day
 
 -   Our group successfully worked on our wireframe diagrams and discussed API endpoints.
 -   Our group successfully set up our GitLab repositories and downloaded our project base.
 
--   Our group successfully worked on our wireframe diagrams and discussed API endpoints.
--   Our group successfully set up our GitLab repositories and downloaded our project base.
-
 ## 4.15.2024
-
 
 Today I worked on:
 
@@ -42,7 +37,6 @@ I completed the SQL Database table showing the relations between our data tables
 
 Our group split up endpoints to work on. I've already finished all of the pets endpoints for models, queries, and routers; Kyle will be working on the users endpoints, Austin will be working on the services endpoints, and James will be working on the testimonials endpoints. We are hoping to set up our React front-end so we can start testing our database set up.
 
-
 ## 4.20.2024
 
 Today I worked on:
@@ -50,3 +44,22 @@ Today I worked on:
 I created the base template for an index.js to create a root for our app, and also created a base template for App.js. I created a folder to hold the base App.js that came with the project files, in case we need to reference anything from it. I'm hoping and planning to modify some Bootstrap HTML formatting to create basic form templates for our various forms, before we also adjust the design to match our client's needs. I have yet to get to it, but I've looked through more of the project files and found that the app favicon icon is decided by the index.html file. Eventually, I hope to re-create a paw icon from the client's logo to be used as the favicon for a more professional business look.
 
 ## 4.22.2024
+
+Today I worked on:
+
+Today, we had only 2 members of our project available. Since today was the deadline for last week's stretch goals, we used our time to merge our progress on our issue branches onto the main branch, and then pull the changes so each of us will be able to work off the same checkpoint. I decided to start working on the Navigation (Nav.js) page for our app using React.
+
+I realized that the main.jsx is the file that is serving as the "index.js" similar to our other project. This is where the project is mounted to the ReactDOM. So I deleted the index.jsx file I had created so we can continue using the main.jsx file.
+
+While working on the project with my partner Kyle, we ran into a roadblock where we are unable to see anything displayed on our localhost:5173 page. We are trying to debug this currently.
+
+Update: We were able to troubleshoot it- by deleting and recreating the database_volume and re-starting the docker containers, we were able to see our changes in the localhost:5173.
+
+## 4.23.2023
+
+Today I worked on:
+
+Today, I debugged our user creation models, queries, and router so that we are able to create a new unique user using FastAPI with a 200OK response. I also applied the front-end authentication that will require the correct FastAPI Token before one is able to perform any of the user APIs, with the exception of creating a new user.
+
+So far, on the localhost:5173 page, I'm able to see our page title "Pawsitive Vibes" with a link that redirects home, but I have yet to see the navigation page I've worked on. I'll work on debugging this today.
+ 

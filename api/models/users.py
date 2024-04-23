@@ -27,10 +27,13 @@ class UserWithPw(BaseModel):
     """
     Represents a user with password included
     """
-
     id: int
     username: str
-    password: str
+    first_name: Optional[str]
+    last_name: Optional[str]
+    email: Optional[str]
+    phone_number: Optional[int]
+    bio: Optional[str]
 
 
 class UserInUpdate(BaseModel):
@@ -48,4 +51,14 @@ class UserOut(BaseModel):
     last_name: Optional[str]
     email: Optional[str]
     phone_number: Optional[int]
+    bio: Optional[str]
+
+
+class UserNew(BaseModel):
+    username: str
+    password: str
+    first_name: str
+    last_name: str
+    email: str
+    phone_number: str
     bio: Optional[str]

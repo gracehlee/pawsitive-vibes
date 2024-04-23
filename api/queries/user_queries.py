@@ -80,7 +80,16 @@ class UserQueries:
 
         return user
 
-    def create_user(self, username: str, hashed_password: str) -> UserWithPw:
+    def create_user(
+        self,
+        username: str,
+        password: str,
+        first_name: str,
+        last_name: str,
+        email: str,
+        phone_number: str,
+        bio: Optional[str] = None
+    ) -> UserWithPw:
         """
         Creates a new user in the database
 
@@ -93,15 +102,25 @@ class UserQueries:
                         """
                         INSERT INTO users (
                             username,
-                            password
+                            password,
+                            first_name,
+                            last_name,
+                            email,
+                            phone_number,
+                            bio
                         ) VALUES (
-                            %s, %s
+                            %s, %s, %s, %s, %s, %s, %s
                         )
                         RETURNING *;
                         """,
                         [
                             username,
-                            hashed_password,
+                            password,
+                            first_name,
+                            last_name,
+                            email,
+                            phone_number,
+                            bio,
                         ],
                     )
                     user = db.fetchone()
