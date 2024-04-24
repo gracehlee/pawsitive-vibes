@@ -17,6 +17,8 @@ export default function SignInForm() {
         bio: '',
     })
 
+    const [confirmPassword, setConfirmPassword] = useState('')
+
     const handleInputChange = (event) => {
         setUserFormData({
             ...userFormData,
@@ -26,6 +28,11 @@ export default function SignInForm() {
 
     async function handleFormSubmit(e) {
         e.preventDefault()
+
+        if (userFormData.password !== confirmPassword) {
+            alert("Passwords don't match!")
+            return
+        }
 
         await signup(userFormData)
 
@@ -78,7 +85,18 @@ export default function SignInForm() {
                                     placeholder="Enter Password"
                                 />
                             </div>
-
+                            <div className="form-floating mb-3">
+                                <input
+                                    required
+                                    type="password"
+                                    name="confirmPassword"
+                                    value={confirmPassword}
+                                    onChange={(e) =>
+                                        setConfirmPassword(e.target.value)
+                                    }
+                                    placeholder="confirm Password"
+                                />
+                            </div>
                             <div className="form-floating mb-3">
                                 <input
                                     required

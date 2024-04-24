@@ -9,7 +9,7 @@ steps = [
             first_name TEXT DEFAULT NULL,
             last_name TEXT DEFAULT NULL,
             email TEXT DEFAULT NULL UNIQUE,
-            phone_number TEXT DEFAULT NULL,
+            phone_number INTEGER DEFAULT NULL,
             bio TEXT DEFAULT NULL
         );
         """,
@@ -19,4 +19,3 @@ steps = [
         """
     ],
 ]
-

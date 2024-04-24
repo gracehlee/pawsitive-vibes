@@ -1,7 +1,11 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from typing import List, Optional
 from utils.authentication import JWTUserData, try_get_jwt_user_data
-from models.testimonials import TestimonialIn, TestimonialOut, TestimonialInUpdate
+from models.testimonials import (
+    TestimonialIn,
+    TestimonialOut,
+    TestimonialInUpdate
+)
 from queries.testimonials_queries import TestimonialRepository
 
 router = APIRouter()
@@ -22,7 +26,10 @@ def get_all_testimonials(
     return repo.get_all()
 
 
-@router.get("/api/testimonials/{testimonial_id}", response_model=TestimonialOut)
+@router.get(
+    "/api/testimonials/{testimonial_id}",
+    response_model=TestimonialOut
+)
 def get_testimonial_by_id(
     testimonial_id: int,
     repo: TestimonialRepository = Depends()
@@ -30,7 +37,10 @@ def get_testimonial_by_id(
     return repo.get_one(testimonial_id)
 
 
-@router.put("/api/testimonials/{testimonial_id}", response_model=TestimonialOut)
+@router.put(
+    "/api/testimonials/{testimonial_id}",
+    response_model=TestimonialOut
+)
 def update_testimonial_by_id(
     testimonial_id: int,
     testimonial_update: TestimonialInUpdate,

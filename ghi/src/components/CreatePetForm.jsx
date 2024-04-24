@@ -1,9 +1,7 @@
 // @ts-check
 import { useState } from 'react'
-import { Navigate } from 'react-router-dom'
 import { baseUrl } from '../services/authService'
 import useAuthService from '../hooks/useAuthService'
-
 
 export default function SignInForm() {
     const { user, error } = useAuthService()
@@ -48,10 +46,6 @@ export default function SignInForm() {
         return data
     }
 
-    if (user) {
-        return <Navigate to="/" />
-    }
-
     return (
         <form onSubmit={handleFormSubmit}>
             {error && <div className="error">{error.message}</div>}
@@ -65,14 +59,14 @@ export default function SignInForm() {
                     placeholder="Pet name"
                 />
                 <label htmlFor="pet_name">Pet name</label>
-                    <input
+                <input
                     type="text"
                     value={petFormData.image_url}
                     onChange={handleInputChange}
                     placeholder="Image URL (Optional)"
                 />
                 <label htmlFor="image_url">Image URL</label>
-                    <input
+                <input
                     required
                     type="checkbox"
                     value={petFormData.for_sale}
@@ -80,7 +74,7 @@ export default function SignInForm() {
                     placeholder="For Sale?"
                 />
                 <label htmlFor="for_sale">For Sale?</label>
-                    <input
+                <input
                     required
                     type="text"
                     value={petFormData.price}
@@ -88,7 +82,6 @@ export default function SignInForm() {
                     placeholder="price"
                 />
                 <label htmlFor="price">Price</label>
-
 
                 <button type="submit">Submit</button>
             </div>

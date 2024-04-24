@@ -1,7 +1,12 @@
 import psycopg
 from typing import List, Optional
-from models.testimonials import TestimonialIn, TestimonialOut, TestimonialInUpdate
+from models.testimonials import (
+    TestimonialIn,
+    TestimonialOut,
+    TestimonialInUpdate
+)
 from queries.pool import pool
+
 
 class TestimonialRepository:
     def create(self, testimonial: TestimonialIn) -> TestimonialOut:
@@ -29,7 +34,6 @@ class TestimonialRepository:
             print(e)
             return None
 
-
     def get_all(self) -> List[TestimonialOut]:
         try:
             with pool.connection() as conn:
@@ -54,7 +58,6 @@ class TestimonialRepository:
         except psycopg.Error as e:
             print(e)
             return []
-
 
     def get_one(self, testimonial_id: int) -> Optional[TestimonialOut]:
         try:
@@ -81,7 +84,6 @@ class TestimonialRepository:
         except psycopg.Error as e:
             print(e)
             return None
-
 
     def update(
             self,
@@ -137,5 +139,3 @@ class TestimonialRepository:
         except psycopg.Error as e:
             print(e)
             return False
-
-    
