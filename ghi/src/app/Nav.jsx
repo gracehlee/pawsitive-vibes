@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 
 function Nav() {
     return (
-        <nav className="navbar navbar-expand-lg navbar-dark bg-success">
+        <nav className="navbar navbar-expand-lg">
             <div className="container-lg">
                 <NavLink className="navbar-brand" to="/">
                     Pawsitive Vibes
@@ -16,6 +16,9 @@ function Nav() {
                 </NavLink>
                 <NavLink className="navbar-brand" to="/signin">
                     Sign In
+                </NavLink>
+                <NavLink className="navbar-brand" to="/signout">
+                    Sign Out
                 </NavLink>
             </div>
         </nav>

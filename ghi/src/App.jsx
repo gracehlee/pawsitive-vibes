@@ -5,7 +5,7 @@ import ErrorNotification from './components/ErrorNotification'
 import { Routes, Route, BrowserRouter } from 'react-router-dom'
 import SignInForm from './components/SignInForm'
 import SignUpForm from './components/SignUpForm'
-
+import SignOut from './components/SignOut'
 import CreatePetForm from './components/CreatePetForm'
 
 function App() {
@@ -14,13 +14,12 @@ function App() {
             <div>
                 <ErrorNotification />
                 <Nav />
-
                 <Routes>
                     <Route path="/" element={<Home />} />
-                    <Route path="/pets" element={<CreatePetForm/>} />
-
+                    <Route path="/pets" element={<CreatePetForm />} />
                     <Route path="/signup" element={<SignUpForm />} />
                     <Route path="/signin" element={<SignInForm />} />
+                    <Route path="/signout" element={<SignOut />} />
                 </Routes>
             </div>
         </BrowserRouter>

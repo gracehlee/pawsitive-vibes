@@ -69,5 +69,4 @@ We were running into a duplicate router error, and we were able to find the sour
 
 I've revised our main.jsx to not hold the BrowserRouter, and instead moved that to our App.jsx. Now, the App.jsx holds the various components of our pages that can be accessed by clicking the NavLinks in our Nav.jsx. The UI design still needs to be refined, but the base is available to build upon.
 
-I noticed that the SignUp form needed to be restructured, so I edited some of the fields and removed the labels for a better interface.
- 
+I noticed that the SignUp form needed to be restructured, so I edited some of the fields and removed the labels for a better interface. This, however, is not a complete SignUp form as I'm unable to create a new user using the form due to some errors. Since Kyle is working on this, I'll leave him to debug this for now.

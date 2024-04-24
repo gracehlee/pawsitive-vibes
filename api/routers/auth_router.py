@@ -28,6 +28,8 @@ from utils.authentication import (
 router = APIRouter(tags=["Authentication"], prefix="/api/auth")
 
 ##############################
+
+
 @router.post("/signup")
 async def signup(
     new_user: UserNew,

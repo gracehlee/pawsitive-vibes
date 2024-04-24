@@ -1,51 +1,78 @@
 ### Create a new Testimonial
 
-# * Endpoint path: /testimonials
-# * Endpoint method: POST
+# \* Endpoint path: /testimonials
 
-# * For business owner only
-# * Headers:
-#   * Authorization: Bearer token
+# \* Endpoint method: POST
 
-# * Request body:
-#     ```json
-#     {
-#       "rating": int,
-#       "description": str,
-#       "name": str
-#     }
-#     ```
+# \* For business owner only
 
-# * Response: An indication of success or failure
-# * Response shape:
-#     ```json
-#     {
-#       "success": boolean,
-#       "message": str
-#     }
-#     ```
+# \* Headers:
 
-# * Testimonial created
-# 		```json
-# 		{
-# 			"rating": int,
-# 			"description": str,
-# 			"name": str, 
-# 			"id": int
-# 		}
-# 		```
+# \* Authorization: Bearer token
 
+# \* Request body:
+
+# ```json
+
+# {
+
+# "rating": int,
+
+# "description": str,
+
+# "name": str
+
+# }
+
+# ```
+
+# \* Response: An indication of success or failure
+
+# \* Response shape:
+
+# ```json
+
+# {
+
+# "success": boolean,
+
+# "message": str
+
+# }
+
+# ```
+
+# \* Testimonial created
+
+# ```json
+
+# {
+
+# "rating": int,
+
+# "description": str,
+
+# "name": str,
+
+# "id": int
+
+# }
+
+# ```
 
 # create contact form
+
 ### Create a contact form
 
-* Endpoint path: /contactform
-* Endpoint method: POST
+-   Endpoint path: /contactform
+-   Endpoint method: POST
 
-* Headers:
-  * Authorization: Bearer token
+-   Headers:
 
-* Request body:
+    -   Authorization: Bearer token
+
+-   Request body:
+
     ```json
     {
       "first_name": string,
@@ -55,8 +82,8 @@
     }
     ```
 
-* Response: An indication of success or failure
-* Response shape:
+-   Response: An indication of success or failure
+-   Response shape:
     ```json
     {
       "success": boolean,
@@ -64,17 +91,17 @@
     }
     ```
 
-
 ### Get a list of dogs
 
-* Endpoint path: /aussies
-* Endpoint method: GET
+-   Endpoint path: /aussies
+-   Endpoint method: GET
 
-* Headers:
-  * Authorization: Bearer token
+-   Headers:
 
-* Response: A list of dogs
-* Response shape:
+    -   Authorization: Bearer token
+
+-   Response: A list of dogs
+-   Response shape:
     ```json
     {
       "dogs": [
@@ -88,7 +115,6 @@
       ]
     }
     ```
-
 
 Wireframe endpoints
 If your endpoint needs to know who the person is, then include the Headers/Authorization part.
@@ -100,16 +126,21 @@ Contact Form
 Services
 Dogs
 Profile
--------------------------------------
+
+---
+
             Testimonials
--------------------------------------
+
+---
+
 ### Create a new Testimonial
-* Endpoint path: /testimonials
-* Endpoint method: POST
-* For business owner only
-* Headers:
-  * Authorization: Bearer token
-* Request body:
+
+-   Endpoint path: /testimonials
+-   Endpoint method: POST
+-   For business owner only
+-   Headers:
+    -   Authorization: Bearer token
+-   Request body:
     ```json
     {
       "rating": int,
@@ -117,66 +148,72 @@ Profile
       "name": str
     }
     ```
-* Response: An indication of success or failure
-* Response shape:
+-   Response: An indication of success or failure
+-   Response shape:
     ```json
     {
       "success": boolean,
       "message": str
     }
     ```
--------------------------------------
+
+---
+
 ### Get Testimonials
-* Endpoint path: /testimonials
-* Endpoint method: GET
-* For business owner only
-* Headers:
-  * Authorization: Bearer token
-* Response: A list of testimonials
-* Response shape:
-        ```json
-        {
-            "testimonials": [
-                {
-                    "rating": int,
-                    "description": str,
-                    "name": str,
-                    "id": int
-                },
-                {
-                    "rating": int,
-                    "description": str,
-                    "name": str,
-                    "id": int
-                },
-                ...
-            ]
-        }
-        ```
-* Endpoint path: /testimonials/id:int/
-* Endpoint method: GET
-* For business owner only
-* Headers:
-  * Authorization: Bearer token
-* Response: A testimonial's details
-* Response shape:
-        ```json
-        {
-                "rating": int,
-                "description": str,
-                "name": str,
-                "id": int
-        }
-        ```
--------------------------------------
+
+-   Endpoint path: /testimonials
+-   Endpoint method: GET
+-   For business owner only
+-   Headers:
+    -   Authorization: Bearer token
+-   Response: A list of testimonials
+-   Response shape:
+    `json
+  {
+      "testimonials": [
+          {
+              "rating": int,
+              "description": str,
+              "name": str,
+              "id": int
+          },
+          {
+              "rating": int,
+              "description": str,
+              "name": str,
+              "id": int
+          },
+          ...
+      ]
+  }
+  `
+-   Endpoint path: /testimonials/id:int/
+-   Endpoint method: GET
+-   For business owner only
+-   Headers:
+    -   Authorization: Bearer token
+-   Response: A testimonial's details
+-   Response shape:
+    `json
+  {
+          "rating": int,
+          "description": str,
+          "name": str,
+          "id": int
+  }
+  `
+
+---
+
 ### Edit a Testimonial
-* Endpoint path: /testimonials/id:int/
-* Endpoint method: PUT
-* For business owner only
-* Headers:
-  * Authorization: Bearer token
-* Request with any property to update
-* Request body:
+
+-   Endpoint path: /testimonials/id:int/
+-   Endpoint method: PUT
+-   For business owner only
+-   Headers:
+    -   Authorization: Bearer token
+-   Request with any property to update
+-   Request body:
     ```json
     {
       "rating": int,
@@ -184,53 +221,73 @@ Profile
       "name": str
     }
     ```
-* Response: Updated testimonial
-* Response shape:
-        ```json
-        {
-            "rating": int,
-            "description": str,
-            "name": str,
-            "id": int
-        }
-        ```
--------------------------------------
+-   Response: Updated testimonial
+-   Response shape:
+    `json
+  {
+      "rating": int,
+      "description": str,
+      "name": str,
+      "id": int
+  }
+  `
+
+---
+
 ### Delete a Testimonial
-* Endpoint path: /testimonials/id:int/
-* Endpoint method: DELETE
-* For business owner only
-* Headers:
-  * Authorization: Bearer token
-* No request body needed
-* Response: An indication of success or failure
-* Response shape:
+
+-   Endpoint path: /testimonials/id:int/
+-   Endpoint method: DELETE
+-   For business owner only
+-   Headers:
+    -   Authorization: Bearer token
+-   No request body needed
+-   Response: An indication of success or failure
+-   Response shape:
     ```json
     {
       "success": boolean,
       "message": str
     }
     ```
--------------------------------------
+
+---
+
             Carousel image urls ..... Or hard-coded for simplicity?
--------------------------------------
-- Get
--------------------------------------
-- Post
--------------------------------------
-- Delete
--------------------------------------
+
+---
+
+-   Get
+
+---
+
+-   Post
+
+---
+
+-   Delete
+
+---
+
             Google Maps API
--------------------------------------
-- Get
--------------------------------------
+
+---
+
+-   Get
+
+---
+
             Contact Form
--------------------------------------
+
+---
+
 ### Create a contact form
-* Endpoint path: /contactform
-* Endpoint method: POST
-* Headers:
-  * Authorization: Bearer token
-* Request body:
+
+-   Endpoint path: /contactform
+-   Endpoint method: POST
+-   Headers:
+    -   Authorization: Bearer token
+-   Request body:
     ```json
     {
       "first_name": string,
@@ -239,34 +296,49 @@ Profile
       "phone_number": str
     }
     ```
-* Response: An indication of success or failure
-* Response shape:
+-   Response: An indication of success or failure
+-   Response shape:
     ```json
     {
       "success": boolean,
       "message": "Submitted"
     }
     ```
--------------------------------------
+
+---
+
             Services
--------------------------------------
-- Get
--------------------------------------
-- Post
--------------------------------------
-- Put
--------------------------------------
-- Delete
--------------------------------------
+
+---
+
+-   Get
+
+---
+
+-   Post
+
+---
+
+-   Put
+
+---
+
+-   Delete
+
+---
+
             Dogs
--------------------------------------
+
+---
+
 ### Get a list of dogs
-* Endpoint path: /aussies
-* Endpoint method: GET
-* Headers:
-  * Authorization: Bearer token
-* Response: A list of dogs
-* Response shape:
+
+-   Endpoint path: /aussies
+-   Endpoint method: GET
+-   Headers:
+    -   Authorization: Bearer token
+-   Response: A list of dogs
+-   Response shape:
     ```json
     {
       "dogs": [
@@ -280,14 +352,17 @@ Profile
       ]
     }
     ```
--------------------------------------
- ### Get a singular dog listing
-* Endpoint path: /aussies/int:id/
-* Endpoint method: GET
-* Headers:
-  * Authorization: Bearer token
-* Response: A dog listing
-* Response shape:
+
+---
+
+### Get a singular dog listing
+
+-   Endpoint path: /aussies/int:id/
+-   Endpoint method: GET
+-   Headers:
+    -   Authorization: Bearer token
+-   Response: A dog listing
+-   Response shape:
     ```json
     {
             "dog_name": string,
@@ -296,20 +371,88 @@ Profile
         "image_url": string
     }
     ```
--------------------------------------
-- Post
--------------------------------------
-- Put
--------------------------------------
-- Delete
--------------------------------------
-        Profile / Create / Update
--------------------------------------
-- Get
--------------------------------------
-- Post
--------------------------------------
-- Put
--------------------------------------
-- Delete
 
+---
+
+-   Post
+
+---
+
+-   Put
+
+---
+
+-   Delete
+
+---
+
+        Profile / Create / Update
+
+---
+
+-   Get
+
+---
+
+-   Post
+
+---
+
+-   Put
+
+---
+
+-   Delete
+
+Reference code
+user_router
+
+<!-- from utils.authentication import (
+    JWTUserData,
+    try_get_jwt_user_data,
+    hash_password
+) -->
+
+# DUPLICATE - WITHOUT SECURITY
+
+# @router.post("/api/users", response_model=UserOut)
+
+# async def create_new_user(
+
+# user: UserNew,
+
+# repo: UserQueries = Depends(),
+
+# ):
+
+# hashed_password = hash_password(user.password)
+
+# new_user = repo.create_user(
+
+# user.username,
+
+# hashed_password,
+
+# user.first_name,
+
+# user.last_name,
+
+# user.email,
+
+# user.phone_number,
+
+# user.bio
+
+# )
+
+# if not new_user:
+
+# raise HTTPException(
+
+# status_code=400,
+
+# detail="Could not create a new user."
+
+# )
+
+# return new_user
