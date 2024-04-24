@@ -8,6 +8,9 @@ function Nav() {
                 <NavLink className="navbar-brand" to="/">
                     Pawsitive Vibes
                 </NavLink>
+                <NavLink className="navbar-brand" to="/pets">
+                    Create Pet
+                </NavLink>
                 <NavLink className="navbar-brand" to="/signup">
                     Sign Up
                 </NavLink>

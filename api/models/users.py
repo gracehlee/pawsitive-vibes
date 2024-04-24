@@ -37,6 +37,7 @@ class UserWithPw(BaseModel):
 
 
 class UserInUpdate(BaseModel):
+    username: Optional[str]
     first_name: Optional[str]
     last_name: Optional[str]
     email: Optional[str]

@@ -14,5 +14,11 @@ Created endpoints for users - get all, get one, update and delete
 
 ## 4.22.2024 - 4.26.2024
 Submitting user endpoints
-Working on Frontend for user endpoints
-Created user signup form with additional fields. Checking it works
+Working on Frontend for user signup form
+Created user signup form with additional fields, in SignUpForm.jsx
+
+Group is working on the POST form for each of the other endpoints, while Grace works on frontend Navigation to connect to them
+Working on POST for pets, CreatePetForm.jsx
+Working on PUT for pets, UpdatePetForm.jsx
+
+TODO: Ensure CreatePetForm.jsx works - boolean checkbox

@@ -11,11 +11,11 @@ export default function SignInForm() {
     const [userFormData, setUserFormData] = useState({
         username: '',
         password: '',
-        confirmPassword: '',
         first_name: '',
         last_name: '',
         email: '',
         phone_number: '',
+        bio: '',
     })
 
     const handleInputChange = (event) => {
@@ -27,34 +27,10 @@ export default function SignInForm() {
 
     async function handleFormSubmit(e) {
         e.preventDefault()
-        if (userFormData.password !== userFormData.confirmPassword) {
-            alert("Passwords don't match")
-            return
-        }
-        let username = userFormData.username
-        let password = userFormData.password
-        await signup({ username, password })
 
-        // Get id from fetch request + username
-        const usernameFetch = await fetch(`${baseUrl}/api/users`, {
-            method: 'get',
-            credentials: 'include',
-        })
-        if (!usernameFetch.ok) {
-            throw new Error('Could not create user')
-        }
+        await signup(userFormData)
 
-        let id
-        const usernameData = await usernameFetch.json()
-        for (let user of usernameData) {
-            if (user == username) {
-                id = user.id
-                return id
-            }
-        }
-
-        // Username and password exist, updating other fields
-        const usernameUpdate = await fetch(`${baseUrl}/api/users/${id}`, {
+        const usernameUpdate = await fetch(`${baseUrl}/api/auth/signup`, {
             method: 'post',
             credentials: 'include',
             body: JSON.stringify(userFormData),
@@ -63,7 +39,6 @@ export default function SignInForm() {
             },
         })
         if (!usernameUpdate.ok) {
-            // TODO update failed, delete user by id
             throw new Error('Could not create new user')
         }
         const data = await usernameUpdate.json()
@@ -74,8 +49,6 @@ export default function SignInForm() {
         return <Navigate to="/" />
     }
 
-    // TODO form not rendering properly, import CSS?
-    // Copied form from Car-Car
     return (
         <main>
             <div className="container">
@@ -106,16 +79,7 @@ export default function SignInForm() {
                                     placeholder="Enter Password"
                                 />
                             </div>
-                            <div className="form-floating mb-3">
-                                <input
-                                    required
-                                    type="password"
-                                    name="confirmPassword"
-                                    value={userFormData.confirmPassword}
-                                    onChange={handleInputChange}
-                                    placeholder="Confirm Password"
-                                />
-                            </div>
+
                             <div className="form-floating mb-3">
                                 <input
                                     required

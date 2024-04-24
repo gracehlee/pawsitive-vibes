@@ -45,28 +45,30 @@ async def get_user_by_id(
     return user
 
 
-@router.post("/api/users", response_model=UserOut)
-async def create_new_user(
-    user: UserNew,
-    repo: UserQueries = Depends(),
-):
-    hashed_password = hash_password(user.password)
-    new_user = repo.create_user(
-        user.username,
-        hashed_password,
-        user.first_name,
-        user.last_name,
-        user.email,
-        user.phone_number,
-        user.bio
-    )
+# DUPLICATE - WITHOUT SECURITY
 
-    if not new_user:
-        raise HTTPException(
-            status_code=400,
-            detail="Could not create a new user."
-        )
-    return new_user
+# @router.post("/api/users", response_model=UserOut)
+# async def create_new_user(
+#     user: UserNew,
+#     repo: UserQueries = Depends(),
+# ):
+#     hashed_password = hash_password(user.password)
+#     new_user = repo.create_user(
+#         user.username,
+#         hashed_password,
+#         user.first_name,
+#         user.last_name,
+#         user.email,
+#         user.phone_number,
+#         user.bio
+#     )
+
+#     if not new_user:
+#         raise HTTPException(
+#             status_code=400,
+#             detail="Could not create a new user."
+#         )
+#     return new_user
 
 
 @router.put("/api/users/{id}", response_model=UserOut)
