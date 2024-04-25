@@ -1,7 +1,8 @@
 // @ts-check
 import { useState } from 'react'
-import { Navigate } from 'react-router-dom'
+import { Navigate, Link } from 'react-router-dom'
 import useAuthService from '../hooks/useAuthService'
+import '../css/signin.css'
 
 export default function SignInForm() {
     const [username, setUsername] = useState('')
@@ -22,24 +23,41 @@ export default function SignInForm() {
     }
 
     return (
-        <form onSubmit={handleFormSubmit}>
-            {error && <div className="error">{error.message}</div>}
+        <main className="main-container">
+            <div className="row">
+                <div className="offset-3 col-6">
+                    <form onSubmit={handleFormSubmit}>
+                        {error && <div className="error">{error.message}</div>}
 
-            <input
-                type="text"
-                name="username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                placeholder="Enter Username"
-            />
-            <input
-                type="password"
-                name="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Enter Password"
-            />
-            <button type="submit">Sign In</button>
-        </form>
+                        <input
+                            className="form-control mb-2"
+                            type="text"
+                            name="username"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                            placeholder="Enter Username"
+                        />
+                        <input
+                            className="form-control mb-2"
+                            type="password"
+                            name="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            placeholder="Enter Password"
+                        />
+
+                        <div className="text-center">
+                            <button className="btn btn-primary" type="submit">
+                                Sign In
+                            </button>
+                        </div>
+                        <br></br>
+                        <div className="text-center">
+                            <Link to="/signup">New user? Sign Up Here.</Link>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
     )
 }

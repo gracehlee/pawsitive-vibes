@@ -1,6 +1,6 @@
 // @ts-check
 import { useState } from 'react'
-import { Navigate } from 'react-router-dom'
+import { Navigate, Link } from 'react-router-dom'
 import { baseUrl } from '../services/authService'
 import useAuthService from '../hooks/useAuthService'
 
@@ -59,90 +59,115 @@ export default function SignInForm() {
         <main>
             <div className="container">
                 <div className="row">
-                    <div className="shadow p-4 mt-4">
-                        <h1>Create an account</h1>
+                    <div className="col-md-8 offset-md-2 mt-4">
+                        <h1 className="text-center">Create an Account</h1>
+                        <div>
+                            <br></br>
+                        </div>
                         <form onSubmit={handleFormSubmit}>
                             {error && (
-                                <div className="error">{error.message}</div>
+                                <div className="alert alert-danger">
+                                    {error.message}
+                                </div>
                             )}
-                            <div className="form-floating mb-3">
+                            <div className="mb-3">
                                 <input
                                     required
                                     type="text"
+                                    className="form-control"
                                     value={userFormData.username}
                                     onChange={handleInputChange}
                                     placeholder="Enter Username"
                                     name="username"
                                 />
                             </div>
-                            <div className="form-floating mb-3">
+                            <div className="mb-3">
                                 <input
                                     required
                                     type="password"
+                                    className="form-control"
                                     name="password"
                                     value={userFormData.password}
                                     onChange={handleInputChange}
                                     placeholder="Enter Password"
                                 />
                             </div>
-                            <div className="form-floating mb-3">
+                            <div className="mb-3">
                                 <input
                                     required
                                     type="password"
+                                    className="form-control"
                                     name="confirmPassword"
                                     value={confirmPassword}
                                     onChange={(e) =>
                                         setConfirmPassword(e.target.value)
                                     }
-                                    placeholder="confirm Password"
+                                    placeholder="Confirm Password"
                                 />
                             </div>
-                            <div className="form-floating mb-3">
+                            <div className="mb-3">
                                 <input
                                     required
                                     type="text"
+                                    className="form-control"
                                     name="first_name"
                                     id="first_name"
                                     value={userFormData.first_name}
                                     onChange={handleInputChange}
-                                    placeholder="Enter first name"
+                                    placeholder="Enter First Name"
                                 />
                             </div>
-                            <div className="form-floating mb-3">
+                            <div className="mb-3">
                                 <input
                                     required
                                     type="text"
+                                    className="form-control"
                                     name="last_name"
                                     id="last_name"
                                     value={userFormData.last_name}
                                     onChange={handleInputChange}
-                                    placeholder="Enter last name"
+                                    placeholder="Enter Last Name"
                                 />
                             </div>
-                            <div className="form-floating mb-3">
+                            <div className="mb-3">
                                 <input
                                     required
                                     type="text"
+                                    className="form-control"
                                     name="email"
                                     id="email"
                                     value={userFormData.email}
                                     onChange={handleInputChange}
-                                    placeholder="Enter email"
+                                    placeholder="Enter Email"
                                 />
                             </div>
-                            <div className="form-floating mb-3">
+                            <div className="mb-3">
                                 <input
                                     required
                                     type="text"
+                                    className="form-control"
                                     name="phone_number"
                                     id="phone_number"
                                     value={userFormData.phone_number}
                                     onChange={handleInputChange}
-                                    placeholder="Enter phone number"
+                                    placeholder="Enter Phone Number"
                                 />
                             </div>
-                            <button type="submit">Sign Up!</button>
+                            <div className="text-center">
+                                <button
+                                    type="submit"
+                                    className="btn btn-success"
+                                >
+                                    Sign Up!
+                                </button>
+                            </div>
                         </form>
+                        <div className="text-center">
+                            <br></br>
+                            <Link to="/signin">
+                                Have an account? Sign In Here.
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </div>

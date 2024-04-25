@@ -24,7 +24,7 @@ function Nav() {
                     />
                 </NavLink>
                 <NavLink className="navbar-brand" to="/dogs">
-                    Aussie Dogs
+                    Dogs
                 </NavLink>
                 <NavLink className="navbar-brand" to="/services">
                     Services
@@ -37,9 +37,6 @@ function Nav() {
                     </>
                 ) : (
                     <>
-                        <NavLink className="navbar-brand" to="/signup">
-                            Sign Up
-                        </NavLink>
                         <NavLink className="navbar-brand" to="/signin">
                             Sign In
                         </NavLink>
