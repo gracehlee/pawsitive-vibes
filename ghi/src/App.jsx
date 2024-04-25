@@ -9,6 +9,7 @@ import SignOut from './components/SignOut'
 import Services from './app/Services'
 import Dogs from './app/Dogs'
 import useAuthService from './hooks/useAuthService'
+import Footer from './app/Footer'
 
 function App() {
     const { isLoggedIn } = useAuthService()
@@ -45,6 +46,7 @@ function App() {
                         <Route path="/signout" element={<Navigate to="/" />} />
                     )}
                 </Routes>
+                <Footer />
             </div>
         </BrowserRouter>
     )

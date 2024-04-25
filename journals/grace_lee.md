@@ -80,3 +80,19 @@ Today I worked on:
 I was able to debug our web components that were rendering errors when accessed and redirecting to main "/" path rather than the page itself once the user was logged in. The culprit was in some lines of code that redirected the user to main through the use of Navigate, which I deleted from the CreatePetForm. I also added business logic to the front end routing on the Nav to not display certain links if the user is logged in VS logged out - however, this does not stop the user from accessing those pages if they type it into their browser. So I will be working on limiting the components hopefully in App.jsx as well.
 
 I took the time to refactor some of our Nav links and App component pages. Instead of having individual routes for the Create Pets or Create Services form, I made the forms render on a "Aussie Dogs" page and "Services" page. I have yet to add the logic for a conditional, but the idea is that by checking if the user is logged in, the "Add a Dog" button would be visible. In the future, only admins will be able to access the button to "Add a Service" on the services page. Also, by adding conditional logic to the App.jsx, we made sure that users cannot access certain pages by brute-forcing a direct URL into the browser. When these pages are visited while the user is logged out, they can see the Dog and Services page, but there is no button to toggle the forms for adding a pet or service.
+
+Finally, I revised some of the formatting and css for our forms. While this might not be the final design of these forms, at least it provides a clear and understandable format to work with until we change it later.
+
+## 4.25.2024
+
+Today I worked on:
+
+Goals for today are to work on modifying our user schema and related back end to include a user property called "admin" as a boolean true/false. This will hopefully allow us to access the user properties through the use of Auth Service (user.admin) and lock features behind admin status on the front end side.
+
+-   secondarily, if I have time, I want to see if I can debug some of the console errors we've been getting. We've been seeing some errors that say: utils.js:12 GET http://localhost:8000/api/auth/authenticate 404 (Not Found)
+
+-   related to this bug, I want to verify that our authentication is complete and bug-free.
+
+-   after that, I'd like to work on further front-end CSS and UI design.
+
+I created a footer for our page, and will be working on adapting a contact form component in the footer.

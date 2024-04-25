@@ -26,6 +26,10 @@ export default function SignInForm() {
         <main className="main-container">
             <div className="row">
                 <div className="offset-3 col-6">
+                    <h1 className="text-center">Log In</h1>
+                    <div>
+                        <br></br>
+                    </div>
                     <form onSubmit={handleFormSubmit}>
                         {error && <div className="error">{error.message}</div>}
 
@@ -48,7 +52,7 @@ export default function SignInForm() {
 
                         <div className="text-center">
                             <button className="btn btn-primary" type="submit">
-                                Sign In
+                                Log In
                             </button>
                         </div>
                         <br></br>
