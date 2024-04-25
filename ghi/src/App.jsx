@@ -7,6 +7,8 @@ import SignInForm from './components/SignInForm'
 import SignUpForm from './components/SignUpForm'
 import SignOut from './components/SignOut'
 import CreatePetForm from './components/CreatePetForm'
+import ServiceForm from './components/ServiceForm'
+
 
 function App() {
     return (
@@ -20,6 +22,7 @@ function App() {
                     <Route path="/signup" element={<SignUpForm />} />
                     <Route path="/signin" element={<SignInForm />} />
                     <Route path="/signout" element={<SignOut />} />
+                    <Route path="/serviceform" element={<ServiceForm />} />
                 </Routes>
             </div>
         </BrowserRouter>

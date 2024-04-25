@@ -35,6 +35,9 @@ function Nav() {
                         </NavLink>
                     </>
                 )}
+                <NavLink className="navbar-brand" to="/serviceform">
+                    Add a Service
+                </NavLink>
             </div>
         </nav>
     )
