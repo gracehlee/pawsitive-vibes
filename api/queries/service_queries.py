@@ -21,15 +21,18 @@ class ServiceRepository:
                         """
                         INSERT INTO services (
                             service
+                            , description
                             , picture_url
                             , duration
                             , cost
                         )
-                        VALUES (%s, %s, %s, %s)
-                        RETURNING id, service, picture_url, duration, cost;
+                        VALUES (%s, %s, %s, %s, %s)
+                        RETURNING id, service, description, picture_url,
+                        duration, cost;
                         """,
                         [
                             service.service,
+                            service.description,
                             service.picture_url,
                             service.duration,
                             service.cost
@@ -41,9 +44,10 @@ class ServiceRepository:
                     service = ServiceOut(
                         id=data[0],
                         service=data[1],
-                        picture_url=data[2],
-                        duration=data[3],
-                        cost=data[4],
+                        description=data[2],
+                        picture_url=data[3],
+                        duration=data[4],
+                        cost=data[5],
                     )
                     return service
         except psycopg.Error as e:
@@ -56,7 +60,8 @@ class ServiceRepository:
                 with conn.cursor() as db:
                     db.execute(
                         """
-                        SELECT id, service, picture_url, duration, cost
+                        SELECT id, service, description, picture_url,
+                        duration, cost
                         FROM services
                         ORDER BY id;
                         """
@@ -66,9 +71,10 @@ class ServiceRepository:
                         service = ServiceOut(
                             id=record[0],
                             service=record[1],
-                            picture_url=record[2],
-                            duration=record[3],
-                            cost=record[4]
+                            description=record[2],
+                            picture_url=record[3],
+                            duration=record[4],
+                            cost=record[5]
                         )
                         services.append(service)
                     return services
@@ -82,7 +88,8 @@ class ServiceRepository:
                 with conn.cursor() as db:
                     db.execute(
                         """
-                        SELECT id, service, picture_url, duration, cost
+                        SELECT id, service, description, picture_url,
+                        duration, cost
                         FROM services
                         WHERE id = %s;
                         """,
@@ -94,9 +101,10 @@ class ServiceRepository:
                     service = ServiceOut(
                         id=data[0],
                         service=data[1],
-                        picture_url=data[2],
-                        duration=data[3],
-                        cost=data[4]
+                        description=data[2],
+                        picture_url=data[3],
+                        duration=data[4],
+                        cost=data[5]
                     )
                     return service
         except psycopg.Error as e:
@@ -113,7 +121,8 @@ class ServiceRepository:
                 with conn.cursor() as db:
                     fields = []
                     values = []
-                    properties = ["service", "picture_url", "duration", "cost"]
+                    properties = ["service", "description", "picture_url",
+                                  "duration", "cost"]
                     for property in properties:
                         if getattr(service, property) is not None:
                             fields.append(f"{property} = %s")
@@ -124,7 +133,8 @@ class ServiceRepository:
                         UPDATE services
                         SET {', '.join(fields)}
                         WHERE id = %s
-                        RETURNING id, service, picture_url, duration, cost;
+                        RETURNING id, service, description, picture_url,
+                        duration, cost;
                         """,
                         values,
                     )
@@ -134,9 +144,10 @@ class ServiceRepository:
                     updated_service = ServiceOut(
                         id=data[0],
                         service=data[1],
-                        picture_url=data[2],
-                        duration=data[3],
-                        cost=data[4]
+                        description=data[2],
+                        picture_url=data[3],
+                        duration=data[4],
+                        cost=data[5]
                     )
                     return updated_service
         except psycopg.Error as e:

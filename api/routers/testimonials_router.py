@@ -8,10 +8,10 @@ from models.testimonials import (
 )
 from queries.testimonials_queries import TestimonialRepository
 
-router = APIRouter()
+router = APIRouter(prefix="/api", tags=["Testimonials"])
 
 
-@router.post("/api/testimonials", response_model=TestimonialOut)
+@router.post("/testimonials", response_model=TestimonialOut)
 def create_testimonial(
     testimonial: TestimonialIn,
     repo: TestimonialRepository = Depends()
@@ -19,7 +19,7 @@ def create_testimonial(
     return repo.create(testimonial)
 
 
-@router.get("/api/testimonials", response_model=List[TestimonialOut])
+@router.get("/testimonials", response_model=List[TestimonialOut])
 def get_all_testimonials(
     repo: TestimonialRepository = Depends(),
 ):
@@ -27,7 +27,7 @@ def get_all_testimonials(
 
 
 @router.get(
-    "/api/testimonials/{testimonial_id}",
+    "/testimonials/{testimonial_id}",
     response_model=TestimonialOut
 )
 def get_testimonial_by_id(
@@ -38,7 +38,7 @@ def get_testimonial_by_id(
 
 
 @router.put(
-    "/api/testimonials/{testimonial_id}",
+    "/testimonials/{testimonial_id}",
     response_model=TestimonialOut
 )
 def update_testimonial_by_id(
@@ -58,7 +58,7 @@ def update_testimonial_by_id(
     return updated_testimonial
 
 
-@router.delete("/api/testimonials/{testimonial_id}")
+@router.delete("/testimonials/{testimonial_id}")
 def delete_testimonial_by_id(
     testimonial_id: int,
     repo: TestimonialRepository = Depends(),

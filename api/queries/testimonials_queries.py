@@ -13,23 +13,37 @@ class TestimonialRepository:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as db:
-                    result = db.execute(
-                        """"
+                    db.execute(
+                        """
                         INSERT INTO testimonials
-                            (rating, name, description)
+                            (rating, name, description, approved)
                         VALUES
-                            (%s, %s, %s);
-                        RETURNING id;
+                            (%s, %s, %s, %s)
+                        RETURNING *;
                         """,
                         [
                             testimonial.rating,
                             testimonial.name,
-                            testimonial.description
+                            testimonial.description,
+                            testimonial.approved
                         ]
                     )
-                    id = result.fetchone()[0]
-                    old_data = testimonial.dict()
-                    return TestimonialOut(id=id, **old_data)
+                    data = db.fetchone()
+                    if data is None:
+                        return None
+                    testimonial = TestimonialOut(
+                        id=data[0],
+                        rating=data[1],
+                        name=data[2],
+                        description=data[3],
+                        approved=data[4]
+                    )
+                    return testimonial
+
+                    # id = result.fetchone()[0]
+                    # old_data = testimonial.dict()
+                    # # old_data = TestimonialOut(**testimonial.model_dump())
+                    # return TestimonialOut(id=id, **old_data)
         except psycopg.Error as e:
             print(e)
             return None
@@ -62,7 +76,7 @@ class TestimonialRepository:
     def get_one(self, testimonial_id: int) -> Optional[TestimonialOut]:
         try:
             with pool.connection() as conn:
-                with conn.curser() as db:
+                with conn.cursor() as db:
                     db.execute(
                         """
                         SELECT id, rating, name, description

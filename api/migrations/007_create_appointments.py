@@ -9,7 +9,8 @@ steps = [
             email TEXT NOT NULL,
             cancel_url TEXT NOT NULL,
             reschedule_url TEXT NOT NULL,
-            event TEXT NOT NULL
+            event TEXT NOT NULL,
+            approved BOOLEAN DEFAULT FALSE
         );
         """,
         # "Down" SQL statement

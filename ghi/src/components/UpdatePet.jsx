@@ -1,6 +1,5 @@
 // @ts-check
 import { useState } from 'react'
-import { Navigate } from 'react-router-dom'
 import { baseUrl } from '../services/authService'
 import useAuthService from '../hooks/useAuthService'
 
@@ -10,10 +9,32 @@ export default function SignInForm() {
     const [petFormData, setPetFormData] = useState({
         pet_name: '',
         image_url: '',
-        for_sale: '',
+        for_sale: 'false',
         price: '',
-        owner_id: '',
+        owner_id: null,
     })
+
+    // add for_sale boolean
+    const [checked, setChecked] = useState(false)
+    const [showPrice, setShowPrice] = useState(false)
+
+    const handleChange = (e) => {
+        setChecked(!checked)
+        setShowPrice(!showPrice)
+
+        if (checked == true) {
+            setPetFormData({
+                ...petFormData,
+                for_sale: 'false',
+                price: '',
+            })
+        } else {
+            setPetFormData({
+                ...petFormData,
+                for_sale: 'true',
+            })
+        }
+    }
 
     const handleInputChange = (event) => {
         setPetFormData({
@@ -29,10 +50,15 @@ export default function SignInForm() {
     async function handleFormSubmit(e) {
         e.preventDefault()
 
-        petFormData.owner_id = user.id.toString()
+        setPetFormData({
+            ...petFormData,
+            owner_id: user.id,
+        })
 
-        const res = await fetch(`${baseUrl}/api/pets${pet_id}`, {
-            method: 'post',
+        console.log(petFormData)
+
+        const res = await fetch(`${baseUrl}/api/pets/${pet_id}`, {
+            method: 'put',
             credentials: 'include',
             body: JSON.stringify(petFormData),
             headers: {
@@ -40,14 +66,10 @@ export default function SignInForm() {
             },
         })
         if (!res.ok) {
-            throw new Error('Could not create new pet')
+            throw new Error('Could not update pet')
         }
         const data = await res.json()
         return data
-    }
-
-    if (user) {
-        return <Navigate to="/" />
     }
 
     return (
@@ -58,32 +80,36 @@ export default function SignInForm() {
                     required
                     type="text"
                     value={petFormData.pet_name}
+                    name="pet_name"
                     onChange={handleInputChange}
                     placeholder="Pet name"
                 />
                 <label htmlFor="pet_name">Pet name</label>
                 <input
                     type="text"
+                    name="image_url"
                     value={petFormData.image_url}
                     onChange={handleInputChange}
                     placeholder="Image URL (Optional)"
                 />
                 <label htmlFor="image_url">Image URL</label>
                 <input
-                    required
                     type="checkbox"
-                    value={petFormData.for_sale}
-                    onChange={handleInputChange}
+                    checked={checked}
+                    onClick={handleChange}
                     placeholder="For Sale?"
                 />
                 <label htmlFor="for_sale">For Sale?</label>
-                <input
-                    required
-                    type="text"
-                    value={petFormData.price}
-                    onChange={handleInputChange}
-                    placeholder="price"
-                />
+
+                {checked && (
+                    <input
+                        type="text"
+                        name="price"
+                        value={petFormData.price}
+                        onChange={handleInputChange}
+                        placeholder="price"
+                    />
+                )}
                 <label htmlFor="price">Price</label>
 
                 <button type="submit">Submit</button>

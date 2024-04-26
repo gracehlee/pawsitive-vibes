@@ -1,7 +1,6 @@
 // @ts-check
 import { useState } from 'react'
 import { Navigate, Link } from 'react-router-dom'
-import { baseUrl } from '../services/authService'
 import useAuthService from '../hooks/useAuthService'
 
 export default function SignInForm() {
@@ -33,22 +32,7 @@ export default function SignInForm() {
             alert("Passwords don't match!")
             return
         }
-
         await signup(userFormData)
-
-        const usernameUpdate = await fetch(`${baseUrl}/api/auth/signup`, {
-            method: 'post',
-            credentials: 'include',
-            body: JSON.stringify(userFormData),
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        })
-        if (!usernameUpdate.ok) {
-            throw new Error('Could not create new user')
-        }
-        const data = await usernameUpdate.json()
-        return data
     }
 
     if (user) {

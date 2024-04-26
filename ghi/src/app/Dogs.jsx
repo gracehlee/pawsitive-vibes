@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.css'
-import CreatePetForm from '../components/CreatePetForm'
+import CreatePetForm from '../components/CreatePet'
 import { useState } from 'react'
 import useAuthService from '../hooks/useAuthService'
 

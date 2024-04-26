@@ -16,7 +16,7 @@ pool = ConnectionPool(DATABASE_URL)
 
 
 class PetQueries:
-    def get_all_users(self) -> List[PetOut]:
+    def get_all_pets(self) -> List[PetOut]:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as db:
@@ -28,6 +28,10 @@ class PetQueries:
                             , image_url
                             , for_sale
                             , price
+                            , breed
+                            , age
+                            , birthday
+                            , description
                             , owner_id
                         )
                         FROM pets
@@ -35,14 +39,20 @@ class PetQueries:
                         """
                     )
                     pets = []
+                    print("DB IS:", db)
                     for record in db:
+                        print("RECORD IS:", record)
                         pet = PetOut(
-                            id=record[0],
-                            pet_name=record[1],
-                            image_url=record[2],
-                            for_sale=record[3],
-                            price=record[4],
-                            owner_id=record[5],
+                            id=record[0][0],
+                            pet_name=record[0][1],
+                            image_url=record[0][2],
+                            for_sale=record[0][3],
+                            price=record[0][4],
+                            breed=record[0][5],
+                            age=record[0][6],
+                            birthday=record[0][7],
+                            description=record[0][8],
+                            owner_id=record[0][9],
                         )
                         pets.append(pet)
                     return pets
@@ -62,6 +72,10 @@ class PetQueries:
                             , image_url
                             , for_sale
                             , price
+                            , breed
+                            , age
+                            , birthday
+                            , description
                             , owner_id
                         )
                         FROM pets
@@ -73,12 +87,16 @@ class PetQueries:
                     if data is None:
                         return None
                     pet = PetOut(
-                        id=data[0],
-                        pet_name=data[1],
-                        image_url=data[2],
-                        for_sale=data[3],
-                        price=data[4],
-                        owner_id=data[5],
+                        id=data[0][0],
+                        pet_name=data[0][1],
+                        image_url=data[0][2],
+                        for_sale=data[0][3],
+                        price=data[0][4],
+                        breed=data[0][5],
+                        age=data[0][6],
+                        birthday=data[0][7],
+                        description=data[0][8],
+                        owner_id=data[0][9],
                     )
                     return pet
         except psycopg.Error as e:
@@ -96,15 +114,23 @@ class PetQueries:
                             , image_url
                             , for_sale
                             , price
+                            , breed
+                            , age
+                            , birthday
+                            , description
                             , owner_id
                         )
-                        VALUES (%s, %s, %s, %s, %s)
+                        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
                         RETURNING (
                             id
                             , pet_name
                             , image_url
                             , for_sale
                             , price
+                            , breed
+                            , age
+                            , birthday
+                            , description
                             , owner_id
                         )
                         """,
@@ -113,6 +139,10 @@ class PetQueries:
                             pet.image_url,
                             pet.for_sale,
                             pet.price,
+                            pet.breed,
+                            pet.age,
+                            pet.birthday,
+                            pet.description,
                             pet.owner_id,
                         ],
                     )
@@ -120,12 +150,16 @@ class PetQueries:
                     if data is None:
                         return None
                     pet = PetOut(
-                        id=data[0],
-                        pet_name=data[1],
-                        image_url=data[2],
-                        for_sale=data[3],
-                        price=data[4],
-                        owner_id=data[5],
+                        id=data[0][0],
+                        pet_name=data[0][1],
+                        image_url=data[0][2],
+                        for_sale=data[0][3],
+                        price=data[0][4],
+                        breed=data[0][5],
+                        age=data[0][6],
+                        birthday=data[0][7],
+                        description=data[0][8],
+                        owner_id=data[0][9],
                     )
                     return pet
         except psycopg.Error as e:
@@ -139,7 +173,9 @@ class PetQueries:
                     fields = []
                     values = []
 
-                    properties = ["pet_name", "image_url", "for_sale", "price"]
+                    properties = ["pet_name", "image_url", "for_sale", "price",
+                                  "breed", "age", "birthday", "description",
+                                  "owner_id"]
                     for property in properties:
                         if getattr(pet, property) is not None:
                             fields.append(f"{property} = %s")
@@ -158,6 +194,10 @@ class PetQueries:
                             , image_url
                             , for_sale
                             , price
+                            , breed
+                            , age
+                            , birthday
+                            , description
                             , owner_id
                         )
                         """,
@@ -167,12 +207,16 @@ class PetQueries:
                     if data is None:
                         return None
                     updated_pet = PetOut(
-                        id=data[0],
-                        pet_name=data[1],
-                        image_url=data[2],
-                        for_sale=data[3],
-                        price=data[4],
-                        owner_id=data[5],
+                        id=data[0][0],
+                        pet_name=data[0][1],
+                        image_url=data[0][2],
+                        for_sale=data[0][3],
+                        price=data[0][4],
+                        breed=data[0][5],
+                        age=data[0][6],
+                        birthday=data[0][7],
+                        description=data[0][8],
+                        owner_id=data[0][9],
                     )
                     return updated_pet
         except psycopg.Error as e:

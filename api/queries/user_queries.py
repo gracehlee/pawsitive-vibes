@@ -87,8 +87,9 @@ class UserQueries:
         first_name: str,
         last_name: str,
         email: str,
-        phone_number: int,
-        bio: Optional[str] = None
+        phone_number: str,
+        admin: bool,
+        bio: Optional[str] = None,
     ) -> UserWithPw:
         """
         Creates a new user in the database
@@ -101,15 +102,16 @@ class UserQueries:
                     db.execute(
                         """
                         INSERT INTO users (
-                            username,
-                            password,
-                            first_name,
-                            last_name,
-                            email,
-                            phone_number,
-                            bio
+                            username
+                            , password
+                            , first_name
+                            , last_name
+                            , email
+                            , phone_number
+                            , admin
+                            , bio
                         ) VALUES (
-                            %s, %s, %s, %s, %s, %s, %s
+                            %s, %s, %s, %s, %s, %s, %s, %s
                         )
                         RETURNING *;
                         """,
@@ -120,17 +122,19 @@ class UserQueries:
                             last_name,
                             email,
                             phone_number,
+                            admin,
                             bio,
                         ],
                     )
                     user = db.fetchone()
+                    print("user IS:", user)
                     if not user:
                         raise UserDatabaseException(
                             f"Could not create user with username {username}"
                         )
         except psycopg.Error:
             raise UserDatabaseException(
-                f"Could not create user with username {username}"
+                f"Could not create user with username {username}",
             )
         return user
 
@@ -143,7 +147,7 @@ class UserQueries:
                             """
                             SELECT
                             id, username, first_name, last_name,
-                            email, phone_number, bio
+                            email, phone_number, admin, bio
                             FROM users
                             ORDER BY id
                             """
@@ -157,7 +161,8 @@ class UserQueries:
                             last_name=record[3],
                             email=record[4],
                             phone_number=record[5],
-                            bio=record[6]
+                            admin=record[6],
+                            bio=record[7]
                         )
                         all_users.append(user)
                     return all_users
@@ -173,7 +178,7 @@ class UserQueries:
                         """
                         SELECT
                         id, username, first_name, last_name,
-                        email, phone_number, bio
+                        email, phone_number, admin, bio
                         FROM users
                         WHERE id = %s;
                         """,
@@ -189,7 +194,8 @@ class UserQueries:
                         last_name=data[3],
                         email=data[4],
                         phone_number=data[5],
-                        bio=data[6]
+                        admin=data[6],
+                        bio=data[7]
                     )
                     return user
 
@@ -205,7 +211,7 @@ class UserQueries:
                     values = []
 
                     properties = ["first_name", "last_name",
-                                  "email", "phone_number", "bio"]
+                                  "email", "phone_number", "admin", "bio"]
                     for property in properties:
                         if getattr(user, property) is not None:
                             fields.append(f"{property} = %s")
@@ -220,7 +226,7 @@ class UserQueries:
                         WHERE id = %s
                         RETURNING
                         id, username, first_name, last_name,
-                        email, phone_number, bio;
+                        email, phone_number, admin, bio;
                         """,
                         values,
                     )
@@ -234,7 +240,9 @@ class UserQueries:
                         last_name=data[3],
                         email=data[4],
                         phone_number=data[5],
-                        bio=data[6]
+                        admin=data[6],
+                        bio=data[7]
+
                     )
                     return updated_user
         except psycopg.Error as e:

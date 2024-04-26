@@ -30,7 +30,7 @@ async def get_all_pets(
     if not user:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
                             detail="Only logged-in users may view pets.")
-    pets = repo.get_all()
+    pets = repo.get_all_pets()
     if not pets:
         raise HTTPException(status_code=404, detail="Pets not found.")
     return pets

@@ -18,7 +18,9 @@ Working on Frontend for user signup form
 Created user signup form with additional fields, in SignUpForm.jsx
 
 Group is working on the POST form for each of the other endpoints, while Grace works on frontend Navigation to connect to them
-Working on POST for pets, CreatePetForm.jsx
-Working on PUT for pets, UpdatePetForm.jsx
 
-TODO: Ensure CreatePetForm.jsx works - boolean checkbox
+Working on POST for pets, CreatePetForm.jsx
+"for_sale" Checkbox results in boolean value added to form
+Price input is displayed when "for_sale" is checked (true)
+
+Working on PUT for pets, UpdatePetForm.jsx

@@ -37,7 +37,8 @@ class UserInUpdate(BaseModel):
     first_name: Optional[str]
     last_name: Optional[str]
     email: Optional[str]
-    phone_number: Optional[int]
+    phone_number: Optional[str]
+    admin: Optional[bool] = False
     bio: Optional[str]
 
 
@@ -47,7 +48,8 @@ class UserOut(BaseModel):
     first_name: Optional[str]
     last_name: Optional[str]
     email: Optional[str]
-    phone_number: Optional[int]
+    phone_number: Optional[str]
+    admin: Optional[bool] = False
     bio: Optional[str]
 
 
@@ -57,5 +59,6 @@ class UserNew(BaseModel):
     first_name: str
     last_name: str
     email: str
-    phone_number: int
+    phone_number: str
+    admin: bool = False
     bio: Optional[str]

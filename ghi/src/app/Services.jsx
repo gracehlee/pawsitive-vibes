@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.css'
-import ServiceForm from '../components/ServiceForm'
+import ServiceForm from '../components/CreateService'
 import { useState } from 'react'
 import useAuthService from '../hooks/useAuthService'
 

@@ -51,6 +51,7 @@ async def signup(
                                    new_user.last_name,
                                    new_user.email,
                                    new_user.phone_number,
+                                   new_user.admin,
                                    new_user.bio
                                    )
     except UserDatabaseException as e:
