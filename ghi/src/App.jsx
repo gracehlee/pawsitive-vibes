@@ -3,6 +3,7 @@ import './css/App.css'
 import Home from './app/Home'
 import ErrorNotification from './components/ErrorNotification'
 import { Routes, Route, BrowserRouter, Navigate } from 'react-router-dom'
+import Community from './app/Community'
 import SignInForm from './components/SignInForm'
 import SignUpForm from './components/SignUpForm'
 import SignOut from './components/SignOut'
@@ -41,7 +42,10 @@ function App() {
                         </>
                     )}
                     {isLoggedIn ? (
-                        <Route path="/signout" element={<SignOut />} />
+                        <>
+                            <Route path="/community" element={<Community />} />
+                            <Route path="/signout" element={<SignOut />} />
+                        </>
                     ) : (
                         <Route path="/signout" element={<Navigate to="/" />} />
                     )}

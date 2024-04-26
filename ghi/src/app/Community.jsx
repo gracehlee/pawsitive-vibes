@@ -1,9 +1,9 @@
 import 'bootstrap/dist/css/bootstrap.css'
-import SellPetForm from '../components/SellPetForm'
+import CreatePetForm from '../components/CreatePetForm'
 import { useState } from 'react'
 import useAuthService from '../hooks/useAuthService'
 
-function Dogs() {
+function Community() {
     const { isLoggedIn } = useAuthService()
 
     const [createForm, setCreateForm] = useState(false)
@@ -24,17 +24,28 @@ function Dogs() {
             <div className="container">
                 <div className="row">
                     <div className="col-md-8 offset-md-2 text-center">
-                        <h1>Dogs</h1>
-                        <p>Dogs go here!</p>
+                        <h1>Community</h1>
+                        <p>Community content goes here!</p>
+                        <p>ie. Profile content</p>
+                        <p>ie. Edit Profile content (Profile form) </p>
+                        <p>
+                            We might want to move the CreatePetForm to the Edit
+                            Profile form component later.
+                        </p>
+                        <p>
+                            We will need to remove the fields -for sale- and
+                            -price-
+                        </p>
+                        <p>From this particular Pet Form.</p>
                         {isLoggedIn && (
                             <div>
-                                {createForm && <SellPetForm />}
+                                {createForm && <CreatePetForm />}
                                 {closeForm && (
                                     <button
                                         className="btn btn-dark"
                                         onClick={handleCreatePet}
                                     >
-                                        Add a Dog
+                                        Add a Pet
                                     </button>
                                 )}
                             </div>
@@ -59,4 +70,4 @@ function Dogs() {
     )
 }
 
-export default Dogs
+export default Community

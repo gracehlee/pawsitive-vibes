@@ -31,6 +31,9 @@ function Nav() {
                 </NavLink>
                 {isLoggedIn ? (
                     <>
+                        <NavLink className="navbar-brand" to="/community">
+                            Community
+                        </NavLink>
                         <Link className="navbar-brand" onClick={signout}>
                             Sign Out
                         </Link>

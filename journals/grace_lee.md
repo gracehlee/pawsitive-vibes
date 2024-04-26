@@ -96,4 +96,4 @@ Goals for today are to work on modifying our user schema and related back end to
 
 - I worked with Kyle to adapt our user schema, queries, and router to make sure the newly added properties are working properly, and confirmed that the FastAPI docs show the endpoints are still working. Through pair programming, we are adjusting some of our database schemas and making sure all of the other components are working well. We repeated this process for our pets, testimonials, and services.
 
-I created a footer for our page, and will be working on adapting a contact form component in the footer.
+I created a footer for our page, and will be working on adapting a contact form component in the footer. Goals for tomorrow are to work on a functional contact form, and integrate the contact form into our footer.

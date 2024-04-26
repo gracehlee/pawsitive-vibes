@@ -32,24 +32,28 @@ export default function SignInForm() {
                     </div>
                     <form onSubmit={handleFormSubmit}>
                         {error && <div className="error">{error.message}</div>}
-
-                        <input
-                            className="form-control mb-2"
-                            type="text"
-                            name="username"
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}
-                            placeholder="Enter Username"
-                        />
-                        <input
-                            className="form-control mb-2"
-                            type="password"
-                            name="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            placeholder="Enter Password"
-                        />
-
+                        <div className="form-floating mb-3">
+                            <input
+                                className="form-control mb-2"
+                                type="text"
+                                name="username"
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
+                                placeholder="Enter Username"
+                            />
+                            <label htmlFor="username">Username</label>
+                        </div>
+                        <div className="form-floating mb-3">
+                            <input
+                                className="form-control mb-2"
+                                type="password"
+                                name="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                placeholder="Enter Password"
+                            />
+                            <label htmlFor="password">Password</label>
+                        </div>
                         <div className="text-center">
                             <button className="btn btn-primary" type="submit">
                                 Log In

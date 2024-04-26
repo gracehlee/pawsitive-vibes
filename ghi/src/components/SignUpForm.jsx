@@ -54,7 +54,7 @@ export default function SignInForm() {
                                     {error.message}
                                 </div>
                             )}
-                            <div className="mb-3">
+                            <div className="form-floating mb-3">
                                 <input
                                     required
                                     type="text"
@@ -64,8 +64,9 @@ export default function SignInForm() {
                                     placeholder="Enter Username"
                                     name="username"
                                 />
+                                <label htmlFor="username">Username</label>
                             </div>
-                            <div className="mb-3">
+                            <div className="form-floating mb-3">
                                 <input
                                     required
                                     type="password"
@@ -75,8 +76,9 @@ export default function SignInForm() {
                                     onChange={handleInputChange}
                                     placeholder="Enter Password"
                                 />
+                                <label htmlFor="password">Password</label>
                             </div>
-                            <div className="mb-3">
+                            <div className="form-floating mb-3">
                                 <input
                                     required
                                     type="password"
@@ -88,8 +90,11 @@ export default function SignInForm() {
                                     }
                                     placeholder="Confirm Password"
                                 />
+                                <label htmlFor="confirm_password">
+                                    Confirm Password
+                                </label>
                             </div>
-                            <div className="mb-3">
+                            <div className="form-floating mb-3">
                                 <input
                                     required
                                     type="text"
@@ -100,8 +105,9 @@ export default function SignInForm() {
                                     onChange={handleInputChange}
                                     placeholder="Enter First Name"
                                 />
+                                <label htmlFor="firstname">First Name</label>
                             </div>
-                            <div className="mb-3">
+                            <div className="form-floating mb-3">
                                 <input
                                     required
                                     type="text"
@@ -112,8 +118,9 @@ export default function SignInForm() {
                                     onChange={handleInputChange}
                                     placeholder="Enter Last Name"
                                 />
+                                <label htmlFor="lastname">Last Name</label>
                             </div>
-                            <div className="mb-3">
+                            <div className="form-floating mb-3">
                                 <input
                                     required
                                     type="text"
@@ -124,8 +131,9 @@ export default function SignInForm() {
                                     onChange={handleInputChange}
                                     placeholder="Enter Email"
                                 />
+                                <label htmlFor="email">Email</label>
                             </div>
-                            <div className="mb-3">
+                            <div className="form-floating mb-3">
                                 <input
                                     required
                                     type="text"
@@ -136,6 +144,9 @@ export default function SignInForm() {
                                     onChange={handleInputChange}
                                     placeholder="Enter Phone Number"
                                 />
+                                <label htmlFor="phone_number">
+                                    Phone Number
+                                </label>
                             </div>
                             <div className="text-center">
                                 <button

@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { baseUrl } from '../services/authService'
 import useAuthService from '../hooks/useAuthService'
 
-export default function CreatePetForm() {
+export default function SellPetForm() {
     const { user, error } = useAuthService()
 
     const [petFormData, setPetFormData] = useState({
@@ -74,7 +74,9 @@ export default function CreatePetForm() {
         <div className="container">
             <div className="card shadow mt-4">
                 <div className="card-body">
-                    <h1 className="card-title text-center">Create a Pet</h1>
+                    <h1 className="card-title text-center">
+                        Add a dog to sell
+                    </h1>
                     <br></br>
                     <form onSubmit={handleFormSubmit}>
                         {error && (
