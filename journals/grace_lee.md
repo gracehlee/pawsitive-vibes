@@ -90,9 +90,10 @@ Today I worked on:
 Goals for today are to work on modifying our user schema and related back end to include a user property called "admin" as a boolean true/false. This will hopefully allow us to access the user properties through the use of Auth Service (user.admin) and lock features behind admin status on the front end side.
 
 -   secondarily, if I have time, I want to see if I can debug some of the console errors we've been getting. We've been seeing some errors that say: utils.js:12 GET http://localhost:8000/api/auth/authenticate 404 (Not Found)
+- Per Rosheen, de-prioritize the console dev errors because some of those may be due to the time it takes to load the app.
 
--   related to this bug, I want to verify that our authentication is complete and bug-free.
+-   I confirmed with Amy that back end auth JWT token should be used for endpoints that can only be accessed when user is logged in. Per Amy, if we are not logged in and hypothetically had access to a form with that particular endpoint, the logged-out visitor will not be able to submit the form. This shouldn't be an issue in our app since on the front-end side, we've made forms and parts of the app not accessible if a user is logged out.
 
--   after that, I'd like to work on further front-end CSS and UI design.
+- I worked with Kyle to adapt our user schema, queries, and router to make sure the newly added properties are working properly, and confirmed that the FastAPI docs show the endpoints are still working. Through pair programming, we are adjusting some of our database schemas and making sure all of the other components are working well. We repeated this process for our pets, testimonials, and services.
 
 I created a footer for our page, and will be working on adapting a contact form component in the footer.
