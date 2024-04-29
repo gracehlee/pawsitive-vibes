@@ -8,7 +8,8 @@ from routers import (
     pets_router,
     users_router,
     services_router,
-    testimonials_router
+    testimonials_router,
+    appointment_router
 )
 import os
 
@@ -26,6 +27,7 @@ app.include_router(auth_router.router)
 app.include_router(users_router.router)
 app.include_router(pets_router.router)
 app.include_router(services_router.router)
+app.include_router(appointment_router.router)
 app.include_router(testimonials_router.router)
 
 

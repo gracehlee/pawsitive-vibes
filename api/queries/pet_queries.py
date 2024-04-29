@@ -29,7 +29,6 @@ class PetQueries:
                             , for_sale
                             , price
                             , breed
-                            , age
                             , birthday
                             , description
                             , owner_id
@@ -39,9 +38,7 @@ class PetQueries:
                         """
                     )
                     pets = []
-                    print("DB IS:", db)
                     for record in db:
-                        print("RECORD IS:", record)
                         pet = PetOut(
                             id=record[0][0],
                             pet_name=record[0][1],
@@ -49,10 +46,9 @@ class PetQueries:
                             for_sale=record[0][3],
                             price=record[0][4],
                             breed=record[0][5],
-                            age=record[0][6],
-                            birthday=record[0][7],
-                            description=record[0][8],
-                            owner_id=record[0][9],
+                            birthday=record[0][6],
+                            description=record[0][7],
+                            owner_id=record[0][8],
                         )
                         pets.append(pet)
                     return pets
@@ -73,7 +69,6 @@ class PetQueries:
                             , for_sale
                             , price
                             , breed
-                            , age
                             , birthday
                             , description
                             , owner_id
@@ -93,10 +88,9 @@ class PetQueries:
                         for_sale=data[0][3],
                         price=data[0][4],
                         breed=data[0][5],
-                        age=data[0][6],
-                        birthday=data[0][7],
-                        description=data[0][8],
-                        owner_id=data[0][9],
+                        birthday=data[0][6],
+                        description=data[0][7],
+                        owner_id=data[0][8],
                     )
                     return pet
         except psycopg.Error as e:
@@ -115,12 +109,11 @@ class PetQueries:
                             , for_sale
                             , price
                             , breed
-                            , age
                             , birthday
                             , description
                             , owner_id
                         )
-                        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+                        VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
                         RETURNING (
                             id
                             , pet_name
@@ -128,7 +121,6 @@ class PetQueries:
                             , for_sale
                             , price
                             , breed
-                            , age
                             , birthday
                             , description
                             , owner_id
@@ -140,7 +132,6 @@ class PetQueries:
                             pet.for_sale,
                             pet.price,
                             pet.breed,
-                            pet.age,
                             pet.birthday,
                             pet.description,
                             pet.owner_id,
@@ -156,10 +147,9 @@ class PetQueries:
                         for_sale=data[0][3],
                         price=data[0][4],
                         breed=data[0][5],
-                        age=data[0][6],
-                        birthday=data[0][7],
-                        description=data[0][8],
-                        owner_id=data[0][9],
+                        birthday=data[0][6],
+                        description=data[0][7],
+                        owner_id=data[0][8],
                     )
                     return pet
         except psycopg.Error as e:
@@ -174,7 +164,7 @@ class PetQueries:
                     values = []
 
                     properties = ["pet_name", "image_url", "for_sale", "price",
-                                  "breed", "age", "birthday", "description",
+                                  "breed", "birthday", "description",
                                   "owner_id"]
                     for property in properties:
                         if getattr(pet, property) is not None:
@@ -195,7 +185,6 @@ class PetQueries:
                             , for_sale
                             , price
                             , breed
-                            , age
                             , birthday
                             , description
                             , owner_id
@@ -213,10 +202,9 @@ class PetQueries:
                         for_sale=data[0][3],
                         price=data[0][4],
                         breed=data[0][5],
-                        age=data[0][6],
-                        birthday=data[0][7],
-                        description=data[0][8],
-                        owner_id=data[0][9],
+                        birthday=data[0][6],
+                        description=data[0][7],
+                        owner_id=data[0][8],
                     )
                     return updated_pet
         except psycopg.Error as e:

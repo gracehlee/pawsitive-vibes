@@ -25,7 +25,17 @@ function Dogs() {
                 <div className="row">
                     <div className="col-md-8 offset-md-2 text-center">
                         <h1>Dogs</h1>
-                        <p>Dogs go here!</p>
+                        <br></br>
+                        <h2>Puppies with Pawsitive Vibes!</h2>
+                        <p>
+                            All pups offered by Pawsitive Vibes will
+                            receive shots, deworming and a microchip.
+                            <br></br>
+                            Socialized and temperament tested from
+                            day one!
+                        </p>
+
+                        {/* change isLoggedIn to user.admin = True ??*/}
                         {isLoggedIn && (
                             <div>
                                 {createForm && <SellPetForm />}
@@ -39,6 +49,18 @@ function Dogs() {
                                 )}
                             </div>
                         )}
+
+                        {/* if  */}
+                        {/* pups != 0, display pups here */}
+
+                        <p>List of Puppies Go Here</p>
+
+                        {/* else: */}
+                        {/* <p>
+                                No puppies are currently available. Contact us with
+                                questions or for more information.
+                            </p> */}
+
                         {isLoggedIn && (
                             <div>
                                 <br></br>
@@ -52,6 +74,11 @@ function Dogs() {
                                 )}
                             </div>
                         )}
+                    </div>
+                    <div className="col-md-8 offset-md-2 text-center">
+                        <h2>Community Pets!</h2>
+                        <p>To show off your Pawsitive Pets, sign in and add to our Community section</p>
+                        <p>Any pets adde by users will go here</p>
                     </div>
                 </div>
             </div>

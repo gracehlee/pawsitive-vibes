@@ -9,7 +9,6 @@ class PetIn(BaseModel):
     for_sale: bool
     price: int
     breed: str
-    age: str
     birthday: date
     description: str
     owner_id: int
@@ -21,7 +20,6 @@ class PetInUpdate(BaseModel):
     for_sale: Optional[bool] = None
     price: Optional[int] = None
     breed: Optional[str] = None
-    age: Optional[str] = None
     birthday: Optional[date] = None
     description: Optional[str] = None
     owner_id: Optional[int] = None
@@ -34,7 +32,6 @@ class PetOut(BaseModel):
     for_sale: bool
     price: int
     breed: str
-    age: str
     birthday: date
     description: str
     owner_id: int

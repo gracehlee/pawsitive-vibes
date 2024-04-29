@@ -9,7 +9,6 @@ steps = [
             for_sale BOOLEAN NOT NULL DEFAULT FALSE,
             price INTEGER DEFAULT NULL,
             breed TEXT DEFAULT NULL,
-            age TEXT DEFAULT NULL,
             birthday DATE DEFAULT NULL,
             description TEXT DEFAULT NULL,
             owner_id INTEGER NOT NULL REFERENCES users("id") ON DELETE CASCADE

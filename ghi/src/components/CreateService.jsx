@@ -23,8 +23,6 @@ function ServiceForm() {
      * @param {React.FormEvent<HTMLFormElement>} e
      */
 
-    console.log('Service form data:', serviceFormData)
-
     async function handleSubmit(e) {
         e.preventDefault()
 

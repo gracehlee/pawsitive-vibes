@@ -9,36 +9,35 @@ export default function SellPetForm() {
     const [petFormData, setPetFormData] = useState({
         pet_name: '',
         image_url: '',
-        for_sale: 'false',
+        for_sale: 'true',
         price: '',
         breed: '',
-        age: '',
         birthday: '',
         description: '',
         owner_id: user.id,
     })
 
-    // add for_sale boolean
-    const [checked, setChecked] = useState(false)
-    const [showPrice, setShowPrice] = useState(false)
+    // // add for_sale boolean
+    // const [checked, setChecked] = useState(false)
+    // const [showPrice, setShowPrice] = useState(false)
 
-    const handleChange = () => {
-        setChecked(!checked)
-        setShowPrice(!showPrice)
+    // const handleChange = () => {
+    //     setChecked(!checked)
+    //     setShowPrice(!showPrice)
 
-        if (checked == true) {
-            setPetFormData({
-                ...petFormData,
-                for_sale: 'false',
-                price: '',
-            })
-        } else {
-            setPetFormData({
-                ...petFormData,
-                for_sale: 'true',
-            })
-        }
-    }
+    //     if (checked == true) {
+    //         setPetFormData({
+    //             ...petFormData,
+    //             for_sale: 'false',
+    //             price: 0,
+    //         })
+    //     } else {
+    //         setPetFormData({
+    //             ...petFormData,
+    //             for_sale: 'true',
+    //         })
+    //     }
+    // }
 
     const handleInputChange = (event) => {
         setPetFormData({
@@ -84,6 +83,26 @@ export default function SellPetForm() {
                                 {error.message}
                             </div>
                         )}
+
+                        {/*  */}
+
+                        <div className="form-floating mb-3">
+                            <input
+                                required
+                                type="number"
+                                min="0"
+                                max="10000"
+                                name="price"
+                                value={petFormData.price}
+                                onChange={handleInputChange}
+                                className="form-control"
+                                placeholder="price"
+                            />
+                            <label htmlFor="price">Price</label>
+                        </div>
+
+                        {/*  */}
+
                         <div className="form-floating mb-3">
                             <input
                                 required
@@ -96,17 +115,7 @@ export default function SellPetForm() {
                             />
                             <label htmlFor="pet_name">Pet name</label>
                         </div>
-                        <div className="form-floating mb-3">
-                            <input
-                                type="text"
-                                name="image_url"
-                                value={petFormData.image_url}
-                                onChange={handleInputChange}
-                                className="form-control"
-                                placeholder="Image URL (Optional)"
-                            />
-                            <label htmlFor="image_url">Image URL</label>
-                        </div>
+
                         <div className="form-floating mb-3">
                             <input
                                 required
@@ -122,17 +131,6 @@ export default function SellPetForm() {
                         <div className="form-floating mb-3">
                             <input
                                 required
-                                type="text"
-                                value={petFormData.age}
-                                name="age"
-                                onChange={handleInputChange}
-                                className="form-control"
-                                placeholder="Age"
-                            />
-                            <label htmlFor="age">Age</label>
-                        </div>
-                        <div className="form-floating mb-3">
-                            <input
                                 type="date"
                                 value={petFormData.birthday}
                                 name="birthday"
@@ -141,7 +139,7 @@ export default function SellPetForm() {
                                 placeholder="Birthday"
                             />
                             <label htmlFor="birthday">
-                                Birthday (Optional)
+                                Birthday
                             </label>
                         </div>
                         <div className="form-floating mb-3">
@@ -155,10 +153,23 @@ export default function SellPetForm() {
                                 placeholder="Description"
                             />
                             <label htmlFor="description">
-                                Description (Optional)
+                                Description
                             </label>
                         </div>
-                        <div className="col-auto">
+                        <div className="form-floating mb-3">
+                            <input
+                                required
+                                type="text"
+                                name="image_url"
+                                value={petFormData.image_url}
+                                onChange={handleInputChange}
+                                className="form-control"
+                                placeholder="Image URL"
+                            />
+                            <label htmlFor="image_url">Image URL</label>
+                        </div>
+
+                        {/* <div className="col-auto">
                             <input
                                 type="checkbox"
                                 checked={checked}
@@ -186,7 +197,8 @@ export default function SellPetForm() {
                                 />
                             )}
                             {checked && <label htmlFor="price">Price</label>}
-                        </div>
+                        </div> */}
+
                         <div className="text-center">
                             <button type="submit" className="btn btn-primary">
                                 Submit

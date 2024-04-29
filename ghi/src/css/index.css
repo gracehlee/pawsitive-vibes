@@ -1,4 +1,11 @@
-/* You should probably replace with with your own CSS */
+* {
+    margin: 2px;
+    padding: 2px;
+}
+
+nav {
+    height: 10vh;
+}
 
 body {
     height: 100vh;
@@ -16,11 +23,6 @@ body {
     min-height: 100vh;
 }
 
-main {
-    height: 80vh;
-    margin-top: 80px;
-}
-
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
         monospace;
@@ -28,8 +30,4 @@ code {
 
 footer.footer {
     margin-top: auto;
-}
-
-nav {
-    height: 10vh;
 }

@@ -28,7 +28,10 @@ def create_service(
 def get_all_services(
     repo: ServiceRepository = Depends()
 ):
-    return repo.get_all()
+    services = repo.get_all()
+    if not services:
+        raise HTTPException(status_code=404, detail="Services not found.")
+    return services
 
 
 @router.get("/api/services/{service_id}", response_model=ServiceOut)
@@ -36,7 +39,10 @@ def get_service_by_id(
     service_id: int,
     repo: ServiceRepository = Depends()
 ):
-    return repo.get_one(service_id)
+    service = repo.get_one(service_id)
+    if not service:
+        raise HTTPException(status_code=404, detail="Service not found")
+    return service
 
 
 @router.put("/api/services/{service_id}", response_model=ServiceOut)

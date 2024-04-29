@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { baseUrl } from '../services/authService'
 import useAuthService from '../hooks/useAuthService'
 
-export default function SignInForm() {
+export default function SellPetForm() {
     const { user, error } = useAuthService()
 
     const [petFormData, setPetFormData] = useState({
@@ -11,30 +11,33 @@ export default function SignInForm() {
         image_url: '',
         for_sale: 'false',
         price: '',
-        owner_id: null,
+        breed: '',
+        birthday: '',
+        description: '',
+        owner_id: user.id,
     })
 
-    // add for_sale boolean
-    const [checked, setChecked] = useState(false)
-    const [showPrice, setShowPrice] = useState(false)
+    // // add for_sale boolean
+    // const [checked, setChecked] = useState(false)
+    // const [showPrice, setShowPrice] = useState(false)
 
-    const handleChange = (e) => {
-        setChecked(!checked)
-        setShowPrice(!showPrice)
+    // const handleChange = () => {
+    //     setChecked(!checked)
+    //     setShowPrice(!showPrice)
 
-        if (checked == true) {
-            setPetFormData({
-                ...petFormData,
-                for_sale: 'false',
-                price: '',
-            })
-        } else {
-            setPetFormData({
-                ...petFormData,
-                for_sale: 'true',
-            })
-        }
-    }
+    //     if (checked == true) {
+    //         setPetFormData({
+    //             ...petFormData,
+    //             for_sale: 'false',
+    //             price: 0,
+    //         })
+    //     } else {
+    //         setPetFormData({
+    //             ...petFormData,
+    //             for_sale: 'true',
+    //         })
+    //     }
+    // }
 
     const handleInputChange = (event) => {
         setPetFormData({
@@ -49,13 +52,6 @@ export default function SignInForm() {
 
     async function handleFormSubmit(e) {
         e.preventDefault()
-
-        setPetFormData({
-            ...petFormData,
-            owner_id: user.id,
-        })
-
-        console.log(petFormData)
 
         const res = await fetch(`${baseUrl}/api/pets/${pet_id}`, {
             method: 'put',
@@ -73,47 +69,143 @@ export default function SignInForm() {
     }
 
     return (
-        <form onSubmit={handleFormSubmit}>
-            {error && <div className="error">{error.message}</div>}
-            <div className="form-floating mb-3">
-                <input
-                    required
-                    type="text"
-                    value={petFormData.pet_name}
-                    name="pet_name"
-                    onChange={handleInputChange}
-                    placeholder="Pet name"
-                />
-                <label htmlFor="pet_name">Pet name</label>
-                <input
-                    type="text"
-                    name="image_url"
-                    value={petFormData.image_url}
-                    onChange={handleInputChange}
-                    placeholder="Image URL (Optional)"
-                />
-                <label htmlFor="image_url">Image URL</label>
-                <input
-                    type="checkbox"
-                    checked={checked}
-                    onClick={handleChange}
-                    placeholder="For Sale?"
-                />
-                <label htmlFor="for_sale">For Sale?</label>
+        <div className="container">
+            <div className="card shadow mt-4">
+                <div className="card-body">
+                    <h1 className="card-title text-center">
+                        Add a dog to sell
+                    </h1>
+                    <br></br>
+                    <form onSubmit={handleFormSubmit}>
+                        {error && (
+                            <div className="alert alert-danger">
+                                {error.message}
+                            </div>
+                        )}
 
-                {checked && (
-                    <input
-                        type="text"
-                        name="price"
-                        value={petFormData.price}
-                        onChange={handleInputChange}
-                        placeholder="price"
-                    />
-                )}
-                <label htmlFor="price">Price</label>
+                        {/*  */}
 
-                <button type="submit">Submit</button>
+                        <div className="form-floating mb-3">
+                            <input
+                                required
+                                type="number"
+                                min="0"
+                                max="10000"
+                                name="price"
+                                value={petFormData.price}
+                                onChange={handleInputChange}
+                                className="form-control"
+                                placeholder="price"
+                            />
+                            <label htmlFor="price">Price</label>
+                        </div>
+
+                        {/*  */}
+
+                        <div className="form-floating mb-3">
+                            <input
+                                required
+                                type="text"
+                                value={petFormData.pet_name}
+                                name="pet_name"
+                                onChange={handleInputChange}
+                                className="form-control"
+                                placeholder="Pet name"
+                            />
+                            <label htmlFor="pet_name">Pet name</label>
+                        </div>
+
+                        <div className="form-floating mb-3">
+                            <input
+                                required
+                                type="text"
+                                value={petFormData.breed}
+                                name="breed"
+                                onChange={handleInputChange}
+                                className="form-control"
+                                placeholder="Breed"
+                            />
+                            <label htmlFor="breed">Breed</label>
+                        </div>
+                        <div className="form-floating mb-3">
+                            <input
+                                required
+                                type="date"
+                                value={petFormData.birthday}
+                                name="birthday"
+                                onChange={handleInputChange}
+                                className="form-control"
+                                placeholder="Birthday"
+                            />
+                            <label htmlFor="birthday">
+                                Birthday
+                            </label>
+                        </div>
+                        <div className="form-floating mb-3">
+                            <input
+                                required
+                                type="text"
+                                value={petFormData.description}
+                                name="description"
+                                onChange={handleInputChange}
+                                className="form-control"
+                                placeholder="Description"
+                            />
+                            <label htmlFor="description">
+                                Description
+                            </label>
+                        </div>
+                        <div className="form-floating mb-3">
+                            <input
+                                required
+                                type="text"
+                                name="image_url"
+                                value={petFormData.image_url}
+                                onChange={handleInputChange}
+                                className="form-control"
+                                placeholder="Image URL"
+                            />
+                            <label htmlFor="image_url">Image URL</label>
+                        </div>
+
+                        {/* <div className="col-auto">
+                            <input
+                                type="checkbox"
+                                checked={checked}
+                                onChange={handleChange}
+                                className="form-check-input"
+                                id="for_sale"
+                            />
+                            <label
+                                htmlFor="for_sale"
+                                className="form-check-label"
+                                style={{ marginLeft: '15px' }}
+                            >
+                                <p>For Sale?</p>
+                            </label>
+                        </div>
+                        <div className="form-floating mb-3">
+                            {checked && (
+                                <input
+                                    type="text"
+                                    name="price"
+                                    value={petFormData.price}
+                                    onChange={handleInputChange}
+                                    className="form-control"
+                                    placeholder="price"
+                                />
+                            )}
+                            {checked && <label htmlFor="price">Price</label>}
+                        </div> */}
+
+                        <div className="text-center">
+                            <button type="submit" className="btn btn-primary">
+                                Submit
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
-        </form>
+        </div>
     )
 }

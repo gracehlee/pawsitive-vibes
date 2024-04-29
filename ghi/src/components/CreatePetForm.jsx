@@ -10,35 +10,12 @@ export default function CreatePetForm() {
         pet_name: '',
         image_url: '',
         for_sale: 'false',
-        price: '',
+        price: 0,
         breed: '',
-        age: '',
         birthday: '',
         description: '',
         owner_id: user.id,
     })
-
-    // add for_sale boolean
-    const [checked, setChecked] = useState(false)
-    const [showPrice, setShowPrice] = useState(false)
-
-    const handleChange = () => {
-        setChecked(!checked)
-        setShowPrice(!showPrice)
-
-        if (checked == true) {
-            setPetFormData({
-                ...petFormData,
-                for_sale: 'false',
-                price: '',
-            })
-        } else {
-            setPetFormData({
-                ...petFormData,
-                for_sale: 'true',
-            })
-        }
-    }
 
     const handleInputChange = (event) => {
         setPetFormData({
@@ -53,8 +30,6 @@ export default function CreatePetForm() {
 
     async function handleFormSubmit(e) {
         e.preventDefault()
-
-        console.log(petFormData)
 
         const res = await fetch(`${baseUrl}/api/pets`, {
             method: 'post',
@@ -92,18 +67,9 @@ export default function CreatePetForm() {
                                 className="form-control"
                                 placeholder="Pet name"
                             />
-                            <label htmlFor="pet_name">Pet name</label>
-                        </div>
-                        <div className="form-floating mb-3">
-                            <input
-                                type="text"
-                                name="image_url"
-                                value={petFormData.image_url}
-                                onChange={handleInputChange}
-                                className="form-control"
-                                placeholder="Image URL (Optional)"
-                            />
-                            <label htmlFor="image_url">Image URL</label>
+                            <label htmlFor="pet_name">
+                                Pet name
+                            </label>
                         </div>
                         <div className="form-floating mb-3">
                             <input
@@ -120,17 +86,6 @@ export default function CreatePetForm() {
                         <div className="form-floating mb-3">
                             <input
                                 required
-                                type="text"
-                                value={petFormData.age}
-                                name="age"
-                                onChange={handleInputChange}
-                                className="form-control"
-                                placeholder="Age"
-                            />
-                            <label htmlFor="age">Age</label>
-                        </div>
-                        <div className="form-floating mb-3">
-                            <input
                                 type="date"
                                 value={petFormData.birthday}
                                 name="birthday"
@@ -139,7 +94,7 @@ export default function CreatePetForm() {
                                 placeholder="Birthday"
                             />
                             <label htmlFor="birthday">
-                                Birthday (Optional)
+                                Birthday
                             </label>
                         </div>
                         <div className="form-floating mb-3">
@@ -153,37 +108,21 @@ export default function CreatePetForm() {
                                 placeholder="Description"
                             />
                             <label htmlFor="description">
-                                Description (Optional)
-                            </label>
-                        </div>
-                        <div className="col-auto">
-                            <input
-                                type="checkbox"
-                                checked={checked}
-                                onChange={handleChange}
-                                className="form-check-input"
-                                id="for_sale"
-                            />
-                            <label
-                                htmlFor="for_sale"
-                                className="form-check-label"
-                                style={{ marginLeft: '15px' }}
-                            >
-                                <p>For Sale?</p>
+                                Description
                             </label>
                         </div>
                         <div className="form-floating mb-3">
-                            {checked && (
-                                <input
-                                    type="text"
-                                    name="price"
-                                    value={petFormData.price}
-                                    onChange={handleInputChange}
-                                    className="form-control"
-                                    placeholder="price"
-                                />
-                            )}
-                            {checked && <label htmlFor="price">Price</label>}
+                            <input
+                                type="text"
+                                name="image_url"
+                                value={petFormData.image_url}
+                                onChange={handleInputChange}
+                                className="form-control"
+                                placeholder="Image URL"
+                            />
+                            <label htmlFor="image_url">
+                                Image URL
+                            </label>
                         </div>
                         <div className="text-center">
                             <button type="submit" className="btn btn-primary">
