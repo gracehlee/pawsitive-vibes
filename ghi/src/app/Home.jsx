@@ -13,7 +13,9 @@ function Home() {
                             style={{ height: '300px', width: '520px' }}
                         />
                         <h1>Welcome to Pawsitive Vibes!</h1>
-                        <h3>Experienced. Force Free. Passionate </h3>
+                        <h3>Experienced. Force Free. Passionate. </h3>
+                        <br></br>
+                        <br></br>
                         <p>
                             Cat and Dog CPR, Human CPR, Dog Play group, and Fear
                             free certified. Pending AKC certified trainer and a
