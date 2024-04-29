@@ -2,6 +2,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import ServiceForm from '../components/CreateService'
 import { useState } from 'react'
 import useAuthService from '../hooks/useAuthService'
+import ServiceList from '../components/ServiceList'
 
 function Services() {
     // later this isLoggedIn logic should be replaced with
@@ -25,8 +26,7 @@ function Services() {
         <main>
             <div className="row">
                 <div className="text-center">
-                    <h1>Services</h1>
-                    <p>Services go here!</p>
+                    <ServiceList />
                     {isLoggedIn && (
                         <div>
                             {createForm && <ServiceForm />}
