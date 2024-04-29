@@ -27,6 +27,10 @@ export default function useAuthService() {
         isLoggedIn,
     } = authContext
 
+    const clearError = () => {
+        setError(null)
+    }
+
     // This is what the hook returns
     return {
         user,
@@ -52,6 +56,7 @@ export default function useAuthService() {
             // Otherwise set the user
             setUser(newUser)
             setIsLoading(false)
+            clearError()
         },
         /**
          * @param {SignInRequest} userData
@@ -65,11 +70,14 @@ export default function useAuthService() {
             }
             setUser(user)
             setIsLoading(false)
+            clearError()
         },
         signout: async () => {
             await signout()
             setUser()
             setIsLoading(false)
+            clearError()
         },
+        clearError: clearError,
     }
 }

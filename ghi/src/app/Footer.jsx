@@ -3,7 +3,6 @@ import '../css/index.css'
 import FB_Logo from '../images/FB_Logo.png'
 import IG_Logo from '../images/IG_Logo.png'
 
-
 // const [shown, setShown] = useState(false)
 
 // const handleChange = () => {
@@ -12,26 +11,28 @@ import IG_Logo from '../images/IG_Logo.png'
 
 export default function Footer() {
     return (
-        <footer className="footer mt-auto py-3 bg-dark text-white">
-            <div className="container text-center">
+        <footer className="footer mt-auto py-3 text-white bottom">
+            <div className="text-center">
+                <br></br>
                 <h3>Contact Us</h3>
-                <a
-                    href="https://www.facebook.com/people/Pawsitive-Vibes-Dog-Training-LLC/100083097112386/"
-                    target="_blank"
-                >
+            </div>
+            <br></br>
+            <div className="text-center">
+                <a href="https://www.facebook.com/people/Pawsitive-Vibes-Dog-Training-LLC/100083097112386/">
                     <img src={FB_Logo} height="30" />
                 </a>
-                <a
-                    href="https://www.instagram.com/pawsitive_vibes_dt/"
-                    target="_blank"
-                >
+                <span> </span>
+                <a href="https://www.instagram.com/pawsitive_vibes_dt/">
                     <img src={IG_Logo} height="30" />
                 </a>
-                <br></br>
-                PawsitiveVibesColorado@Gmail.com
             </div>
-            <div>
-                <p>"Contact Us" Form goes here</p>
+            <br></br>
+            <div className="text-center">
+                <p>PawsitiveVibesColorado@Gmail.com</p>
+            </div>
+            <br></br> <br></br>
+            <div className="text-center">
+                <p>&quot;Contact Us&quot; Form goes here</p>
             </div>
         </footer>
     )

@@ -46,90 +46,87 @@ export default function CreatePetForm() {
         return data
     }
     return (
-        <div className="container">
-            <div className="card shadow mt-4">
-                <div className="card-body">
-                    <h1 className="card-title text-center">Create a Pet</h1>
-                    <br></br>
-                    <form onSubmit={handleFormSubmit}>
-                        {error && (
-                            <div className="alert alert-danger">
-                                {error.message}
+        <div className="service-form">
+            <div className="row">
+                <div className="offset-3 col-6">
+                    <div className="shadow p-4 mt-4">
+                        <h1 className="card-title text-center">Create a Pet</h1>
+                        <br></br>
+                        <form onSubmit={handleFormSubmit}>
+                            {error && (
+                                <div className="alert alert-danger">
+                                    {error.message}
+                                </div>
+                            )}
+                            <div className="form-floating mb-3">
+                                <input
+                                    required
+                                    type="text"
+                                    value={petFormData.pet_name}
+                                    name="pet_name"
+                                    onChange={handleInputChange}
+                                    className="form-control"
+                                    placeholder="Pet name"
+                                />
+                                <label htmlFor="pet_name">Pet name</label>
                             </div>
-                        )}
-                        <div className="form-floating mb-3">
-                            <input
-                                required
-                                type="text"
-                                value={petFormData.pet_name}
-                                name="pet_name"
-                                onChange={handleInputChange}
-                                className="form-control"
-                                placeholder="Pet name"
-                            />
-                            <label htmlFor="pet_name">
-                                Pet name
-                            </label>
-                        </div>
-                        <div className="form-floating mb-3">
-                            <input
-                                required
-                                type="text"
-                                value={petFormData.breed}
-                                name="breed"
-                                onChange={handleInputChange}
-                                className="form-control"
-                                placeholder="Breed"
-                            />
-                            <label htmlFor="breed">Breed</label>
-                        </div>
-                        <div className="form-floating mb-3">
-                            <input
-                                required
-                                type="date"
-                                value={petFormData.birthday}
-                                name="birthday"
-                                onChange={handleInputChange}
-                                className="form-control"
-                                placeholder="Birthday"
-                            />
-                            <label htmlFor="birthday">
-                                Birthday
-                            </label>
-                        </div>
-                        <div className="form-floating mb-3">
-                            <input
-                                required
-                                type="text"
-                                value={petFormData.description}
-                                name="description"
-                                onChange={handleInputChange}
-                                className="form-control"
-                                placeholder="Description"
-                            />
-                            <label htmlFor="description">
-                                Description
-                            </label>
-                        </div>
-                        <div className="form-floating mb-3">
-                            <input
-                                type="text"
-                                name="image_url"
-                                value={petFormData.image_url}
-                                onChange={handleInputChange}
-                                className="form-control"
-                                placeholder="Image URL"
-                            />
-                            <label htmlFor="image_url">
-                                Image URL
-                            </label>
-                        </div>
-                        <div className="text-center">
-                            <button type="submit" className="btn btn-primary">
-                                Submit
-                            </button>
-                        </div>
-                    </form>
+                            <div className="form-floating mb-3">
+                                <input
+                                    required
+                                    type="text"
+                                    value={petFormData.breed}
+                                    name="breed"
+                                    onChange={handleInputChange}
+                                    className="form-control"
+                                    placeholder="Breed"
+                                />
+                                <label htmlFor="breed">Breed</label>
+                            </div>
+                            <div className="form-floating mb-3">
+                                <input
+                                    required
+                                    type="date"
+                                    value={petFormData.birthday}
+                                    name="birthday"
+                                    onChange={handleInputChange}
+                                    className="form-control"
+                                    placeholder="Birthday"
+                                />
+                                <label htmlFor="birthday">Birthday</label>
+                            </div>
+                            <div className="form-floating mb-3">
+                                <input
+                                    required
+                                    type="text"
+                                    value={petFormData.description}
+                                    name="description"
+                                    onChange={handleInputChange}
+                                    className="form-control"
+                                    placeholder="Description"
+                                />
+                                <label htmlFor="description">Description</label>
+                            </div>
+                            <div className="form-floating mb-3">
+                                <input
+                                    type="text"
+                                    name="image_url"
+                                    value={petFormData.image_url}
+                                    onChange={handleInputChange}
+                                    className="form-control"
+                                    placeholder="Image URL"
+                                />
+                                <label htmlFor="image_url">Image URL</label>
+                            </div>
+                            <div className="text-center">
+                                <button
+                                    type="submit"
+                                    className="btn btn-primary"
+                                >
+                                    Submit
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

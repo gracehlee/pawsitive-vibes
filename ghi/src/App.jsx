@@ -49,7 +49,16 @@ function App() {
                             <Route path="/signout" element={<SignOut />} />
                         </>
                     ) : (
-                        <Route path="/signout" element={<Navigate to="/" />} />
+                        <>
+                            <Route
+                                path="/community"
+                                element={<Navigate to="/" />}
+                            />
+                            <Route
+                                path="/signout"
+                                element={<Navigate to="/" />}
+                            />
+                        </>
                     )}
                 </Routes>
                 <Footer />

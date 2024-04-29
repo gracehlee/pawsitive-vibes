@@ -1,0 +1,48 @@
+.sidenav {
+    height: 5vh;
+    width: 20vw;
+    border-radius: 2vw;
+    position: fixed;
+    top: 15vh;
+    left: -1vw;
+    background-color: #bababa;
+    opacity: 0;
+    padding-top: 50px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    transition: left 0.2s ease, opacity 0.3s ease;
+}
+
+.sidenav-content {
+    color: #ffffff;
+    padding-left: 0.5vw;
+    padding-right: 2vw;
+    font-size: 16px;
+    height: 100%;
+    width: 100%;
+    display: flexbox;
+    justify-content: center;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.toggle {
+    position: fixed;
+    top: 15vh;
+    left: -1vw;
+    width: 4.5vw;
+    height: 5vh;
+    background: #bababa;
+    color: #ffffff;
+    font-size: 18px;
+    border-radius: 2vw;
+    border: none;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    z-index: 1;
+    font-weight: bold;
+}
+
+.sidenav.open {
+    opacity: 100%;
+}

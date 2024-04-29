@@ -2,12 +2,20 @@ import 'bootstrap/dist/css/bootstrap.css'
 import CreatePetForm from '../components/CreatePetForm'
 import { useState } from 'react'
 import useAuthService from '../hooks/useAuthService'
+import SideNav from './SideNav'
+import '../css/sidenav.css'
+import logo from '../images/favicon.png'
 
 function Community() {
     const { isLoggedIn } = useAuthService()
 
     const [createForm, setCreateForm] = useState(false)
     const [closeForm, setCloseForm] = useState(true)
+    const [sideNav, setSideNav] = useState(false)
+
+    const toggleSideNav = () => {
+        setSideNav(!sideNav)
+    }
 
     const handleCreatePet = () => {
         setCreateForm(true)
@@ -23,7 +31,18 @@ function Community() {
         <main>
             <div className="container">
                 <div className="row">
-                    <div className="col-md-8 offset-md-2 text-center">
+                    <button className="toggle" onClick={toggleSideNav}>
+                        {/* {sideNav ? '<<' : '>>'} */}
+                        <img
+                            src={logo}
+                            alt="Pawsitive Vibes Logo"
+                            style={{ height: '25px', width: '25px' }}
+                        />
+                    </button>
+                    <div className={`sidenav ${sideNav ? 'open' : ''}`}>
+                        {sideNav && isLoggedIn && <SideNav />}
+                    </div>
+                    <div className="text-center">
                         <h1>Community</h1>
                         <p>Community content goes here!</p>
                         <p>ie. Profile content</p>

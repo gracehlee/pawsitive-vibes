@@ -23,38 +23,36 @@ function Services() {
 
     return (
         <main>
-            <div className="container">
-                <div className="row">
-                    <div className="col-md-8 offset-md-2 text-center">
-                        <h1>Services</h1>
-                        <p>Services go here!</p>
-                        {isLoggedIn && (
-                            <div>
-                                {createForm && <ServiceForm />}
-                                {closeForm && (
-                                    <button
-                                        className="btn btn-dark"
-                                        onClick={handleCreateService}
-                                    >
-                                        Add Service
-                                    </button>
-                                )}
-                            </div>
-                        )}
-                        {isLoggedIn && (
-                            <div>
-                                <br></br>
-                                {createForm && (
-                                    <button
-                                        className="btn btn-secondary"
-                                        onClick={handleCloseForm}
-                                    >
-                                        Close Form
-                                    </button>
-                                )}
-                            </div>
-                        )}
-                    </div>
+            <div className="row">
+                <div className="text-center">
+                    <h1>Services</h1>
+                    <p>Services go here!</p>
+                    {isLoggedIn && (
+                        <div>
+                            {createForm && <ServiceForm />}
+                            {closeForm && (
+                                <button
+                                    className="btn btn-dark"
+                                    onClick={handleCreateService}
+                                >
+                                    Add Service
+                                </button>
+                            )}
+                        </div>
+                    )}
+                    {isLoggedIn && (
+                        <div>
+                            <br></br>
+                            {createForm && (
+                                <button
+                                    className="btn btn-secondary"
+                                    onClick={handleCloseForm}
+                                >
+                                    Close Form
+                                </button>
+                            )}
+                        </div>
+                    )}
                 </div>
             </div>
         </main>

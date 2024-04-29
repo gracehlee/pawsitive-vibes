@@ -90,10 +90,46 @@ Today I worked on:
 Goals for today are to work on modifying our user schema and related back end to include a user property called "admin" as a boolean true/false. This will hopefully allow us to access the user properties through the use of Auth Service (user.admin) and lock features behind admin status on the front end side.
 
 -   secondarily, if I have time, I want to see if I can debug some of the console errors we've been getting. We've been seeing some errors that say: utils.js:12 GET http://localhost:8000/api/auth/authenticate 404 (Not Found)
-- Per Rosheen, de-prioritize the console dev errors because some of those may be due to the time it takes to load the app.
+-   Per Rosheen, de-prioritize the console dev errors because some of those may be due to the time it takes to load the app.
 
 -   I confirmed with Amy that back end auth JWT token should be used for endpoints that can only be accessed when user is logged in. Per Amy, if we are not logged in and hypothetically had access to a form with that particular endpoint, the logged-out visitor will not be able to submit the form. This shouldn't be an issue in our app since on the front-end side, we've made forms and parts of the app not accessible if a user is logged out.
 
-- I worked with Kyle to adapt our user schema, queries, and router to make sure the newly added properties are working properly, and confirmed that the FastAPI docs show the endpoints are still working. Through pair programming, we are adjusting some of our database schemas and making sure all of the other components are working well. We repeated this process for our pets, testimonials, and services.
+-   I worked with Kyle to adapt our user schema, queries, and router to make sure the newly added properties are working properly, and confirmed that the FastAPI docs show the endpoints are still working. Through pair programming, we are adjusting some of our database schemas and making sure all of the other components are working well. We repeated this process for our pets, testimonials, and services.
 
 I created a footer for our page, and will be working on adapting a contact form component in the footer. Goals for tomorrow are to work on a functional contact form, and integrate the contact form into our footer.
+
+## 4.26.2024
+
+Today I worked on:
+
+Today I refactored some of our page components and routings. I also created a Community page with a sidebar navigation that will render different content based on user interaction.
+
+CSS work:
+
+-   invisible scrollbar
+-   standardize form css for all our forms
+-   Community tab side navigation toggle
+
+I was also able to debug the "Sign in failed" error we were seeing in our forms. Our Auth Service would throw an error upon failed sign in, but it was not clearing the error after the user successfully signed in. I added a function clearError and called the function for each of the signup, signin, and signout for good measure. This removed the "Sign in failed" error from our forms once the user was logged in and navigated to our other pages.
+
+Next, I want to apply transitions to the pages of our SPA app.
+https://reactcommunity.org/react-transition-group/
+
+I also want to figure out a way to render a different page height based on whether a form is toggled or not.
+
+
+## 4.28.2024
+
+Today I worked on:
+
+I'm working on the sidebar menu for the Community tab, but still considering different design aspects of it. It is a neat feature to have a toggle sidebar, but we could also do a drop-down menu. I'll see if I can optimize the design of the sidebar, and if it doesn't look nice, I might switch over to a dropdown menu from Nav instead.
+
+## 4.29.2024
+
+Today I worked on:
+
+I created a favicon icon to match the business logo, replaced the home button with this favicon, and added the business logo as a header on the home page.
+
+I want to apply CSS animations to the pages of the SPA when they load in. I'm currently researching keyframes, but also read about CSS transitions. I'll be creating some draft CSS files to work with.
+
+The focus for today will be to work on a Contact form, and to give it EmailJS functionality.

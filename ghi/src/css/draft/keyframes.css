@@ -1,0 +1,14 @@
+@keyframes load {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.load {
+    animation: fade 0.5s ease forwards;
+}
+`
