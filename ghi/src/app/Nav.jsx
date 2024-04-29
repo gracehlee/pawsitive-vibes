@@ -23,6 +23,9 @@ function Nav() {
                 <NavLink className="nav navbar-brand" to="/services">
                     Services
                 </NavLink>
+                <NavLink className="navbar-brand" to="/testimonials">
+                    Testimonials
+                </NavLink>
                 {isLoggedIn ? (
                     <>
                         <NavLink className="nav navbar-brand" to="/community">
