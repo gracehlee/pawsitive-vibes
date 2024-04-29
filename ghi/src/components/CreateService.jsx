@@ -8,6 +8,7 @@ function ServiceForm() {
     const [serviceFormData, setServiceFormData] = useState({
         service: '',
         picture_url: '',
+        description: '',
         duration: '',
         cost: '',
     })
@@ -22,6 +23,7 @@ function ServiceForm() {
     /**
      * @param {React.FormEvent<HTMLFormElement>} e
      */
+
 
     async function handleSubmit(e) {
         e.preventDefault()
@@ -52,6 +54,7 @@ function ServiceForm() {
             setServiceFormData({
                 service: '',
                 picture_url: '',
+                description: '',
                 duration: '',
                 cost: '',
             })
@@ -119,6 +122,19 @@ function ServiceForm() {
                             className="form-control"
                         ></input>
                         <label htmlFor="cost">Cost</label>
+                    </div>
+                    <div className="form-floating mb-3">
+                        <input
+                            value={serviceFormData.description}
+                            onChange={handleInputChange}
+                            placeholder="Description"
+                            required
+                            type="text"
+                            name="description"
+                            id="description"
+                            className="form-control"
+                        ></input>
+                        <label htmlFor="description">Description</label>
                     </div>
                     <button className="btn btn-primary">Create</button>
                 </form>
