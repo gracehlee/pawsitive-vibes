@@ -50,7 +50,8 @@ export default function ContactForm() {
                     <div className="shadow p-4 mt-4">
                         <h1 className="card-title text-center">Contact Us</h1>
                         <br></br>
-                        <form onSubmit={handleFormSubmit}>
+                        <form>
+                            {/* <form onSubmit={handleFormSubmit}> */}
                             {error && (
                                 <div className="alert alert-danger">
                                     {error.message}

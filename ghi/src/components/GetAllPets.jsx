@@ -2,10 +2,9 @@ import { useEffect, useState } from 'react'
 import { baseUrl } from '../services/authService'
 import useAuthService from '../hooks/useAuthService'
 
-
 export default function PetList() {
     // TODO use or remove 'error'
-    const { user, error } = useAuthService()
+    const { user } = useAuthService()
     const [admin, setAdmin] = useState(false)
 
     const fetchUser = async () => {
@@ -47,8 +46,6 @@ export default function PetList() {
         const date = birthday.split('-')
         return `${date[1]}/${date[2]}/${date[0]}`
     }
-
-
 
     const fetchData = async () => {
         fetchUser()
@@ -129,12 +126,13 @@ export default function PetList() {
                                     </h5>
                                 </div>
 
-                                {pets.for_sale &&
-                                <div>
-                                    <h5 className="card-subtitle">
-                                        Price: ${pets.price}
-                                    </h5>
-                                </div>}
+                                {pets.for_sale && (
+                                    <div>
+                                        <h5 className="card-subtitle">
+                                            Price: ${pets.price}
+                                        </h5>
+                                    </div>
+                                )}
 
                                 <div>
                                     <h5 className="card-subtitle">
@@ -181,7 +179,7 @@ export default function PetList() {
 
     useEffect(() => {
         fetchData()
-    }, [])
+    })
 
     return (
         <>

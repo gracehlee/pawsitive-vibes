@@ -11,22 +11,26 @@ function Services() {
 
     const [createForm, setCreateForm] = useState(false)
     const [closeForm, setCloseForm] = useState(true)
+    const [pollService, setPollService] = useState(false)
 
     const handleCreateService = () => {
         setCreateForm(true)
         setCloseForm(false)
+        setPollService(true)
     }
 
     const handleCloseForm = () => {
         setCreateForm(false)
         setCloseForm(true)
+        setPollService(false)
     }
 
     return (
         <main>
             <div className="row">
                 <div className="text-center">
-                    <ServiceList />
+                    <ServiceList poll={pollService} />
+
                     {isLoggedIn && (
                         <div>
                             {createForm && <ServiceForm />}
