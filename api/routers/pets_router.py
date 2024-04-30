@@ -25,11 +25,7 @@ async def create_pet(
 @router.get("/pets", response_model=List[PetOut])
 async def get_all_pets(
     repo: PetQueries = Depends(),
-    user: Optional[JWTUserData] = Depends(try_get_jwt_user_data)
 ):
-    if not user:
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
-                            detail="Only logged-in users may view pets.")
     pets = repo.get_all_pets()
     if not pets:
         raise HTTPException(status_code=404, detail="Pets not found.")
@@ -40,11 +36,7 @@ async def get_all_pets(
 async def get_pet_by_id(
     pet_id: int,
     repo: PetQueries = Depends(),
-    user: Optional[JWTUserData] = Depends(try_get_jwt_user_data)
 ):
-    if not user:
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
-                            detail="Only logged-in users may view pets.")
     pet = repo.get_one(pet_id)
     if not pet:
         raise HTTPException(status_code=404, detail="Pet not found")

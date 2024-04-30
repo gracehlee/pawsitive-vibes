@@ -1,10 +1,37 @@
 import 'bootstrap/dist/css/bootstrap.css'
-import SellPetForm from '../components/SellPetForm'
-import { useState } from 'react'
+import CreatePetForm from '../components/CreatePetForm'
+import GetAllPets from '../components/GetAllPets'
+import GetPetsForSale from '../components/GetPetsForSale'
+import { useState, useEffect } from 'react'
 import useAuthService from '../hooks/useAuthService'
+import { baseUrl } from '../services/authService'
+
 
 function Dogs() {
-    const { isLoggedIn } = useAuthService()
+    const { user } = useAuthService()
+    const [admin, setAdmin] = useState(false)
+
+    const fetchUser = async () => {
+        if (user) {
+            const user_id = user.id
+            const userUrl = `${baseUrl}/api/users/${user_id}`
+            try {
+                const response = await fetch(userUrl, {
+                    method: 'get',
+                    credentials: 'include',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                })
+                if (response.ok) {
+                    const userData = await response.json()
+                    setAdmin(userData.admin)
+                }
+            } catch (e) {
+                console.error(e)
+            }
+        }
+    }
 
     const [createForm, setCreateForm] = useState(false)
     const [closeForm, setCloseForm] = useState(true)
@@ -18,6 +45,9 @@ function Dogs() {
         setCreateForm(false)
         setCloseForm(true)
     }
+    useEffect(() => {
+        fetchUser()
+    }, [])
 
     return (
         <main>
@@ -34,21 +64,10 @@ function Dogs() {
                             Socialized and temperament tested from day one!
                         </p>
 
-                        {/* if  */}
-                        {/* pups != 0, display pups here */}
-
-                        <h3>List of Puppies Go Here</h3>
-
-                        {/* else: */}
-                        {/* <p>
-                                No puppies are currently available. Contact us with
-                                questions or for more information.
-                            </p> */}
-
-                        {/* change isLoggedIn to user.admin = True ??*/}
-                        {isLoggedIn && (
+                        {/* change admin to user.admin = True ??*/}
+                        {admin && (
                             <div>
-                                {createForm && <SellPetForm />}
+                                {createForm && <CreatePetForm />}
                                 {closeForm && (
                                     <button
                                         className="btn btn-dark"
@@ -59,8 +78,7 @@ function Dogs() {
                                 )}
                             </div>
                         )}
-
-                        {isLoggedIn && (
+                        {admin && (
                             <div>
                                 <br></br>
                                 {createForm && (
@@ -73,6 +91,7 @@ function Dogs() {
                                 )}
                             </div>
                         )}
+                    <div>{<GetPetsForSale />}</div>
                     </div>
                     <div className="col-md-8 offset-md-2 text-center">
                         <h2>Community Pets!</h2>
@@ -80,8 +99,10 @@ function Dogs() {
                             To show off your Pawsitive Pets, sign in and add to
                             our Community section
                         </p>
-                        <p>Any pets adde by users will go here</p>
                     </div>
+
+                    <div>{<GetAllPets />}</div>
+
                 </div>
             </div>
         </main>

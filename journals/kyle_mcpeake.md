@@ -18,8 +18,12 @@ Working on Frontend for user signup form
 Created user signup form with additional fields, in SignUpForm.jsx
 
 Group is working on the POST form for each of the other endpoints, while Grace works on frontend Navigation connecting them
+Group is working on the POST form for each of the other endpoints, while Grace works on frontend Navigation connecting them
 
 Working on POST for pets, CreatePetForm.jsx
+"for_sale" Checkbox results in boolean value added to form
+Price input is displayed when "for_sale" is checked (true)
+
 "for_sale" Checkbox results in boolean value added to form
 Price input is displayed when "for_sale" is checked (true)
 
@@ -57,7 +61,10 @@ If yes,
 If no, "Ok, I look forward to seeing you at {location} on {date} at {time}"
 
 TODO: Consolidate CreatePetForm and SellPetForm, add conditional statements
+TODO: Confirm deletion with popup
 
 getUserConfirmation: func
 A function to use to confirm navigation. You must use this option when using <MemoryRouter> directly with a <Prompt>.
-PACFA compliant - trains in presence of owner, and doesn't breed more than 2 litters per year
+
+
+TODO: Consolidate GetAllPets and GetPetsForSale
