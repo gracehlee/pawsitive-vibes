@@ -11,7 +11,7 @@ import { signin, signup, signout } from '../services/authService'
 // the info stored in the AuthContext
 export default function useAuthService() {
     const authContext = useContext(AuthContext)
-    // This is a sanity check just in case someoen
+    // This is a sanity check just in case someone
     // tries to use this hook outside of <AuthProvider>
     if (!authContext) {
         throw new Error('useAuthService has to be used within <AuthProvider>')

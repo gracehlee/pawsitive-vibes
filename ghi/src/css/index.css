@@ -39,7 +39,7 @@ nav.nav {
 
 footer.footer {
     position: relative;
-    height: 40vh;
+    min-height: 40vh;
     width: 100%;
     overflow-x: hidden;
     overflow-y: hidden;

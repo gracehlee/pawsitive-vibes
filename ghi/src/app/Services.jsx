@@ -44,19 +44,18 @@ function Services() {
                             )}
                         </div>
                     )}
-                    {isLoggedIn && (
-                        <div>
-                            <br></br>
-                            {createForm && (
-                                <button
-                                    className="btn btn-secondary"
-                                    onClick={handleCloseForm}
-                                >
-                                    Close Form
-                                </button>
-                            )}
-                        </div>
-                    )}
+
+                    <div>
+                        <br></br>
+                        {createForm && isLoggedIn && (
+                            <button
+                                className="btn btn-secondary"
+                                onClick={handleCloseForm}
+                            >
+                                Close Form
+                            </button>
+                        )}
+                    </div>
                 </div>
             </div>
         </main>

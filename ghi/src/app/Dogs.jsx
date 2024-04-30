@@ -2,37 +2,12 @@ import 'bootstrap/dist/css/bootstrap.css'
 import CreatePetForm from '../components/CreatePetForm'
 import GetAllPets from '../components/GetAllPets'
 import GetPetsForSale from '../components/GetPetsForSale'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import useAuthService from '../hooks/useAuthService'
-import { baseUrl } from '../services/authService'
 
-
-function Dogs() {
-    const { user } = useAuthService()
-    const [admin, setAdmin] = useState(false)
-
-    const fetchUser = async () => {
-        if (user) {
-            const user_id = user.id
-            const userUrl = `${baseUrl}/api/users/${user_id}`
-            try {
-                const response = await fetch(userUrl, {
-                    method: 'get',
-                    credentials: 'include',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                })
-                if (response.ok) {
-                    const userData = await response.json()
-                    setAdmin(userData.admin)
-                }
-            } catch (e) {
-                console.error(e)
-            }
-        }
-    }
-
+function Dogs(props) {
+    const { isLoggedIn } = useAuthService()
+    const admin = props.admin
     const [createForm, setCreateForm] = useState(false)
     const [closeForm, setCloseForm] = useState(true)
 
@@ -45,9 +20,6 @@ function Dogs() {
         setCreateForm(false)
         setCloseForm(true)
     }
-    useEffect(() => {
-        fetchUser()
-    }, [])
 
     return (
         <main>
@@ -65,9 +37,9 @@ function Dogs() {
                         </p>
 
                         {/* change admin to user.admin = True ??*/}
-                        {admin && (
+                        {isLoggedIn && admin && (
                             <div>
-                                {createForm && <CreatePetForm />}
+                                {createForm && <CreatePetForm admin={admin} />}
                                 {closeForm && (
                                     <button
                                         className="btn btn-dark"
@@ -91,7 +63,7 @@ function Dogs() {
                                 )}
                             </div>
                         )}
-                    <div>{<GetPetsForSale />}</div>
+                        <div>{<GetPetsForSale admin={admin} />}</div>
                     </div>
                     <div className="col-md-8 offset-md-2 text-center">
                         <h2>Community Pets!</h2>
@@ -102,7 +74,6 @@ function Dogs() {
                     </div>
 
                     <div>{<GetAllPets />}</div>
-
                 </div>
             </div>
         </main>
