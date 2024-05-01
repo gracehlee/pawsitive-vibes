@@ -11,6 +11,7 @@ import SignUpForm from './components/SignUpForm'
 import SignOut from './components/SignOut'
 import Services from './app/Services'
 import Testimonials from './app/Testimonials'
+import MonolithDogs from './app/DogsBundle'
 import Dogs from './app/Dogs'
 import useAuthService from './hooks/useAuthService'
 import Footer from './app/Footer'
@@ -44,7 +45,6 @@ function App() {
 
     useEffect(() => {
         fetchUser()
-        console.log(user)
     })
 
     const handleSignOut = () => {
@@ -58,10 +58,16 @@ function App() {
                 <Nav />
                 <Routes>
                     <Route path="/" element={<Home />} />
+
                     <Route
                         path="/dogs"
-                        element={<Dogs key={refresh} admin={admin} />}
+                        element={<MonolithDogs key={refresh} admin={admin} />}
                     />
+                    {/* <Route
+                        path="/dogs"
+                        element={<Dogs key={refresh} admin={admin} />}
+                    /> */}
+
                     <Route
                         path="/services"
                         element={<Services key={refresh} admin={admin} />}

@@ -2,8 +2,10 @@ import { useEffect, useState } from 'react'
 import { baseUrl } from '../services/authService'
 import useAuthService from '../hooks/useAuthService'
 
+import { useNavigate } from 'react-router-dom'
+import UpdatePet from '../components/UpdatePet'
+
 export default function PetList() {
-    // TODO use or remove 'error'
     const { user } = useAuthService()
 
     const [petColumns, setPetColumns] = useState([[], [], []])
@@ -34,6 +36,7 @@ export default function PetList() {
                     'Content-Type': 'application/json',
                 },
             })
+
             if (response.ok) {
                 const data = await response.json()
                 const requests = []
@@ -82,6 +85,15 @@ export default function PetList() {
         if (response.ok) {
             fetchData()
         }
+    }
+
+    // TODO: This does not work
+    const navigate = useNavigate()
+    const handleEdit = async (event) => {
+        event.preventDefault()
+        let id = event.target.value
+        navigate(<UpdatePet id={id}
+        />)
     }
 
     function PetColumn(props) {
@@ -136,6 +148,17 @@ export default function PetList() {
                                     </h5>
                                 </div>
 
+                                {/* TODO: This does not work */}
+                                {user && (
+                                    <button
+                                        className="btn btn-primary"
+                                        value={pets.id}
+                                        onClick={handleEdit}
+                                    >
+                                        Edit
+                                    </button>
+                                )}
+
                                 {user && (
                                     <button
                                         className="btn btn-primary"
@@ -155,6 +178,7 @@ export default function PetList() {
 
     useEffect(() => {
         fetchData()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (
@@ -166,7 +190,6 @@ export default function PetList() {
                             <PetColumn
                                 key={index}
                                 list={petList}
-                                handleRemove={handleRemove}
                             />
                         )
                     })}

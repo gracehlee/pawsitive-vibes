@@ -68,3 +68,5 @@ A function to use to confirm navigation. You must use this option when using <Me
 
 
 TODO: Consolidate GetAllPets and GetPetsForSale
+
+TODO: Change duration to str

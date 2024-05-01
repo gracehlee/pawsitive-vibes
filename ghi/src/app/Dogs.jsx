@@ -5,9 +5,10 @@ import GetPetsForSale from '../components/GetPetsForSale'
 import { useState } from 'react'
 import useAuthService from '../hooks/useAuthService'
 
-function Dogs(props) {
+export default function Dogs(props) {
     const { isLoggedIn } = useAuthService()
     const admin = props.admin
+    
     const [createForm, setCreateForm] = useState(false)
     const [closeForm, setCloseForm] = useState(true)
 
@@ -36,7 +37,6 @@ function Dogs(props) {
                             Socialized and temperament tested from day one!
                         </p>
 
-                        {/* change admin to user.admin = True ??*/}
                         {isLoggedIn && admin && (
                             <div>
                                 {createForm && <CreatePetForm admin={admin} />}
@@ -73,11 +73,9 @@ function Dogs(props) {
                         </p>
                     </div>
 
-                    <div>{<GetAllPets />}</div>
+                    <div>{<GetAllPets admin={admin} />}</div>
                 </div>
             </div>
         </main>
     )
 }
-
-export default Dogs

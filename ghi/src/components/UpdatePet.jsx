@@ -1,43 +1,66 @@
 // @ts-check
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { baseUrl } from '../services/authService'
 import useAuthService from '../hooks/useAuthService'
 
-export default function SellPetForm() {
+export default function UpdatePetForm(props) {
     const { user, error } = useAuthService()
+    const [admin, setAdmin] = useState(false)
+
+    const fetchUser = async () => {
+        if (user) {
+            const user_id = user.id
+            const userUrl = `${baseUrl}/api/users/${user_id}`
+            try {
+                const response = await fetch(userUrl, {
+                    method: 'get',
+                    credentials: 'include',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                })
+                if (response.ok) {
+                    const userData = await response.json()
+                    setAdmin(userData.admin)
+                }
+            } catch (e) {
+                console.error(e)
+            }
+        }
+    }
 
     const [petFormData, setPetFormData] = useState({
         pet_name: '',
         image_url: '',
         for_sale: 'false',
-        price: '',
+        price: 0,
         breed: '',
         birthday: '',
         description: '',
         owner_id: user.id,
     })
 
-    // // add for_sale boolean
-    // const [checked, setChecked] = useState(false)
-    // const [showPrice, setShowPrice] = useState(false)
+    // add for_sale boolean
+    const [checked, setChecked] = useState(false)
+    const [showPrice, setShowPrice] = useState(false)
 
-    // const handleChange = () => {
-    //     setChecked(!checked)
-    //     setShowPrice(!showPrice)
+    const handleChange = () => {
+        setChecked(!checked)
+        setShowPrice(!showPrice)
 
-    //     if (checked == true) {
-    //         setPetFormData({
-    //             ...petFormData,
-    //             for_sale: 'false',
-    //             price: 0,
-    //         })
-    //     } else {
-    //         setPetFormData({
-    //             ...petFormData,
-    //             for_sale: 'true',
-    //         })
-    //     }
-    // }
+        if (checked == true) {
+            setPetFormData({
+                ...petFormData,
+                for_sale: 'false',
+                price: 0,
+            })
+        } else {
+            setPetFormData({
+                ...petFormData,
+                for_sale: 'true',
+            })
+        }
+    }
 
     const handleInputChange = (event) => {
         setPetFormData({
@@ -50,31 +73,36 @@ export default function SellPetForm() {
      * @param {React.FormEvent<HTMLFormElement>} e
      */
 
-    async function handleFormSubmit(e) {
-        e.preventDefault()
+async function handleFormSubmit(e) {
+    e.preventDefault()
 
-        const res = await fetch(`${baseUrl}/api/pets/${pet_id}`, {
-            method: 'put',
-            credentials: 'include',
-            body: JSON.stringify(petFormData),
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        })
-        if (!res.ok) {
-            throw new Error('Could not update pet')
-        }
-        const data = await res.json()
-        return data
+    const res = await fetch(`${baseUrl}/api/pets/${props.id}`, {
+        method: 'put',
+        credentials: 'include',
+        body: JSON.stringify(petFormData),
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+    if (!res.ok) {
+        throw new Error('Could not update pet')
     }
+    const data = await res.json()
+    return data
+}
+
+
+    // set admin status
+    useEffect(() => {
+        fetchUser()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     return (
         <div className="container">
             <div className="card shadow mt-4">
                 <div className="card-body">
-                    <h1 className="card-title text-center">
-                        Add a dog to sell
-                    </h1>
+                    <h1 className="card-title text-center">Add a Pet</h1>
                     <br></br>
                     <form onSubmit={handleFormSubmit}>
                         {error && (
@@ -82,25 +110,41 @@ export default function SellPetForm() {
                                 {error.message}
                             </div>
                         )}
-
-                        {/*  */}
-
-                        <div className="form-floating mb-3">
-                            <input
-                                required
-                                type="number"
-                                min="0"
-                                max="10000"
-                                name="price"
-                                value={petFormData.price}
-                                onChange={handleInputChange}
-                                className="form-control"
-                                placeholder="price"
-                            />
-                            <label htmlFor="price">Price</label>
+                        <div className="col-auto">
+                            {admin && (
+                                <input
+                                    type="checkbox"
+                                    checked={checked}
+                                    onChange={handleChange}
+                                    className="form-check-input"
+                                    id="for_sale"
+                                />
+                            )}
+                            {admin && (
+                                <label
+                                    htmlFor="for_sale"
+                                    className="form-check-label"
+                                    style={{ marginLeft: '15px' }}
+                                >
+                                    <p>For Sale?</p>
+                                </label>
+                            )}
                         </div>
-
-                        {/*  */}
+                        <div className="form-floating mb-3">
+                            {checked && (
+                                <input
+                                    type="number"
+                                    min="0"
+                                    max="10000"
+                                    name="price"
+                                    value={petFormData.price}
+                                    onChange={handleInputChange}
+                                    className="form-control"
+                                    placeholder="price"
+                                />
+                            )}
+                            {checked && <label htmlFor="price">Price</label>}
+                        </div>
 
                         <div className="form-floating mb-3">
                             <input
@@ -137,9 +181,7 @@ export default function SellPetForm() {
                                 className="form-control"
                                 placeholder="Birthday"
                             />
-                            <label htmlFor="birthday">
-                                Birthday
-                            </label>
+                            <label htmlFor="birthday">Birthday</label>
                         </div>
                         <div className="form-floating mb-3">
                             <input
@@ -151,9 +193,7 @@ export default function SellPetForm() {
                                 className="form-control"
                                 placeholder="Description"
                             />
-                            <label htmlFor="description">
-                                Description
-                            </label>
+                            <label htmlFor="description">Description</label>
                         </div>
                         <div className="form-floating mb-3">
                             <input
@@ -167,36 +207,6 @@ export default function SellPetForm() {
                             />
                             <label htmlFor="image_url">Image URL</label>
                         </div>
-
-                        {/* <div className="col-auto">
-                            <input
-                                type="checkbox"
-                                checked={checked}
-                                onChange={handleChange}
-                                className="form-check-input"
-                                id="for_sale"
-                            />
-                            <label
-                                htmlFor="for_sale"
-                                className="form-check-label"
-                                style={{ marginLeft: '15px' }}
-                            >
-                                <p>For Sale?</p>
-                            </label>
-                        </div>
-                        <div className="form-floating mb-3">
-                            {checked && (
-                                <input
-                                    type="text"
-                                    name="price"
-                                    value={petFormData.price}
-                                    onChange={handleInputChange}
-                                    className="form-control"
-                                    placeholder="price"
-                                />
-                            )}
-                            {checked && <label htmlFor="price">Price</label>}
-                        </div> */}
 
                         <div className="text-center">
                             <button type="submit" className="btn btn-primary">

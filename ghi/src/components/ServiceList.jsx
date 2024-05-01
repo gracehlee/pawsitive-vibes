@@ -106,9 +106,9 @@ export default function ServiceList(props) {
                             </tr>
                         </thead>
                         <tbody>
-                            {services.map((service) => (
+                            {services.map((service, index) => (
                                 <tr
-                                    key={service.service}
+                                    key={index}
                                     onClick={() =>
                                         handleServiceClick(service.id)
                                     }
