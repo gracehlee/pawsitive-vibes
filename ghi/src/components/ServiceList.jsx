@@ -1,11 +1,15 @@
+
 import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { baseUrl } from '../services/authService'
 import '../css/ServiceList.css'
 
 export default function ServiceList(props) {
+    const admin = props.admin
     const [services, setServices] = useState([])
     const [selectedService, setSelectedService] = useState(null)
+    
+
 
     const fetchData = async () => {
         try {
@@ -22,13 +26,17 @@ export default function ServiceList(props) {
         }
     }
 
+    // useEffect(() => {
+    //     fetchData()
+    //     if (props.pollService) {
+    //         const polling = setInterval(fetchData, 1)
+    //         return () => clearInterval(polling)
+    //     }
+    // })
+
     useEffect(() => {
         fetchData()
-        if (props.pollService) {
-            const polling = setInterval(fetchData, 1)
-            return () => clearInterval(polling)
-        }
-    })
+    }, [])
 
     const handleServiceClick = (serviceId) => {
         setSelectedService(serviceId)
@@ -49,6 +57,8 @@ export default function ServiceList(props) {
         }
     }
 
+    
+
     useEffect(() => {
         if (selectedService) {
             fetchServiceById(selectedService)
@@ -58,6 +68,12 @@ export default function ServiceList(props) {
             }
         }
     })
+
+    useEffect(() => {
+        if (props.pollService) {
+            fetchData()
+        }
+    }, [props.pollService])
 
     const handleBackToList = () => {
         setSelectedService(null)
@@ -81,13 +97,14 @@ export default function ServiceList(props) {
                         <p>Duration: {selectedService.duration}</p>
                         <p>Cost: {selectedService.cost}</p>
                         <p>Description: {selectedService.description}</p>
+
                         <Link to="create-appt">
-                            <button className="btn btn-primary">
+                            <button className="btn btn-dark">
                                 Book Now
                             </button>
                         </Link>
                         <button
-                            className="btn btn-primary"
+                            className="btn btn-secondary"
                             onClick={handleBackToList}
                         >
                             Back to List
@@ -103,6 +120,7 @@ export default function ServiceList(props) {
                                 <th>Service</th>
                                 <th>Image</th>
                                 <th>Cost</th>
+                                {admin && <th></th>}
                             </tr>
                         </thead>
                         <tbody>
@@ -122,6 +140,17 @@ export default function ServiceList(props) {
                                         />
                                     </td>
                                     <td>{service.cost}</td>
+                                    {admin && (
+                                        <td>
+                                            <Link
+                                                to={`/updateservice/${service.id}`}
+                                            >
+                                                <button className="btn btn-dark">
+                                                    Update
+                                                </button>
+                                            </Link>
+                                        </td>
+                                    )}
                                 </tr>
                             ))}
                         </tbody>

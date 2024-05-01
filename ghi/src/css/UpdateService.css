@@ -1,0 +1,22 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px; 
+}
+
+.updateform {
+    width: 100%; 
+    max-width: 500px; 
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px; 
+}
+
+.button-container button {
+    margin: 0 10px; 
+}

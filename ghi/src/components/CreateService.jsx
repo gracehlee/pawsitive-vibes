@@ -9,7 +9,7 @@ function ServiceForm() {
         service: '',
         picture_url: '',
         description: '',
-        duration: '',
+        duration: 0,
         cost: '',
     })
 
@@ -23,6 +23,7 @@ function ServiceForm() {
     /**
      * @param {React.FormEvent<HTMLFormElement>} e
      */
+
 
     async function handleSubmit(e) {
         e.preventDefault()
@@ -57,6 +58,9 @@ function ServiceForm() {
                 duration: '',
                 cost: '',
             })
+
+            
+
             return data
         } catch (error) {
             console.error(error)
@@ -103,7 +107,7 @@ function ServiceForm() {
                                 onChange={handleInputChange}
                                 placeholder="duration"
                                 required
-                                type="text"
+                                type="number"
                                 name="duration"
                                 id="duration"
                                 className="form-control"
