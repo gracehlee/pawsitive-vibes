@@ -65,6 +65,7 @@ export default function SellPetForm(props) {
         if (!res.ok) {
             throw new Error('Could not create new pet')
         }
+        window.location.reload()
         const data = await res.json()
         return data
     }
@@ -73,9 +74,7 @@ export default function SellPetForm(props) {
         <div className="container">
             <div className="card shadow mt-4">
                 <div className="card-body">
-                    <h1 className="card-title text-center">
-                        Add a Pet
-                    </h1>
+                    <h1 className="card-title text-center">Add a Pet</h1>
                     <br></br>
                     <form onSubmit={handleFormSubmit}>
                         {error && (
@@ -83,8 +82,8 @@ export default function SellPetForm(props) {
                                 {error.message}
                             </div>
                         )}
-                        <div className="col-auto">
-                            {admin && (
+                        {admin && (
+                            <div className="col-auto">
                                 <input
                                     type="checkbox"
                                     checked={checked}
@@ -92,18 +91,17 @@ export default function SellPetForm(props) {
                                     className="form-check-input"
                                     id="for_sale"
                                 />
-                            )}
-                            {admin &&
-                            <label
-                                htmlFor="for_sale"
-                                className="form-check-label"
-                                style={{ marginLeft: '15px' }}
-                            >
-                                <p>For Sale?</p>
-                            </label>}
-                        </div>
-                        <div className="form-floating mb-3">
-                            {checked && (
+                                <label
+                                    htmlFor="for_sale"
+                                    className="form-check-label"
+                                    style={{ marginLeft: '15px' }}
+                                >
+                                    <p>For Sale?</p>
+                                </label>
+                            </div>
+                        )}
+                        {checked && (
+                            <div className="form-floating mb-3">
                                 <input
                                     type="number"
                                     min="0"
@@ -114,10 +112,9 @@ export default function SellPetForm(props) {
                                     className="form-control"
                                     placeholder="price"
                                 />
-                            )}
-                            {checked && <label htmlFor="price">Price</label>}
-                        </div>
-
+                                    <label htmlFor="price">Price</label>
+                            </div>
+                        )}
                         <div className="form-floating mb-3">
                             <input
                                 required

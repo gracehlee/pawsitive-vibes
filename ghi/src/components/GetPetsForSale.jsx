@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
 import { baseUrl } from '../services/authService'
+import { Link } from 'react-router-dom'
 
-export default function ForSalePetList(props) {
+
+export default function SaleList(props) {
     const admin = props.admin
 
     const [petColumns, setPetColumns] = useState([[], [], []])
@@ -88,17 +90,17 @@ export default function ForSalePetList(props) {
                 {props.list.map((pets, index) => {
                     return (
                         <div key={index} className="card mb-3 shadow">
+                            <img
+                                src={pets.picture_url}
+                                alt="Image failed to load"
+                                className="card-img-top"
+                            />
                             <div className="card-body">
                                 <div>
                                     <h5 className="card-title">
                                         Name: {pets.pet_name}
                                     </h5>
                                 </div>
-                                <img
-                                    src={pets.picture_url}
-                                    alt="Image failed to load"
-                                    className="card-img-top"
-                                />
 
                                 {pets.for_sale && (
                                     <div>
@@ -133,6 +135,13 @@ export default function ForSalePetList(props) {
                                         Description: {pets.description}
                                     </h5>
                                 </div>
+                                {admin && (
+                                    <div className="btn btn-primary">
+                                        <Link to={`${pets.id}`}>
+                                            <button type="button">Edit</button>
+                                        </Link>
+                                    </div>
+                                )}
 
                                 {admin && (
                                     <button

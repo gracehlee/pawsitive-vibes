@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
 import { baseUrl } from '../services/authService'
+import { Link } from 'react-router-dom'
+
 
 export default function PetList(props) {
-    // const [admin, setAdmin] = useState(null)
     const admin = props.admin
 
     const [petColumns, setPetColumns] = useState([[], [], []])
@@ -101,12 +102,13 @@ export default function PetList(props) {
                                     </h5>
                                 </div>
 
-                                {pets.for_sale &&
-                                <div>
-                                    <h5 className="card-subtitle">
-                                        Price: ${pets.price}
-                                    </h5>
-                                </div>}
+                                {pets.for_sale && (
+                                    <div>
+                                        <h5 className="card-subtitle">
+                                            Price: ${pets.price}
+                                        </h5>
+                                    </div>
+                                )}
 
                                 <div>
                                     <h5 className="card-subtitle">
@@ -133,6 +135,13 @@ export default function PetList(props) {
                                         Description: {pets.description}
                                     </h5>
                                 </div>
+                                {admin && (
+                                    <div className="btn btn-primary">
+                                        <Link to={`${pets.id}`}>
+                                            <button type="button">Edit</button>
+                                        </Link>
+                                    </div>
+                                )}
 
                                 {admin && (
                                     <button
@@ -153,7 +162,6 @@ export default function PetList(props) {
 
     useEffect(() => {
         fetchData()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (

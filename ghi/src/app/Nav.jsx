@@ -17,8 +17,8 @@ function Nav() {
                         style={{ height: '80px', width: '140px' }}
                     />
                 </NavLink>
-                <NavLink className="nav navbar-brand" to="/dogs">
-                    Dogs
+                <NavLink className="nav navbar-brand" to="/pets">
+                    Pets
                 </NavLink>
                 <NavLink className="nav navbar-brand" to="/services">
                     Services
