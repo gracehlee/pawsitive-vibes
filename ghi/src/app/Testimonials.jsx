@@ -1,4 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.css'
+import '../css/index.css'
 import TestimonialForm from '../components/TestimonialsForm'
 import useAuthService from '../hooks/useAuthService'
 

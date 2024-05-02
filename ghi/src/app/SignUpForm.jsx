@@ -2,9 +2,10 @@
 import { useState } from 'react'
 import { Navigate, Link } from 'react-router-dom'
 import useAuthService from '../hooks/useAuthService'
+import { PV_EMAIL } from '../../config'
 
 export default function SignInForm() {
-    const { signup, user, error } = useAuthService()
+    const { signup, user } = useAuthService()
 
     const [userFormData, setUserFormData] = useState({
         username: '',
@@ -17,22 +18,118 @@ export default function SignInForm() {
     })
 
     const [confirmPassword, setConfirmPassword] = useState('')
+    const [userError, setUserError] = useState('')
 
     const handleInputChange = (event) => {
+        let { name, value } = event.target
         setUserFormData({
             ...userFormData,
-            [event.target.name]: event.target.value,
+            [name]: value,
         })
+    }
+
+    // Regex Validators
+
+    const validateUsername = (username) => {
+        const usernameRegex = /^(?=.*[a-zA-Z])[a-zA-Z\d]{5,}$/
+        return usernameRegex.test(username)
+    }
+
+    const validatePassword = (password) => {
+        const passwordRegex = new RegExp(
+            '^(?=.*[a-z])' + // At least one lowercase letter
+                '(?=.*[A-Z])' + // At least one uppercase letter
+                '(?=.*\\d)' + // At least one digit
+                '(?=.*[!@#$%^&*()_+])' + // At least one special character
+                '[A-Za-z\\d!@#$%^&*()_+]{8,}$' // Allowed characters and length
+        )
+        return passwordRegex.test(password)
+    }
+
+    const validateEmail = (email) => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+        return emailRegex.test(email)
+    }
+
+    // formats phone number
+    const validatePhoneNumber = (phoneNumber) => {
+        const cleanPhoneNo = phoneNumber.replace(/\D/g, '')
+
+        if (cleanPhoneNo.length !== 10 && cleanPhoneNo.length !== 11) {
+            setUserError('Please enter a valid phone number.')
+            return false
+        }
+
+        let formatPhoneNo // ###-###-####
+        if (cleanPhoneNo.length === 11) {
+            formatPhoneNo = cleanPhoneNo
+                .substring(1) // remove area code prefix
+                .replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3')
+        } else {
+            formatPhoneNo = cleanPhoneNo.replace(
+                /(\d{3})(\d{3})(\d{4})/,
+                '$1-$2-$3'
+            )
+        }
+
+        setUserFormData({
+            ...userFormData,
+            phone_number: formatPhoneNo,
+        })
+
+        return true
     }
 
     async function handleFormSubmit(e) {
         e.preventDefault()
+        setUserError('')
 
-        if (userFormData.password !== confirmPassword) {
-            alert("Passwords don't match!")
+        if (!validateUsername(userFormData.username)) {
+            setUserError(
+                'Username must be 5 or more characters ' +
+                    'and must contain at least one letter.'
+            )
             return
         }
+
+        if (
+            !validateEmail(userFormData.email) ||
+            userFormData.email.toLowerCase() === PV_EMAIL
+        ) {
+            setUserError('Please enter a valid email address.')
+            return
+        }
+        if (!validatePhoneNumber(userFormData.phone_number)) {
+            setUserError('Please enter a valid phone number.')
+            return
+        }
+        if (!validatePassword(userFormData.password)) {
+            setUserError(
+                'Passwords must be at least 8 characters ' +
+                    'and include at least one uppercase, ' +
+                    'lowercase, digit, and special character.'
+            )
+            return
+        }
+
+        if (userFormData.password !== confirmPassword) {
+            setUserError("Passwords don't match!")
+            return
+        }
+
+        const lowercaseUsername = userFormData.username.toLowerCase()
+        const lowercaseEmail = userFormData.email.toLowerCase()
+
+        setUserFormData({
+            ...userFormData,
+            username: lowercaseUsername,
+            email: lowercaseEmail,
+        })
+
         await signup(userFormData)
+        if (!user) {
+            setUserError('Sign up failed. Please check username or email.')
+        }
     }
 
     if (user) {
@@ -47,12 +144,10 @@ export default function SignInForm() {
                     <div>
                         <br></br>
                     </div>
+                    {userError && (
+                        <div className="alert alert-danger">{userError}</div>
+                    )}
                     <form onSubmit={handleFormSubmit}>
-                        {error && (
-                            <div className="alert alert-danger">
-                                {error.message}
-                            </div>
-                        )}
                         <div className="form-floating mb-3">
                             <input
                                 required

@@ -4,7 +4,7 @@ import { baseUrl } from '../services/authService'
 import '../css/UpdateService.css'
 
 export default function UpdateService() {
-    const { serviceId } = useParams();
+    const { serviceId } = useParams()
     const [service, setService] = useState({
         service: '',
         description: '',
@@ -13,7 +13,7 @@ export default function UpdateService() {
         cost: '',
     })
 
-    const [showMessage, setShowMessage] = useState(false);
+    const [showMessage, setShowMessage] = useState(false)
 
     useEffect(() => {
         const fetchService = async () => {
@@ -76,7 +76,7 @@ export default function UpdateService() {
             })
             if (res.ok) {
                 console.log('Service deleted successfully')
-                setShowMessage(true);
+                setShowMessage(true)
                 setService({
                     service: '',
                     description: '',
@@ -94,7 +94,7 @@ export default function UpdateService() {
 
     return (
         <div className="container">
-            <h1 className="text-center">Edit Service</h1>
+            <h1 className="text-center my-5 ">Edit Service</h1>
             {showMessage && (
                 <div className="alert alert-success" role="alert">
                     Service deleted successfully

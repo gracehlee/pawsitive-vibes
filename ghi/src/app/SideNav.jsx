@@ -1,27 +1,60 @@
-// import { NavLink, Link } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.css'
-import useAuthService from '../hooks/useAuthService'
 import '../css/sidenav.css'
-
-// import logo from '../images/PV_Logo.png'
+import icon from '../images/darkmode.png'
+import { useState } from 'react'
 
 function SideNav() {
-    const { isLoggedIn } = useAuthService()
+    const [darkMode, setDarkMode] = useState(false)
+
+    const toggleDarkMode = () => {
+        setDarkMode(!darkMode)
+        document.body.classList.toggle('dark-mode')
+    }
 
     return (
         <>
-            <div className="sidenav-content">
-                {isLoggedIn ? (
-                    <>
-                        <p>O</p>
-                    </>
+            <button className="toggle" onClick={toggleDarkMode}>
+                {darkMode ? (
+                    <div
+                        style={{
+                            backgroundColor: 'grey',
+                            borderRadius: '2vw',
+                            height: '2.5vw',
+                            width: '2.5vw',
+                            alignContent: 'center',
+                        }}
+                    >
+                        <img
+                            src={icon}
+                            alt="Dark Mode"
+                            style={{
+                                height: '31px',
+                                width: '31px',
+                            }}
+                        />
+                    </div>
                 ) : (
-                    <>
-                        <p>X</p>
-                    </>
+                    // Light mode
+                    <div
+                        style={{
+                            backgroundColor: 'white',
+                            borderRadius: '2vw',
+                            height: '2.5vw',
+                            width: '2.5vw',
+                            alignContent: 'center',
+                        }}
+                    >
+                        <img
+                            src={icon}
+                            alt="Dark Mode"
+                            style={{
+                                height: '31px',
+                                width: '31px',
+                            }}
+                        />
+                    </div>
                 )}
-                <div>hi</div>
-            </div>
+            </button>
         </>
     )
 }

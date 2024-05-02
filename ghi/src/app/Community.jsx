@@ -1,22 +1,15 @@
 import 'bootstrap/dist/css/bootstrap.css'
 import CreatePetForm from '../components/CreatePetForm'
 import { useState } from 'react'
+import '../css/index.css'
+import '../css/community.css'
 import useAuthService from '../hooks/useAuthService'
-import SideNav from './SideNav'
-import '../css/sidenav.css'
-import logo from '../images/favicon.png'
 import GetUserPets from '../components/GetUserPets'
 
 function Community() {
     const { isLoggedIn } = useAuthService()
-
     const [createForm, setCreateForm] = useState(false)
     const [closeForm, setCloseForm] = useState(true)
-    const [sideNav, setSideNav] = useState(false)
-
-    const toggleSideNav = () => {
-        setSideNav(!sideNav)
-    }
 
     const handleCreatePet = () => {
         setCreateForm(true)
@@ -31,17 +24,6 @@ function Community() {
     return (
         <main>
             <div className="row">
-                <button className="toggle" onClick={toggleSideNav}>
-                    {/* {sideNav ? '<<' : '>>'} */}
-                    <img
-                        src={logo}
-                        alt="Pawsitive Vibes Logo"
-                        style={{ height: '25px', width: '25px' }}
-                    />
-                </button>
-                <div className={`sidenav ${sideNav ? 'open' : ''}`}>
-                    {sideNav && isLoggedIn && <SideNav />}
-                </div>
                 <div className="text-center">
                     <h1>Community</h1>
                     <p>Community content goes here!</p>
@@ -68,19 +50,17 @@ function Community() {
                             )}
                         </div>
                     )}
-                    {isLoggedIn && (
-                        <div>
-                            <br></br>
-                            {createForm && (
-                                <button
-                                    className="btn btn-secondary"
-                                    onClick={handleCloseForm}
-                                >
-                                    Close Form
-                                </button>
-                            )}
-                        </div>
-                    )}
+                    <div>
+                        <br></br>
+                        {createForm && isLoggedIn && (
+                            <button
+                                className="btn btn-secondary"
+                                onClick={handleCloseForm}
+                            >
+                                Close Form
+                            </button>
+                        )}
+                    </div>
                     <div>{<GetUserPets />}</div>
                 </div>
             </div>

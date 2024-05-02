@@ -20,21 +20,32 @@ main {
     padding-top: 10vh;
     padding-bottom: 10vh;
     min-height: calc(60vh);
+    min-width: 100%;
 }
 
 nav.nav {
     display: flex;
     position: fixed;
-    justify-content: space-evenly;
-    height: 15vh;
-    width: 100%;
-    overflow-x: hidden;
-    overflow-y: hidden;
+    justify-items: space-evenly;
+    align-content: center;
+    min-height: 15vh;
+    width: 100vw;
     position: fixed;
     z-index: 100;
     background-color: #fff;
     padding-bottom: 1vh;
     font-size: 3vh;
+}
+
+a.nav-style {
+    text-decoration: none;
+    color: black;
+    padding-right: 2vw;
+}
+
+a.nav-style:hover {
+    color: rgb(133, 133, 133);
+    transition: 0.3s ease-in;
 }
 
 footer.footer {
@@ -43,7 +54,7 @@ footer.footer {
     width: 100%;
     overflow-x: hidden;
     overflow-y: hidden;
-    z-index: 100;
+    z-index: 99;
     background-color: black;
 }
 

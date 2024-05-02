@@ -9,7 +9,7 @@ function SignOut() {
     useEffect(() => {
         async function handleSignout() {
             await signout()
-            navigate('/')
+            navigate('/signin')
         }
         handleSignout()
     }, [navigate, signout])

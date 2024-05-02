@@ -1,4 +1,3 @@
-
 import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { baseUrl } from '../services/authService'
@@ -8,8 +7,6 @@ export default function ServiceList(props) {
     const admin = props.admin
     const [services, setServices] = useState([])
     const [selectedService, setSelectedService] = useState(null)
-    
-
 
     const fetchData = async () => {
         try {
@@ -57,8 +54,6 @@ export default function ServiceList(props) {
         }
     }
 
-    
-
     useEffect(() => {
         if (selectedService) {
             fetchServiceById(selectedService)
@@ -80,83 +75,85 @@ export default function ServiceList(props) {
     }
 
     return (
-        <div className="px-4 py-5 my-5 text-center">
-            {selectedService ? (
-                <div>
-                    <h1 className="display-5 fw-bold">
-                        {selectedService.service}
-                    </h1>
-                    <div className="col-lg-6 mx-auto">
-                        <img
-                            src={selectedService.picture_url}
-                            className="img-fluid img-thumbnail"
-                            alt="Service"
-                        />
-                    </div>
+        <div className="col-md-10 offset-md-1 text-center">
+            <div className="px-4 py-5 my-5 text-center">
+                {selectedService ? (
                     <div>
-                        <p>Duration: {selectedService.duration}</p>
-                        <p>Cost: {selectedService.cost}</p>
-                        <p>Description: {selectedService.description}</p>
+                        <h1 className="display-5 fw-bold">
+                            {selectedService.service}
+                        </h1>
+                        <div className="col-lg-6 mx-auto">
+                            <img
+                                src={selectedService.picture_url}
+                                className="img-fluid img-thumbnail"
+                                alt="Service"
+                            />
+                        </div>
+                        <div>
+                            <p>Duration: {selectedService.duration}</p>
+                            <p>Cost: {selectedService.cost}</p>
+                            <p>Description: {selectedService.description}</p>
 
-                        <Link to="create-appt">
-                            <button className="btn btn-dark">
-                                Book Now
+                            <Link to="create-appt">
+                                <button className="btn btn-dark">
+                                    Book Now
+                                </button>
+                            </Link>
+                            <button
+                                className="btn btn-secondary"
+                                onClick={handleBackToList}
+                            >
+                                Back to List
                             </button>
-                        </Link>
-                        <button
-                            className="btn btn-secondary"
-                            onClick={handleBackToList}
-                        >
-                            Back to List
-                        </button>
+                        </div>
                     </div>
-                </div>
-            ) : (
-                <div>
-                    <h1 className="display-5 fw-bold">Services</h1>
-                    <table className="table table-striped table-hover">
-                        <thead>
-                            <tr>
-                                <th>Service</th>
-                                <th>Image</th>
-                                <th>Cost</th>
-                                {admin && <th></th>}
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {services.map((service, index) => (
-                                <tr
-                                    key={index}
-                                    onClick={() =>
-                                        handleServiceClick(service.id)
-                                    }
-                                >
-                                    <td>{service.service}</td>
-                                    <td className="w-25">
-                                        <img
-                                            src={service.picture_url}
-                                            className="img-fluid img-thumbnail"
-                                            alt="Service"
-                                        />
-                                    </td>
-                                    <td>{service.cost}</td>
-                                    {admin && (
-                                        <td>
-                                            <Link
-                                                to={`/updateservice/${service.id}`}
-                                            >
-                                                <button className="btn btn-dark">
-                                                    Update
-                                                </button>
-                                            </Link>
-                                        </td>
-                                    )}
+                ) : (
+                    <div>
+                        <h1 className="display-5 fw-bold">Services</h1>
+                        <table className="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Service</th>
+                                    <th>Image</th>
+                                    <th>Cost</th>
+                                    {admin && <th></th>}
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
-            )}
+                            </thead>
+                            <tbody>
+                                {services.map((service, index) => (
+                                    <tr
+                                        key={index}
+                                        onClick={() =>
+                                            handleServiceClick(service.id)
+                                        }
+                                    >
+                                        <td>{service.service}</td>
+                                        <td className="w-25">
+                                            <img
+                                                src={service.picture_url}
+                                                className="img-fluid img-thumbnail"
+                                                alt="Service"
+                                            />
+                                        </td>
+                                        <td>{service.cost}</td>
+                                        {admin && (
+                                            <td>
+                                                <Link
+                                                    to={`/updateservice/${service.id}`}
+                                                >
+                                                    <button className="btn btn-dark">
+                                                        Update
+                                                    </button>
+                                                </Link>
+                                            </td>
+                                        )}
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                )}
+            </div>
         </div>
     )
 }

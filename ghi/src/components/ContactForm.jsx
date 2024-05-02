@@ -1,16 +1,60 @@
-// @ts-check
-import { useState } from 'react'
-// import { baseUrl } from '../services/authService'
+import { useState, useEffect } from 'react'
 import useAuthService from '../hooks/useAuthService'
+import { baseUrl } from '../services/authService'
+import emailjs from '@emailjs/browser'
+import { PUBLIC_KEY, TEMPLATE_ID, SERVICE_ID, PV_EMAIL } from '../../config'
 
-export default function ContactForm() {
-    const { error } = useAuthService()
+function ContactForm() {
+    const { error, user, isLoggedIn } = useAuthService()
 
+    const [userData, setUserData] = useState({ name: '', email: '' })
     const [contactFormData, setContactFormData] = useState({
-        name: '',
-        email: '',
-        message: '',
+        from_name: 'Name',
+        user_email: 'Email',
+        message: 'Message',
     })
+
+    const [userError, setUserError] = useState('')
+    const [userSuccess, setUserSuccess] = useState('')
+
+    useEffect(() => {
+        if (isLoggedIn) {
+            const fetchUser = async () => {
+                const user_id = user.id
+                const userUrl = `${baseUrl}/api/users/${user_id}`
+                try {
+                    const response = await fetch(userUrl, {
+                        method: 'get',
+                        credentials: 'include',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                    })
+                    if (response.ok) {
+                        const userData = await response.json()
+                        setUserData({
+                            name: `${userData.first_name} ${userData.last_name}`,
+                            email: userData.email,
+                        })
+                    }
+                } catch (e) {
+                    console.error(e)
+                }
+            }
+            fetchUser()
+        } else {
+            setUserData({ name: 'Name', email: 'Email' }) // reset with logout
+        }
+    }, [isLoggedIn, user])
+
+    useEffect(() => {
+        setContactFormData({
+            ...contactFormData,
+            from_name: userData.name,
+            user_email: userData.email,
+            message: contactFormData.message,
+        })
+    }, [userData]) // update with user input
 
     const handleInputChange = (event) => {
         setContactFormData({
@@ -19,29 +63,38 @@ export default function ContactForm() {
         })
     }
 
-    /**
-     * @param {React.FormEvent<HTMLFormElement>} e
-     */
+    const validateEmail = (email) => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+        return emailRegex.test(email)
+    }
 
-    // this will be 3rd party API info here
+    const sendEmail = (e) => {
+        e.preventDefault()
+        setUserSuccess('')
+        setUserError('')
 
-    // async function handleFormSubmit(e) {
-    //     e.preventDefault()
-
-    //     const res = await fetch(`${baseUrl}/api/pets`, {
-    //         method: 'post',
-    //         credentials: 'include',
-    //         body: JSON.stringify(petFormData),
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //         },
-    //     })
-    //     if (!res.ok) {
-    //         throw new Error('Could not create new pet')
-    //     }
-    //     const data = await res.json()
-    //     return data
-    // }
+        // checks if valid email and not our own email
+        if (
+            !validateEmail(contactFormData.user_email) ||
+            contactFormData.user_email.toLowerCase() === PV_EMAIL
+        ) {
+            setUserError('Please enter a valid email address.')
+            return
+        }
+        emailjs.send(SERVICE_ID, TEMPLATE_ID, contactFormData, PUBLIC_KEY).then(
+            () => {
+                setUserSuccess('Email sent successfully!')
+                setContactFormData({
+                    from_name: userData.name,
+                    user_email: userData.email,
+                    message: 'Message',
+                })
+            },
+            (error) => {
+                setUserError('Failed to send email: ' + error.text)
+            }
+        )
+    }
 
     return (
         <div className="contact-form">
@@ -49,9 +102,18 @@ export default function ContactForm() {
                 <div className="offset-3 col-6">
                     <div className="shadow p-4 mt-4">
                         <h1 className="card-title text-center">Contact Us</h1>
-                        <br></br>
-                        <form>
-                            {/* <form onSubmit={handleFormSubmit}> */}
+                        <br />
+                        {userError && (
+                            <div className="alert alert-danger">
+                                {userError}
+                            </div>
+                        )}
+                        {userSuccess && (
+                            <div className="alert alert-success">
+                                {userSuccess}
+                            </div>
+                        )}
+                        <form id="contact-form" onSubmit={sendEmail}>
                             {error && (
                                 <div className="alert alert-danger">
                                     {error.message}
@@ -61,18 +123,44 @@ export default function ContactForm() {
                                 <input
                                     required
                                     type="text"
-                                    value={contactFormData.name}
-                                    name="name"
+                                    value={contactFormData.from_name}
+                                    name="from_name"
                                     onChange={handleInputChange}
                                     className="form-control"
                                     placeholder="Name"
                                 />
                                 <label htmlFor="name">Name</label>
                             </div>
+                            <div className="form-floating mb-3">
+                                <input
+                                    value={contactFormData.user_email}
+                                    onChange={handleInputChange}
+                                    placeholder="Email"
+                                    required
+                                    type="text"
+                                    name="user_email"
+                                    id="email"
+                                    className="form-control"
+                                />
+                                <label htmlFor="email">Email</label>
+                            </div>
+                            <div className="form-floating mb-3">
+                                <input
+                                    value={contactFormData.message}
+                                    onChange={handleInputChange}
+                                    placeholder="Message"
+                                    required
+                                    type="text"
+                                    name="message"
+                                    id="message"
+                                    className="form-control"
+                                />
+                                <label htmlFor="message">Message</label>
+                            </div>
                             <div className="text-center">
                                 <button
                                     type="submit"
-                                    className="btn btn-primary"
+                                    className="btn btn-danger"
                                 >
                                     Submit
                                 </button>
@@ -84,3 +172,5 @@ export default function ContactForm() {
         </div>
     )
 }
+
+export default ContactForm

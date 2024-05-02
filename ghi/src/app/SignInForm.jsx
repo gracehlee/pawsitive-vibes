@@ -7,7 +7,8 @@ import '../css/signin.css'
 export default function SignInForm() {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
-    const { signin, user, error } = useAuthService()
+    const { signin, user } = useAuthService()
+    const [userError, setUserError] = useState('')
 
     /**
      * @param {React.FormEvent<HTMLFormElement>} e
@@ -15,6 +16,9 @@ export default function SignInForm() {
     async function handleFormSubmit(e) {
         e.preventDefault()
         await signin({ username, password })
+        if (!user) {
+            setUserError('Sign In failed. Wrong username or password.')
+        }
     }
 
     if (user) {
@@ -29,8 +33,10 @@ export default function SignInForm() {
                     <div>
                         <br></br>
                     </div>
+                    {userError && (
+                        <div className="alert alert-danger">{userError}</div>
+                    )}
                     <form onSubmit={handleFormSubmit}>
-                        {error && <div className="error">{error.message}</div>}
                         <div className="form-floating mb-3">
                             <input
                                 className="form-control mb-2"

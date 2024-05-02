@@ -10,34 +10,64 @@ function Nav() {
     return (
         <nav className="nav navbar navbar-expand-lg">
             <div className="container-lg nav">
-                <NavLink className="navbar-brand" to="/">
+                <NavLink className="nav-style" to="/">
                     <img
                         src={logo}
                         alt="Pawsitive Vibes Logo"
-                        style={{ height: '80px', width: '140px' }}
+                        style={{ height: '10vh', width: '18vh' }}
                     />
                 </NavLink>
-                <NavLink className="nav navbar-brand" to="/pets">
+                <NavLink className="nav-style" to="/pets">
                     Pets
                 </NavLink>
-                <NavLink className="nav navbar-brand" to="/services">
+                <NavLink className="nav-style" to="/services">
                     Services
                 </NavLink>
-                <NavLink className="navbar-brand" to="/testimonials">
+                <NavLink className="nav-style" to="/testimonials">
                     Testimonials
                 </NavLink>
                 {isLoggedIn ? (
                     <>
-                        <NavLink className="nav navbar-brand" to="/community">
-                            Community
-                        </NavLink>
-                        <Link className="nav navbar-brand" onClick={signout}>
+                        <div className="nav-item dropdown">
+                            <NavLink
+                                className="nav-style dropdown-toggle"
+                                to="/community"
+                                id="navbarDropdown"
+                                role="button"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                            >
+                                Community
+                            </NavLink>
+                            <ul
+                                className="dropdown-menu"
+                                aria-labelledby="navbarDropdown"
+                            >
+                                <li>
+                                    <NavLink
+                                        className="dropdown-item"
+                                        to="/community"
+                                    >
+                                        Welcome!
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink
+                                        className="dropdown-item"
+                                        to="/profile"
+                                    >
+                                        Profile
+                                    </NavLink>
+                                </li>
+                            </ul>
+                        </div>
+                        <Link className="nav-style" onClick={signout}>
                             Sign Out
                         </Link>
                     </>
                 ) : (
                     <>
-                        <NavLink className="navbar-brand" to="/signin">
+                        <NavLink className="nav-style" to="/signin">
                             Sign In
                         </NavLink>
                     </>

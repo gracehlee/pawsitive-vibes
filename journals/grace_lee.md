@@ -117,7 +117,6 @@ https://reactcommunity.org/react-transition-group/
 
 I also want to figure out a way to render a different page height based on whether a form is toggled or not.
 
-
 ## 4.28.2024
 
 Today I worked on:
@@ -132,4 +131,48 @@ I created a favicon icon to match the business logo, replaced the home button wi
 
 I want to apply CSS animations to the pages of the SPA when they load in. I'm currently researching keyframes, but also read about CSS transitions. I'll be creating some draft CSS files to work with.
 
-The focus for today will be to work on a Contact form, and to give it EmailJS functionality.
+## 4.30.2024
+
+Today I worked on:
+
+The focus for today will be to work on a Contact form, and to give it EmailJS functionality. However, as I was building my form, I realized that I would want to have some way of getting user information to pre-fill the forms potentially. While exploring that, I also realized that we need to track admin status throughout our various pages and set a way to refresh a page after a user has logged out, so that the state is no longer showing elements that are for admins or users only.
+
+-   refactored Kyle's user fetch - admin logic to be part of App.jsx top level
+-   passed the admin down as a prop to child components
+-   set a state "refresh" to be passed to child components so that refresh occurs when refresh is updated with signout
+
+I worked on our Contact Form and have the basic layout completed. I added a fetch request to update the form fields with the user info if the user is logged in. Tomorrow, I hope to work on EmailJS functionality for it.
+
+## 5.1.2024
+
+Today I worked on:
+
+Today, I'm working on email functionality for the Contact Form, drop-down menu for the navigation Community tab, and User Profile components.
+
+Resource: https://react-bootstrap.netlify.app/docs/components/dropdowns/
+
+
+I finally got the Contact Form and EmailJS service up and running.
+Resource: https://www.emailjs.com/docs/examples/reactjs/
+- refactored the Contact Form to use variables imported from config.js
+- to set up the config file, in ghi directory, create config.js and paste in the following:
+    - export const PUBLIC_KEY = '5FO8dA-tJnoAnlmDx'
+    - export const TEMPLATE_ID = 'contact_form'
+    - export const SERVICE_ID = 'service_wflr4qv'
+    - export const PV_EMAIL = 'pawsitivevibescolorado@gmail.com'
+- these keys can be changed in the future for security purposes.
+
+## 5.2.2024
+Today I worked on:
+
+I added regex validation to the Contact Form, with some success and error message handling and display in the form. I will be adjusting the Sign Up Form in a similar fashion. I would like to explore connecting email to a "Forgot Password" page as well, so users can get an email to reset their password if applicable. But I will be exploring that later as a stretch goal. Now that the Community tab has a drop down menu, I will be working on the Community Welcome page. Then I'll work on the User Profile page, where I will do a fetch GET request to retrieve the user info and input it into a profile format. Then I will work on UPDATE (PUT) functionality to allow the user to update their profile info.
+
+TO DO:
+- 1 unit test for today
+- Sign Up Regex Validation - DONE
+- Community Profile page (USER GET)
+- Profile Update (USER PUT)
+- more unit tests
+- Meet Ups schema, model, queries, router, GET, PUT, DELETE
+- Google Maps API
+- Account banning and blocked emails list?

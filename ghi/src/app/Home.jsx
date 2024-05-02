@@ -1,4 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.css'
+import '../css/index.css'
 import logo from '../images/PV_Logo.png'
 
 function Home() {
