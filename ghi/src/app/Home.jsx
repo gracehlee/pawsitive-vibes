@@ -2,10 +2,11 @@ import 'bootstrap/dist/css/bootstrap.css'
 import '../css/index.css'
 import logo from '../images/PV_Logo.png'
 import header from '../images/assets/d3.png'
+import TestimonialsCarousel from '../components/TestimonialsCarousel'
 
 function Home(props) {
     const darkmode = props.darkmode
-import TestimonialsCarousel from '../components/TestimonialsCarousel'
+
 
     return (
         <main className={`${darkmode ? ' darkmode' : ''}`}>
