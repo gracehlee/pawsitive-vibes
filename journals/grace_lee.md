@@ -235,4 +235,4 @@ Advice from Paul and Rosheen for image uploads:
 - Use a Cloud Service (AWS Tier S3 Bucket) - grab from it
 - to use FastAPI instead, use static folder to serve static images
    - save images in static folder and use React FrontEnd to access them
- 
+  
