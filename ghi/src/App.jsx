@@ -16,7 +16,6 @@ import SignUpForm from './app/SignUpForm'
 import SignOut from './components/SignOut'
 import Services from './app/Services'
 import Testimonials from './app/Testimonials'
-// import Dogs from './app/Dogs'
 import UpdatePet from './components/UpdatePet'
 import useAuthService from './hooks/useAuthService'
 import Footer from './app/Footer'
@@ -181,7 +180,10 @@ function App() {
                     <Route path="/services" element={<Services />} />
                     <Route path="/servicelist" element={<ServiceList />} />
                     <Route path="/testimonials" element={<Testimonials />} />
-                    <Route path="/testimonials/manage" element={<TestimonialsList />} />
+                    <Route
+                        path="/testimonials/manage"
+                        element={<TestimonialsList />}
+                    />
                     {!isLoggedIn ? (
                         <>
                             <Route

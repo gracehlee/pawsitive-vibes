@@ -7,7 +7,6 @@ import TestimonialsCarousel from '../components/TestimonialsCarousel'
 function Home(props) {
     const darkmode = props.darkmode
 
-
     return (
         <main className={`${darkmode ? ' darkmode' : ''}`}>
             <div className="row">
