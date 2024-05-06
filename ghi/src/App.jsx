@@ -18,6 +18,9 @@ import UpdatePet from './components/UpdatePet'
 import useAuthService from './hooks/useAuthService'
 import Footer from './app/Footer'
 import UpdateService from './components/UpdateService'
+import ServiceList from './components/ServiceList'
+import TestimonialsList from './components/GetAllTestimonials'
+import Dogs from './app/Dogs'
 import Profile from './components/Profile'
 import CreateAppt from './components/CreateAppt'
 
@@ -93,6 +96,11 @@ function App() {
                         path="/updateservice/:serviceId"
                         element={<UpdateService key={refresh} admin={admin} />}
                     />
+                    <Route path="/dogs" element={<Dogs />} />
+                    <Route path="/services" element={<Services />} />
+                    <Route path="/servicelist" element={<ServiceList />} />
+                    <Route path="/testimonials" element={<Testimonials />} />
+                    <Route path="/testimonials/manage" element={<TestimonialsList />} />
                     {!isLoggedIn ? (
                         <>
                             <Route path="/signup" element={<SignUpForm />} />

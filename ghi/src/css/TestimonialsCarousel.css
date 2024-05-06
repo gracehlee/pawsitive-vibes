@@ -1,0 +1,22 @@
+.testimonials-carousel-container {
+    margin: 20px auto;
+    width: 80%;
+    max-width: 900px;
+    text-align: left;
+}
+
+.testimonial-item {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #f8f8f8;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    width: 50px;
+}
+
+.carousel-indicators {
+    bottom: -30px;
+}

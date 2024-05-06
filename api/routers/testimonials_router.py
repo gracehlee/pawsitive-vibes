@@ -12,7 +12,7 @@ router = APIRouter(prefix="/api", tags=["Testimonials"])
 
 
 @router.post("/testimonials", response_model=TestimonialOut)
-def create_testimonial(
+async def create_testimonial(
     testimonial: TestimonialIn,
     repo: TestimonialRepository = Depends()
 ):
@@ -20,7 +20,7 @@ def create_testimonial(
 
 
 @router.get("/testimonials", response_model=List[TestimonialOut])
-def get_all_testimonials(
+async def get_all_testimonials(
     repo: TestimonialRepository = Depends(),
 ):
     return repo.get_all()
@@ -30,7 +30,7 @@ def get_all_testimonials(
     "/testimonials/{testimonial_id}",
     response_model=TestimonialOut
 )
-def get_testimonial_by_id(
+async def get_testimonial_by_id(
     testimonial_id: int,
     repo: TestimonialRepository = Depends()
 ):
@@ -41,7 +41,7 @@ def get_testimonial_by_id(
     "/testimonials/{testimonial_id}",
     response_model=TestimonialOut
 )
-def update_testimonial_by_id(
+async def update_testimonial_by_id(
     testimonial_id: int,
     testimonial_update: TestimonialInUpdate,
     repo: TestimonialRepository = Depends(),
@@ -59,7 +59,7 @@ def update_testimonial_by_id(
 
 
 @router.delete("/testimonials/{testimonial_id}")
-def delete_testimonial_by_id(
+async def delete_testimonial_by_id(
     testimonial_id: int,
     repo: TestimonialRepository = Depends(),
     user: Optional[JWTUserData] = Depends(try_get_jwt_user_data),

@@ -54,7 +54,7 @@ class TestimonialRepository:
                 with conn.cursor() as db:
                     db.execute(
                         """
-                        SELECT id, rating, name, description
+                        SELECT id, rating, name, description, approved
                         FROM testimonials
                         ORDER BY id;
                         """
@@ -66,6 +66,7 @@ class TestimonialRepository:
                             rating=record[1],
                             name=record[2],
                             description=record[3],
+                            approved=record[4]
                         )
                         testimonials.append(testimonial)
                     return testimonials
@@ -79,20 +80,22 @@ class TestimonialRepository:
                 with conn.cursor() as db:
                     db.execute(
                         """
-                        SELECT id, rating, name, description
+                        SELECT id, rating, name, description, approved
                         FROM testimonials
-                        WHERE id = %s;
+                        WHERE id = %s
                         """,
                         [testimonial_id],
                     )
                     data = db.fetchone()
+                    print(data)
                     if data is None:
                         return None
                     testimonial = TestimonialOut(
                         id=data[0],
                         rating=data[1],
                         name=data[2],
-                        description=data[3]
+                        description=data[3],
+                        approved=data[4]
                     )
                     return testimonial
         except psycopg.Error as e:
@@ -109,7 +112,7 @@ class TestimonialRepository:
                 with conn.cursor() as db:
                     fields = []
                     values = []
-                    properties = ["rating", "name", "description"]
+                    properties = ["rating", "name", "description", "approved"]
                     for property in properties:
                         if getattr(testimonial, property) is not None:
                             fields.append(f"{property} = %s")
@@ -120,7 +123,7 @@ class TestimonialRepository:
                         UPDATE testimonials
                         SET {', '.join(fields)}
                         WHERE id = %s
-                        RETURNING id, rating, name, description;
+                        RETURNING id, rating, name, description, approved;
                         """,
                         values,
                     )
@@ -131,7 +134,8 @@ class TestimonialRepository:
                         id=data[0],
                         rating=data[1],
                         name=data[2],
-                        description=data[3]
+                        description=data[3],
+                        approved=data[4]
                     )
                     return updated_testimonial
         except psycopg.Error as e:
