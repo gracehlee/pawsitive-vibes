@@ -1,23 +1,27 @@
 import 'bootstrap/dist/css/bootstrap.css'
 import '../css/index.css'
 import logo from '../images/PV_Logo.png'
+import header from '../images/assets/d3.png'
+
+function Home(props) {
+    const darkmode = props.darkmode
 import TestimonialsCarousel from '../components/TestimonialsCarousel'
 
-function Home() {
     return (
-        <main>
-            <div className="container">
-                <div className="row">
-                    <div className="col-md-8 offset-md-2 text-center">
-                        <img
-                            src={logo}
-                            alt="Pawsitive Vibes Logo"
-                            style={{ height: '300px', width: '520px' }}
-                        />
-                        <h1>Welcome to Pawsitive Vibes!</h1>
-                        <h3>Experienced. Force Free. Passionate. </h3>
+        <main className={`${darkmode ? ' darkmode' : ''}`}>
+            <div className="row">
+                <div className="text-center">
+                    <img
+                        src={logo}
+                        alt="Pawsitive Vibes Logo"
+                        style={{ height: 'auto', width: '40vw' }}
+                    />
+                    <h1>
                         <br></br>
-                        <br></br>
+                    </h1>
+                    <h1>Welcome to Pawsitive Vibes!</h1>
+                    <h3>Experienced. Force Free. Passionate. </h3>
+                    <div className="col-md-8 offset-md-2 text-center container">
                         <p>
                             Cat and Dog CPR, Human CPR, Dog Play group, and Fear
                             free certified. Pending AKC certified trainer and a
@@ -54,6 +58,13 @@ function Home() {
                             Testimonials will go.
                         </p>
                     </div>
+                    <br></br>
+                    <br></br>
+                    <img
+                        src={header}
+                        alt="Pawsitive Vibes Header"
+                        style={{ height: 'auto', width: '100vw' }}
+                    />
                 </div>
             </div>
         </main>

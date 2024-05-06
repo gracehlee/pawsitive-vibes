@@ -9,7 +9,7 @@ import useAuthService from '../hooks/useAuthService'
 export default function Dogs(props) {
     const { isLoggedIn } = useAuthService()
     const admin = props.admin
-
+    const darkmode = props.darkmode
     const [createForm, setCreateForm] = useState(false)
     const [closeForm, setCloseForm] = useState(true)
     const [pollDog, setPollDog] = useState(false)
@@ -27,7 +27,7 @@ export default function Dogs(props) {
     }
 
     return (
-        <main>
+        <main className={`${darkmode ? ' darkmode' : ''}`}>
             <div className="container">
                 <div className="row">
                     <div className="text-center">

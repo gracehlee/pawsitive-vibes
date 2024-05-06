@@ -5,7 +5,7 @@ import TestimonialForm from '../components/TestimonialsForm';
 import useAuthService from '../hooks/useAuthService';
 import { useNavigate } from 'react-router-dom';
 
-function Testimonials() {
+function Testimonials(props) {
     const { user } = useAuthService();
     const [ admin, setAdmin ] = useState(false);
     const navigate = useNavigate();
@@ -44,9 +44,10 @@ function Testimonials() {
         fetchUser()
     })
 
+    const darkmode = props.darkmode
 
     return (
-        <main>
+        <main className={`${darkmode ? ' darkmode' : ''}`}>
             <div className="container">
                 <div className="row">
                     <h1 className="text-center">Testimonials</h1>

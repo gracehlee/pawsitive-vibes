@@ -17,10 +17,56 @@ body {
 
 main {
     margin-top: 15vh;
+    padding-top: 5vh;
+    padding-bottom: 10vh;
+    min-height: calc(60vh);
+    min-width: 100%;
+    transition: all 0.2s ease-in-out;
+}
+
+main.c {
+    margin-top: 15vh;
     padding-top: 10vh;
     padding-bottom: 10vh;
     min-height: calc(60vh);
     min-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.c-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 80%;
+}
+
+img.community-image {
+    height: auto;
+    max-width: 45vw;
+}
+
+@media (max-width: 800px) {
+    .c-row {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .d-flex {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .community-image {
+        height: auto;
+        max-width: 45vw;
+        margin-bottom: 2rem;
+    }
+}
+.center {
+    text-align: center;
 }
 
 nav.nav {
@@ -35,6 +81,7 @@ nav.nav {
     background-color: #fff;
     padding-bottom: 1vh;
     font-size: 3vh;
+    transition: all 0.2s ease-in;
 }
 
 a.nav-style {
@@ -45,7 +92,31 @@ a.nav-style {
 
 a.nav-style:hover {
     color: rgb(133, 133, 133);
-    transition: 0.3s ease-in;
+    transition: 0.2s ease-in;
+}
+
+@media (max-width: 800px) {
+    .nav {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navbar-toggler {
+        margin-top: 1vh;
+    }
+
+    .navbar-collapse {
+        margin-top: 1vh;
+    }
+}
+
+@media (min-width: 800px) {
+    .nav-links {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        align-items: center;
+    }
 }
 
 footer.footer {
@@ -58,6 +129,14 @@ footer.footer {
     background-color: black;
 }
 
+.card-body {
+    max-width: 100%;
+}
+
+.card-text {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
         monospace;

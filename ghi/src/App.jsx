@@ -1,7 +1,10 @@
 import Nav from './app/Nav'
-import SideNav from './app/SideNav'
 import './css/App.css'
 import './css/index.css'
+import 'bootstrap/dist/css/bootstrap.css'
+import './css/darkmode.css'
+import icon from './images/darkmode.png'
+import light from './images/lightmode.png'
 import Home from './app/Home'
 import ErrorNotification from './components/ErrorNotification'
 import { Routes, Route, BrowserRouter, Navigate } from 'react-router-dom'
@@ -28,6 +31,12 @@ function App() {
     const { user, isLoggedIn } = useAuthService()
     const [admin, setAdmin] = useState(false)
     const [refresh, setRefresh] = useState(true)
+    const [darkMode, setDarkMode] = useState(false)
+
+    const toggleDarkMode = () => {
+        setDarkMode(!darkMode)
+        document.body.classList.toggle('dark-mode')
+    }
 
     useEffect(() => {
         const fetchUser = async () => {
@@ -69,32 +78,104 @@ function App() {
         <BrowserRouter>
             <div>
                 <ErrorNotification />
-                <Nav />
-                <SideNav />
+                <Nav darkmode={darkMode} />
+                <button className="toggle" onClick={toggleDarkMode}>
+                    {darkMode ? (
+                        <div
+                            style={{
+                                backgroundColor: 'grey',
+                                borderRadius: '50%',
+                                height: '45px',
+                                width: '56px',
+                                alignContent: 'center',
+                                justifyContent: 'center',
+                            }}
+                        >
+                            <img
+                                src={light}
+                                alt="Dark Mode"
+                                style={{
+                                    height: '31px',
+                                    width: '31px',
+                                }}
+                            />
+                        </div>
+                    ) : (
+                        // Light mode
+                        <div
+                            style={{
+                                backgroundColor: 'white',
+                                borderRadius: '50%',
+                                height: '45px',
+                                width: '56px',
+                                alignContent: 'center',
+                            }}
+                        >
+                            <img
+                                src={icon}
+                                alt="Light Mode"
+                                style={{
+                                    height: '31px',
+                                    width: '31px',
+                                }}
+                            />
+                        </div>
+                    )}
+                </button>
                 <Routes>
-                    <Route path="/" element={<Home />} />
+                    <Route path="/" element={<Home darkmode={darkMode} />} />
 
                     <Route path="/create-appt" element={<CreateAppt />} />
 
                     <Route
                         path="/pets"
-                        element={<Dogs key={refresh} admin={admin} />}
+                        element={
+                            <Dogs
+                                key={refresh}
+                                admin={admin}
+                                darkmode={darkMode}
+                            />
+                        }
                     />
                     <Route
                         path="pets/:petId"
-                        element={<UpdatePet key={refresh} admin={admin} />}
+                        element={
+                            <UpdatePet
+                                key={refresh}
+                                admin={admin}
+                                darkmode={darkMode}
+                            />
+                        }
                     />
                     <Route
                         path="/services"
-                        element={<Services key={refresh} admin={admin} />}
+                        element={
+                            <Services
+                                key={refresh}
+                                admin={admin}
+                                darkmode={darkMode}
+                            />
+                        }
                     />
                     <Route
                         path="/testimonials"
-                        element={<Testimonials key={refresh} admin={admin} />}
+                        element={
+                            <Testimonials
+                                key={refresh}
+                                admin={admin}
+                                darkmode={darkMode}
+                            />
+                        }
                     />
                     <Route
                         path="/updateservice/:serviceId"
-                        element={<UpdateService key={refresh} admin={admin} />}
+                        element={
+                            <UpdateService
+                                key={refresh}
+                                admin={admin}
+                                darkmode={darkMode}
+                            />
+                        }
                     />
                     <Route path="/dogs" element={<Dogs />} />
                     <Route path="/services" element={<Services />} />
@@ -103,8 +184,14 @@ function App() {
                     <Route path="/testimonials/manage" element={<TestimonialsList />} />
                     {!isLoggedIn ? (
                         <>
-                            <Route path="/signup" element={<SignUpForm />} />
-                            <Route path="/signin" element={<SignInForm />} />
+                            <Route
+                                path="/signup"
+                                element={<SignUpForm darkmode={darkMode} />}
+                            />
+                            <Route
+                                path="/signin"
+                                element={<SignInForm darkmode={darkMode} />}
+                            />
                         </>
                     ) : (
                         <>
@@ -122,11 +209,21 @@ function App() {
                         <>
                             <Route
                                 path="/community"
-                                element={<Community admin={admin} />}
+                                element={
+                                    <Community
+                                        admin={admin}
+                                        darkmode={darkMode}
+                                    />
+                                }
                             />
                             <Route
                                 path="/profile"
-                                element={<Profile admin={admin} />}
+                                element={
+                                    <Profile
+                                        admin={admin}
+                                        darkmode={darkMode}
+                                    />
+                                }
                             />
                             <Route
                                 path="/signout"
@@ -150,7 +247,7 @@ function App() {
                         </>
                     )}
                 </Routes>
-                <Footer />
+                <Footer darkmode={darkMode} />
             </div>
         </BrowserRouter>
     )

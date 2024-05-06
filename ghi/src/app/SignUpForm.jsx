@@ -4,8 +4,9 @@ import { Navigate, Link } from 'react-router-dom'
 import useAuthService from '../hooks/useAuthService'
 import { PV_EMAIL } from '../../config'
 
-export default function SignInForm() {
+export default function SignInForm(props) {
     const { signup, user } = useAuthService()
+    const darkmode = props.darkmode
 
     const [userFormData, setUserFormData] = useState({
         username: '',
@@ -137,7 +138,7 @@ export default function SignInForm() {
     }
 
     return (
-        <main>
+        <main className={`${darkmode ? ' darkmode' : ''}`}>
             <div className="container">
                 <div className="row">
                     <h1 className="text-center">Create an Account</h1>
@@ -152,7 +153,9 @@ export default function SignInForm() {
                             <input
                                 required
                                 type="text"
-                                className="form-control"
+                                className={`form-control${
+                                    darkmode ? ' placeholder' : ''
+                                }`}
                                 value={userFormData.username}
                                 onChange={handleInputChange}
                                 placeholder="Enter Username"
@@ -164,7 +167,9 @@ export default function SignInForm() {
                             <input
                                 required
                                 type="password"
-                                className="form-control"
+                                className={`form-control${
+                                    darkmode ? ' placeholder' : ''
+                                }`}
                                 name="password"
                                 value={userFormData.password}
                                 onChange={handleInputChange}
@@ -176,7 +181,9 @@ export default function SignInForm() {
                             <input
                                 required
                                 type="password"
-                                className="form-control"
+                                className={`form-control${
+                                    darkmode ? ' placeholder' : ''
+                                }`}
                                 name="confirmPassword"
                                 value={confirmPassword}
                                 onChange={(e) =>
@@ -192,7 +199,9 @@ export default function SignInForm() {
                             <input
                                 required
                                 type="text"
-                                className="form-control"
+                                className={`form-control${
+                                    darkmode ? ' placeholder' : ''
+                                }`}
                                 name="first_name"
                                 id="first_name"
                                 value={userFormData.first_name}
@@ -205,7 +214,9 @@ export default function SignInForm() {
                             <input
                                 required
                                 type="text"
-                                className="form-control"
+                                className={`form-control${
+                                    darkmode ? ' placeholder' : ''
+                                }`}
                                 name="last_name"
                                 id="last_name"
                                 value={userFormData.last_name}
@@ -218,7 +229,9 @@ export default function SignInForm() {
                             <input
                                 required
                                 type="text"
-                                className="form-control"
+                                className={`form-control${
+                                    darkmode ? ' placeholder' : ''
+                                }`}
                                 name="email"
                                 id="email"
                                 value={userFormData.email}
@@ -231,7 +244,9 @@ export default function SignInForm() {
                             <input
                                 required
                                 type="text"
-                                className="form-control"
+                                className={`form-control${
+                                    darkmode ? ' placeholder' : ''
+                                }`}
                                 name="phone_number"
                                 id="phone_number"
                                 value={userFormData.phone_number}

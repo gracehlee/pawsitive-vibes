@@ -9,6 +9,7 @@ function Services(props) {
     // logic to check for admin status instead.
     const admin = props.admin
     const { isLoggedIn } = useAuthService()
+    const darkmode = props.darkmode
 
     const [createForm, setCreateForm] = useState(false)
     const [closeForm, setCloseForm] = useState(true)
@@ -20,29 +21,26 @@ function Services(props) {
         setCloseForm(false)
         // setPollService(true)
         setRefresh((prevRefresh) => !prevRefresh)
-
     }
 
     const handleCloseForm = () => {
         setCreateForm(false)
         setCloseForm(true)
         // setPollService(false)
-
     }
 
-    
     return (
-        <main>
+        <main className={`${darkmode ? ' darkmode' : ''}`}>
             <div className="row">
                 <div className="text-center">
-                    <ServiceList pollService={refresh} admin={admin}/>
+                    <ServiceList pollService={refresh} admin={admin} />
 
                     {isLoggedIn && (
                         <div>
                             {createForm && <ServiceForm />}
                             {closeForm && (
                                 <button
-                                    className="btn btn-dark"
+                                    className="btn btn-secondary"
                                     onClick={handleCreateService}
                                 >
                                     Add Service

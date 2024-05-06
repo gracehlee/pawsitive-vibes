@@ -1,69 +1,60 @@
 import 'bootstrap/dist/css/bootstrap.css'
-import CreatePetForm from '../components/CreatePetForm'
-import { useState } from 'react'
 import '../css/index.css'
-import '../css/community.css'
 import useAuthService from '../hooks/useAuthService'
-import GetUserPets from '../components/GetUserPets'
+import d2 from '../images/assets/d2.png'
 
-function Community() {
+function Community(props) {
     const { isLoggedIn } = useAuthService()
-    const [createForm, setCreateForm] = useState(false)
-    const [closeForm, setCloseForm] = useState(true)
-
-    const handleCreatePet = () => {
-        setCreateForm(true)
-        setCloseForm(false)
-    }
-
-    const handleCloseForm = () => {
-        setCreateForm(false)
-        setCloseForm(true)
-    }
+    const darkmode = props.darkmode
 
     return (
-        <main>
-            <div className="row">
-                <div className="text-center">
-                    <h1>Community</h1>
-                    <p>Community content goes here!</p>
-                    <p>ie. Profile content</p>
-                    <p>ie. Edit Profile content (Profile form) </p>
-                    <p>
-                        We might want to move the CreatePetForm to the Edit
-                        Profile form component later.
-                    </p>
-                    <p>
-                        We will need to remove the fields -for sale- and -price-
-                    </p>
-                    <p>From this particular Pet Form.</p>
-                    {isLoggedIn && (
+        <main
+            className={`c${darkmode ? ' darkmode' : ''}`}
+            style={{ paddingTop: '15vh' }}
+        >
+            {isLoggedIn && (
+                <div className="c-row">
+                    <div className="d-flex align-items-center">
+                        <img
+                            src={d2}
+                            alt="community"
+                            className="community-image"
+                            style={{
+                                marginRight: '3vw',
+                                borderRadius: '1vw',
+                                width: '80%',
+                                marginBottom: '2rem',
+                            }}
+                        />
                         <div>
-                            {createForm && <CreatePetForm />}
-                            {closeForm && (
-                                <button
-                                    className="btn btn-dark"
-                                    onClick={handleCreatePet}
-                                >
-                                    Add a Pet
-                                </button>
-                            )}
+                            <h2>Welcome to our</h2>
+                            <h3>Pawsitive Community!</h3>
+                            <p>
+                                At Pawsitive Vibes, we believe in fostering
+                                connections, celebrating diversity, and creating
+                                a safe space for all pet enthusiasts. Whether
+                                you&apos;re a seasoned pet owner or considering
+                                bringing a furry friend into your life,
+                                you&apos;ve come to the right place.
+                            </p>
+                            <p style={{ fontWeight: 'bold', fontSize: '20px' }}>
+                                What you can do:
+                            </p>
+                            <ul>
+                                <li>Update Your Profile</li>
+                                <li>Add Your Pets</li>
+                                <li>Join Community Meet-ups</li>
+                            </ul>
+                            <p>
+                                Join us today and become a part of our growing
+                                family of pet lovers! Together, we can make a
+                                difference in the lives of animals and build
+                                lasting friendships along the way.
+                            </p>
                         </div>
-                    )}
-                    <div>
-                        <br></br>
-                        {createForm && isLoggedIn && (
-                            <button
-                                className="btn btn-secondary"
-                                onClick={handleCloseForm}
-                            >
-                                Close Form
-                            </button>
-                        )}
                     </div>
-                    <div>{<GetUserPets />}</div>
                 </div>
-            </div>
+            )}
         </main>
     )
 }

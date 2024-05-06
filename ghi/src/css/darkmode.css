@@ -1,0 +1,81 @@
+.toggle {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    width: 3.5rem;
+    height: 3.5rem;
+    font-size: 18px;
+    border-radius: 3rem;
+    border: none;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    z-index: 1;
+    font-weight: bold;
+    justify-content: center;
+    align-content: center;
+    z-index: 101;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.toggle img {
+    height: 1.5rem;
+    width: 1.5rem;
+    object-fit: cover;
+}
+
+nav.darkmode {
+    background-color: #171717;
+    color: white;
+}
+
+nav.darkmode .nav-style {
+    color: white;
+}
+
+nav.darkmode a.nav-style:hover {
+    color: rgb(133, 133, 133);
+    transition: 0.2s ease-in;
+}
+
+main.darkmode {
+    margin-top: 15vh;
+    padding-top: 5vh;
+    padding-bottom: 10vh;
+    min-height: calc(60vh);
+    min-width: 100%;
+    transition: all 0.2s ease-in-out;
+    background-color: #222222;
+    color: white;
+}
+
+.fontcolor {
+    color: white;
+    background-color: transparent;
+}
+
+main.darkmode input {
+    color: white;
+    background-color: transparent;
+}
+
+footer form.contact-form {
+    color: white;
+}
+
+main.darkmode textarea {
+    color: white;
+    background-color: transparent;
+}
+
+main.darkmode ::placeholder {
+    color: white;
+}
+
+main.darkmode .form-control {
+    color: white;
+    background-color: transparent;
+}

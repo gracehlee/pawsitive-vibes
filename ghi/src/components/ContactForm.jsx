@@ -6,12 +6,11 @@ import { PUBLIC_KEY, TEMPLATE_ID, SERVICE_ID, PV_EMAIL } from '../../config'
 
 function ContactForm() {
     const { error, user, isLoggedIn } = useAuthService()
-
     const [userData, setUserData] = useState({ name: '', email: '' })
     const [contactFormData, setContactFormData] = useState({
-        from_name: 'Name',
-        user_email: 'Email',
-        message: 'Message',
+        from_name: '',
+        user_email: '',
+        message: '',
     })
 
     const [userError, setUserError] = useState('')
@@ -43,7 +42,7 @@ function ContactForm() {
             }
             fetchUser()
         } else {
-            setUserData({ name: 'Name', email: 'Email' }) // reset with logout
+            setUserData({ name: '', email: '' }) // reset with logout
         }
     }, [isLoggedIn, user])
 
@@ -98,76 +97,70 @@ function ContactForm() {
 
     return (
         <div className="contact-form">
-            <div className="row">
-                <div className="offset-3 col-6">
-                    <div className="shadow p-4 mt-4">
-                        <h1 className="card-title text-center">Contact Us</h1>
-                        <br />
-                        {userError && (
-                            <div className="alert alert-danger">
-                                {userError}
-                            </div>
-                        )}
-                        {userSuccess && (
-                            <div className="alert alert-success">
-                                {userSuccess}
-                            </div>
-                        )}
-                        <form id="contact-form" onSubmit={sendEmail}>
-                            {error && (
-                                <div className="alert alert-danger">
-                                    {error.message}
-                                </div>
-                            )}
-                            <div className="form-floating mb-3">
-                                <input
-                                    required
-                                    type="text"
-                                    value={contactFormData.from_name}
-                                    name="from_name"
-                                    onChange={handleInputChange}
-                                    className="form-control"
-                                    placeholder="Name"
-                                />
-                                <label htmlFor="name">Name</label>
-                            </div>
-                            <div className="form-floating mb-3">
-                                <input
-                                    value={contactFormData.user_email}
-                                    onChange={handleInputChange}
-                                    placeholder="Email"
-                                    required
-                                    type="text"
-                                    name="user_email"
-                                    id="email"
-                                    className="form-control"
-                                />
-                                <label htmlFor="email">Email</label>
-                            </div>
-                            <div className="form-floating mb-3">
-                                <input
-                                    value={contactFormData.message}
-                                    onChange={handleInputChange}
-                                    placeholder="Message"
-                                    required
-                                    type="text"
-                                    name="message"
-                                    id="message"
-                                    className="form-control"
-                                />
-                                <label htmlFor="message">Message</label>
-                            </div>
-                            <div className="text-center">
-                                <button
-                                    type="submit"
-                                    className="btn btn-danger"
-                                >
-                                    Submit
-                                </button>
-                            </div>
-                        </form>
+            <div className="offset-3 col-6">
+                <h1 className="card-title text-center">Contact Us</h1>
+                <br />
+                {userError && (
+                    <div className="alert alert-danger">{userError}</div>
+                )}
+                {userSuccess && (
+                    <div className="alert alert-success">{userSuccess}</div>
+                )}
+                <form
+                    className="contact-form"
+                    id="contact-form"
+                    onSubmit={sendEmail}
+                >
+                    {error && (
+                        <div className="alert alert-danger">
+                            {error.message}
+                        </div>
+                    )}
+                    <div className="form-floating mb-3">
+                        <input
+                            required
+                            type="text"
+                            value={contactFormData.from_name}
+                            name="from_name"
+                            onChange={handleInputChange}
+                            className="form-control placeholder fontcolor"
+                            placeholder="Name"
+                        />
+                        <label htmlFor="name">Name</label>
                     </div>
-                </div>
+                    <div className="form-floating mb-3">
+                        <input
+                            value={contactFormData.user_email}
+                            onChange={handleInputChange}
+                            placeholder="Email"
+                            required
+                            type="text"
+                            name="user_email"
+                            id="email"
+                            className="form-control placeholder fontcolor"
+                        />
+                        <label htmlFor="email">Email</label>
+                    </div>
+                    <div className="form-floating mb-3">
+                        <input
+                            value={contactFormData.message}
+                            onChange={handleInputChange}
+                            placeholder="Message"
+                            required
+                            type="text"
+                            name="message"
+                            id="message"
+                            className="form-control placeholder fontcolor"
+                        />
+                        <label htmlFor="message">Message</label>
+                    </div>
+                    <div className="text-center">
+                        <button type="submit" className="btn btn-danger">
+                            Submit
+                        </button>
+                    </div>
+                    <br></br>
+                </form>
             </div>
         </div>
     )

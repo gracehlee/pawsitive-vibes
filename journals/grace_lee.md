@@ -151,28 +151,88 @@ Today, I'm working on email functionality for the Contact Form, drop-down menu f
 
 Resource: https://react-bootstrap.netlify.app/docs/components/dropdowns/
 
-
 I finally got the Contact Form and EmailJS service up and running.
 Resource: https://www.emailjs.com/docs/examples/reactjs/
-- refactored the Contact Form to use variables imported from config.js
-- to set up the config file, in ghi directory, create config.js and paste in the following:
-    - export const PUBLIC_KEY = '5FO8dA-tJnoAnlmDx'
-    - export const TEMPLATE_ID = 'contact_form'
-    - export const SERVICE_ID = 'service_wflr4qv'
-    - export const PV_EMAIL = 'pawsitivevibescolorado@gmail.com'
-- these keys can be changed in the future for security purposes.
+
+-   refactored the Contact Form to use variables imported from config.js
+-   to set up the config file, in ghi directory, create config.js and paste in the following:
+    -   export const PUBLIC_KEY = '5FO8dA-tJnoAnlmDx'
+    -   export const TEMPLATE_ID = 'contact_form'
+    -   export const SERVICE_ID = 'service_wflr4qv'
+    -   export const PV_EMAIL = 'pawsitivevibescolorado@gmail.com'
+-   these keys can be changed in the future for security purposes.
 
 ## 5.2.2024
+
 Today I worked on:
 
 I added regex validation to the Contact Form, with some success and error message handling and display in the form. I will be adjusting the Sign Up Form in a similar fashion. I would like to explore connecting email to a "Forgot Password" page as well, so users can get an email to reset their password if applicable. But I will be exploring that later as a stretch goal. Now that the Community tab has a drop down menu, I will be working on the Community Welcome page. Then I'll work on the User Profile page, where I will do a fetch GET request to retrieve the user info and input it into a profile format. Then I will work on UPDATE (PUT) functionality to allow the user to update their profile info.
 
 TO DO:
-- 1 unit test for today
-- Sign Up Regex Validation - DONE
-- Community Profile page (USER GET)
-- Profile Update (USER PUT)
-- more unit tests
-- Meet Ups schema, model, queries, router, GET, PUT, DELETE
-- Google Maps API
-- Account banning and blocked emails list?
+
+-   1 unit test for today
+-   Sign Up Regex Validation - DONE
+-   Community Profile page (USER GET)
+-   Profile Update (USER PUT)
+-   more unit tests
+-   Meet Ups schema, model, queries, router, GET, PUT, DELETE
+-   Google Maps API
+-   Account banning and blocked emails list?
+
+## 5.3.2024
+
+Today I worked on:
+
+I successfully created and passed the test_create_pet unit test. This one was tricky because it required the use of the Fast API token = jwt token from the authentication utils. At first, I tried to pass the jwt token when calling a response using .post, but while my test passed, it came with a warning about cookies being depreciated. Then after some researching, found out you can set the token on the client directly, so that bypassed the need to pass any token in the .post request itself.
+
+Resources:
+https://fastapi.tiangolo.com/tutorial/testing/#using-testclient
+https://docs.python-requests.org/en/latest/user/quickstart/#cookies
+https://stackoverflow.com/questions/69373214/testing-an-apiview-which-uses-data-from-a-cookie-django-3-1
+
+I also applied some CSS tricks to enable a dark mode / light mode toggle for our web app.
+
+TO DO:
+
+-   1 unit test for today - DONE
+-   Sign Up Regex Validation - DONE
+-   Community Profile page (USER GET)
+-   Profile Update (USER PUT)
+-   more unit tests
+-   Meet Ups schema, model, queries, router, GET, PUT, DELETE
+-   Google Maps API
+-   Account banning and blocked emails list?
+
+## 5.4.2024
+
+Today I worked on:
+
+CSS
+- fine-tuned our various forms so that the placeholder and input text is properly styled with the dark mode toggle
+- fine-tuned the community page to change format if the width of the browser screen falls below a minimum width
+- fine-tuned the darkmode toggle button
+
+Community Profile (USER GET) - DONE
+
+## 5.6.2024
+
+Today I worked on:
+
+
+
+TO DO:
+
+-   1 unit test for today - DONE
+-   Sign Up Regex Validation - DONE
+-   Community Profile page (USER GET) - DONE
+-   Profile Update (USER PUT)
+-   Meet Ups schema, model, queries, router, GET, PUT, DELETE
+-   Google Maps API
+-   Account banning and blocked emails list?
+
+Advice from Paul and Rosheen for image uploads:
+- HTML 5 Native for Upload
+- Use a Cloud Service (AWS Tier S3 Bucket) - grab from it
+- to use FastAPI instead, use static folder to serve static images
+   - save images in static folder and use React FrontEnd to access them
+ 

@@ -24,7 +24,6 @@ function ServiceForm() {
      * @param {React.FormEvent<HTMLFormElement>} e
      */
 
-
     async function handleSubmit(e) {
         e.preventDefault()
 
@@ -59,8 +58,6 @@ function ServiceForm() {
                 cost: '',
             })
 
-            
-
             return data
         } catch (error) {
             console.error(error)
@@ -70,7 +67,7 @@ function ServiceForm() {
 
     return (
         <div className="service-form">
-            <div className="container">
+            <div className="text-center offset-3 col-6">
                 <div className="shadow p-4 mt-4">
                     <h1>Create a Service</h1>
                     <form onSubmit={handleSubmit} id="create-service-form">
