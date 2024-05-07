@@ -26,7 +26,7 @@ function Home(props) {
                     <br></br>
                     <br></br>
                     <ImageCarousel darkmode={darkmode} />
-                    <div className="col-md-8 offset-md-2 text-center container">
+                    <div className="col-md-8 offset-md-2 text-center home-content">
                         <p>
                             Cat and Dog CPR, Human CPR, Dog Play group, and Fear
                             free certified.<br></br>Pending AKC certified
@@ -50,10 +50,8 @@ function Home(props) {
                             convenience. Feel free to ask specific questions and
                             create appointments!
                         </p>
-                        <p>
-                            For admins, this is where the toggle for Create
-                            Testimonials will go.
-                        </p>
+                        <br></br>
+                        <br></br>
                         <h3
                             className={`testimonial-header${
                                 darkmode ? ' fontcolor' : ''
@@ -81,11 +79,13 @@ function Home(props) {
                             </p>
                         )}
                         <br />
-                        <img
-                            src={badge}
-                            alt="Karen Pryor Academy Badge"
-                            style={{ height: 'auto', width: '10vw' }}
-                        />
+                        <Link to="https://karenpryoracademy.com/">
+                            <img
+                                src={badge}
+                                alt="Karen Pryor Academy Badge"
+                                style={{ height: 'auto', width: '10vw' }}
+                            />
+                        </Link>
                     </div>
                 </div>
             </div>

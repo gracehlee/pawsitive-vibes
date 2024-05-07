@@ -76,7 +76,7 @@ function TestimonialsCarousel(props) {
                                     color: darkmode ? 'white' : '',
                                 }}
                             >
-                                {testimonial.name}
+                                - {testimonial.name}
                             </p>
                         </div>
                     </Carousel.Item>

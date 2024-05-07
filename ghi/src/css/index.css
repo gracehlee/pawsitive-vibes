@@ -136,6 +136,11 @@ footer.footer {
     max-width: 100%;
 }
 
+.home-content {
+    padding-left: 10vw;
+    padding-right: 10vw;
+}
+
 .card-text {
     word-wrap: break-word;
     overflow-wrap: break-word;
@@ -163,7 +168,6 @@ code {
     background: #ffc99c; /** background of scrollbar **/
     border: 0px solid #000; /** border around whole scrollbar **/
 }
-
 
 .testimonial-header {
     font-family: 'fangsong';
