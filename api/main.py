@@ -9,7 +9,8 @@ from routers import (
     users_router,
     services_router,
     testimonials_router,
-    appointment_router
+    appointment_router,
+    meetups_router
 )
 import os
 
@@ -31,6 +32,7 @@ app.include_router(pets_router.router)
 app.include_router(services_router.router)
 app.include_router(appointment_router.router)
 app.include_router(testimonials_router.router)
+app.include_router(meetups_router.router)
 
 
 @app.get("/api/launch-details")

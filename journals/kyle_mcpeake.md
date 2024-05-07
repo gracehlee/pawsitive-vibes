@@ -54,6 +54,13 @@ Updated frontend homepage text
 Updated Footer with email address, "Contact Us", and FB_Logo/IG_Logo img with href opening either in a new tab.
 
 ## 4.29.2024 - 5.2.2024
+Created Meetups table
+Created meetups.py, meetups_queries, meetups_router. Functions properly, no bugs detected
+Created src/app/Meetups.jsx
+Created src/components/CreateMeetups.jsx and GetAllMeetups.jsx
+
+
+
 TODO: Location for appointments.
 
 TODO: Would you like to receive a phone call or email confirmation if approved?
@@ -67,6 +74,8 @@ getUserConfirmation: func
 A function to use to confirm navigation. You must use this option when using <MemoryRouter> directly with a <Prompt>.
 
 
-TODO: Consolidate GetAllPets and GetPetsForSale
+TODO: Create default admin on inital setup
 
-TODO: Change duration to str
+TODO: Create another table, meetups "attending referencing (new table)" with users attending
+
+TODO: Pet creation, success redirects and changes "dark mode" back to default

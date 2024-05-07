@@ -19,7 +19,7 @@ steps = [
         """,
         # "Down" SQL statement
         """
-        DROP TABLE services;
+        DROP TABLE appointments;
         """
     ],
 ]

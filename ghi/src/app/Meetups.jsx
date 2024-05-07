@@ -1,19 +1,18 @@
 import 'bootstrap/dist/css/bootstrap.css'
 import '../css/index.css'
-import CreatePetForm from '../components/CreatePetForm'
-import GetAllPets from '../components/GetAllPets'
-import GetPetsForSale from '../components/GetPetsForSale'
+import CreateMeetups from '../components/CreateMeetups'
+import GetAllMeetups from '../components/GetAllMeetups'
 import { useState } from 'react'
 import useAuthService from '../hooks/useAuthService'
 
-export default function Dogs(props) {
+export default function Meetups(props) {
     const { isLoggedIn } = useAuthService()
     const admin = props.admin
     const darkmode = props.darkmode
     const [createForm, setCreateForm] = useState(false)
     const [closeForm, setCloseForm] = useState(true)
 
-    const handleCreatePet = () => {
+    const handleCreateMeetup = () => {
         setCreateForm(true)
         setCloseForm(false)
     }
@@ -28,24 +27,15 @@ export default function Dogs(props) {
             <div className="container">
                 <div className="row">
                     <div className="text-center">
-                        <h1>Puppies with Pawsitive Vibes!</h1>
-                        <p>
-                            All pups offered by Pawsitive Vibes will receive
-                            shots, deworming and a microchip.
-                            <br></br>
-                            Socialized and temperament tested from day one!
-                        </p>
-                        <div>{<GetPetsForSale admin={admin} />}</div>
-
                         {isLoggedIn && admin && (
                             <div>
-                                {createForm && <CreatePetForm admin={admin} />}
+                                {createForm && <CreateMeetups admin={admin} />}
                                 {closeForm && (
                                     <button
                                         className="btn btn-dark"
-                                        onClick={handleCreatePet}
+                                        onClick={handleCreateMeetup}
                                     >
-                                        Add a Dog
+                                        Add a Meetup
                                     </button>
                                 )}
                             </div>
@@ -63,15 +53,7 @@ export default function Dogs(props) {
                             )}
                         </div>
                     </div>
-                    <div className="col-md-8 offset-md-2 text-center">
-                        <h2>Community Pets!</h2>
-                        <p>
-                            To show off your Pawsitive Pets, sign in and add to
-                            our Community section.
-                        </p>
-                    </div>
-
-                    <div>{<GetAllPets admin={admin} />}</div>
+                    <div>{<GetAllMeetups admin={admin} />}</div>
                 </div>
             </div>
         </main>

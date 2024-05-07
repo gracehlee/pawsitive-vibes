@@ -60,6 +60,22 @@ function Nav(props) {
                                     Testimonials
                                 </NavLink>
                             </li>
+
+
+
+
+                            <li className="nav-item">
+                                <NavLink
+                                    className="nav-style"
+                                    to="/meetups"
+                                >
+                                    Meetups
+                                </NavLink>
+                            </li>
+
+
+
+
                             {isLoggedIn ? (
                                 <>
                                     <li className="nav-item dropdown">
