@@ -25,6 +25,7 @@ import TestimonialsList from './components/GetAllTestimonials'
 import Profile from './components/Profile'
 import CreateAppt from './components/CreateAppt'
 import Meetups from './app/Meetups'
+import UpdateProfile from './components/UpdateProfile'
 
 function App() {
     const { user, isLoggedIn } = useAuthService()
@@ -203,6 +204,15 @@ function App() {
                                 }
                             />
                             <Route
+                                path="/profile/update"
+                                element={
+                                    <UpdateProfile
+                                        admin={admin}
+                                        darkmode={darkMode}
+                                    />
+                                }
+                            />
+                            <Route
                                 path="/testimonials"
                                 element={
                                     <Testimonials
@@ -214,7 +224,9 @@ function App() {
                             />
                             <Route
                                 path="/testimonials/manage"
-                                element={<TestimonialsList />}
+                                element={
+                                    <TestimonialsList darkmode={darkMode} />
+                                }
                             />
                             <Route
                                 path="pets/:petId"
@@ -266,6 +278,10 @@ function App() {
                             />
                             <Route
                                 path="/updateservice/:serviceId"
+                                element={<Navigate to="/" />}
+                            />
+                            <Route
+                                path="/profile/update"
                                 element={<Navigate to="/" />}
                             />
                             <Route

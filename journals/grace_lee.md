@@ -250,5 +250,7 @@ I troubleshooted some formatting errors after resolving merge conflicts. The App
 
 TO DO:
 
--   Profile Update (USER PUT)
+-   Profile Update (USER PUT) - DONE
 -   Account banning and blocked emails list?
+
+Profile update is complete, where it's possible to update the name and bio. Now I'll be researching the image uploads.

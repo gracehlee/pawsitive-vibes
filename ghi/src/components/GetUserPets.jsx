@@ -90,7 +90,7 @@ export default function PetList(props) {
             <div className="col">
                 {props.list.map((pets, index) => {
                     return (
-                        <div key={index} className="card mb-3 shadow">
+                        <div key={index} className="card dog-card mb-3 shadow">
                             <img
                                 src={pets.picture_url}
                                 alt="Image failed to load"
@@ -136,23 +136,29 @@ export default function PetList(props) {
                                         Description: {pets.description}
                                     </h5>
                                 </div>
-                                {user.id == pets.owner_id && (
-                                    <div className="btn btn-primary">
-                                        <Link to={`../pets/${pets.id}`}>
-                                            <button type="button">Edit</button>
-                                        </Link>
-                                    </div>
-                                )}
+                                <div className="text-center">
+                                    {user.id == pets.owner_id && (
+                                        <>
+                                            <Link to={`../pets/${pets.id}`}>
+                                                <button className="btn btn-primary">
+                                                    Edit
+                                                </button>
+                                            </Link>
+                                        </>
+                                    )}
+                                </div>
 
-                                {admin && user.id == pets.owner_id (
-                                    <button
-                                        className="btn btn-primary"
-                                        value={pets.id}
-                                        onClick={handleRemove}
-                                    >
-                                        Remove
-                                    </button>
-                                )}
+                                {admin &&
+                                    user.id ==
+                                        pets.owner_id(
+                                            <button
+                                                className="btn btn-primary"
+                                                value={pets.id}
+                                                onClick={handleRemove}
+                                            >
+                                                Remove
+                                            </button>
+                                        )}
                             </div>
                         </div>
                     )

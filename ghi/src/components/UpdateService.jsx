@@ -3,7 +3,8 @@ import { Link, useParams } from 'react-router-dom'
 import { baseUrl } from '../services/authService'
 import '../css/UpdateService.css'
 
-export default function UpdateService() {
+export default function UpdateService(props) {
+    const darkmode = props.darkmode
     const { serviceId } = useParams()
     const [service, setService] = useState({
         service: '',
@@ -14,7 +15,8 @@ export default function UpdateService() {
         calendly_url: '',
     })
 
-    const [showMessage, setShowMessage] = useState(false)
+    const [showMessage, setShowMessage] = useState('')
+    const [alert, setAlert] = useState('')
 
     useEffect(() => {
         const fetchService = async () => {
@@ -52,7 +54,8 @@ export default function UpdateService() {
                 body: JSON.stringify(service),
             })
             if (res.ok) {
-                console.log('Service updated successfully')
+                setAlert('success')
+                setShowMessage('Service updated successfully.')
                 setService({
                     service: '',
                     description: '',
@@ -63,9 +66,13 @@ export default function UpdateService() {
                 })
             } else {
                 console.error('Error updating service:', res.statusText)
+                setAlert('danger')
+                setShowMessage('Error updating service.')
             }
         } catch (error) {
             console.error('Error updating service:', error)
+            setAlert('danger')
+            setShowMessage('Error updating service.')
         }
     }
 
@@ -77,129 +84,135 @@ export default function UpdateService() {
                 credentials: 'include',
             })
             if (res.ok) {
-                console.log('Service deleted successfully')
-                setShowMessage(true)
+                setAlert('success')
+                setShowMessage('Service deleted successfully.')
                 setService({
                     service: '',
                     description: '',
                     picture_url: '',
                     duration: 0,
                     cost: '',
-                    calendly_url:'',
+                    calendly_url: '',
                 })
             } else {
                 console.error('Error deleting service:', res.statusText)
+                setAlert('danger')
+                setShowMessage('Error deleting service.')
             }
         } catch (error) {
             console.error('Error deleting service:', error)
+            setAlert('danger')
+            setShowMessage('Error deleting service.')
         }
     }
 
     return (
-        <div className="container">
-            <h1 className="text-center my-5 ">Edit Service</h1>
-            {showMessage && (
-                <div className="alert alert-success" role="alert">
-                    Service deleted successfully
-                </div>
-            )}
-            <form className="updateform" onSubmit={handleSubmit}>
-                <div className="mb-3">
-                    <label htmlFor="service" className="form-label">
-                        Service Name
-                    </label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        id="service"
-                        name="service"
-                        value={service.service}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="description" className="form-label">
-                        Description
-                    </label>
-                    <textarea
-                        className="form-control"
-                        id="description"
-                        name="description"
-                        value={service.description}
-                        onChange={handleChange}
-                    ></textarea>
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="picture_url" className="form-label">
-                        Picture URL
-                    </label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        id="picture_url"
-                        name="picture_url"
-                        value={service.picture_url}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="duration" className="form-label">
-                        Duration
-                    </label>
-                    <input
-                        type="number"
-                        className="form-control"
-                        id="duration"
-                        name="duration"
-                        value={service.duration}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="cost" className="form-label">
-                        Cost
-                    </label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        id="cost"
-                        name="cost"
-                        value={service.cost}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="calendly_url" className="form-label">
-                        Calendly Link
-                    </label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        id="calendly_url"
-                        name="calendly_url"
-                        value={service.calendly_url}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div
-                    className="button-container"
-                    style={{ marginBottom: '20px' }}
-                >
-                    <button type="submit" className="btn btn-dark">
-                        Submit
-                    </button>
-                    <button
-                        type="delete"
-                        onClick={handleDelete}
-                        className="btn btn-danger"
+        <main className={`${darkmode ? ' darkmode' : ''}`}>
+            <div className="container">
+                <h1 className="text-center my-5 ">Edit Service</h1>
+                {showMessage && (
+                    <div className={`alert alert-${alert}`} role="alert">
+                        {showMessage}
+                    </div>
+                )}
+                <form className="updateform" onSubmit={handleSubmit}>
+                    <div className="mb-3">
+                        <label htmlFor="service" className="form-label">
+                            Service Name
+                        </label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            id="service"
+                            name="service"
+                            value={service.service}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="description" className="form-label">
+                            Description
+                        </label>
+                        <textarea
+                            className="form-control"
+                            id="description"
+                            name="description"
+                            value={service.description}
+                            onChange={handleChange}
+                        ></textarea>
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="picture_url" className="form-label">
+                            Picture URL
+                        </label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            id="picture_url"
+                            name="picture_url"
+                            value={service.picture_url}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="duration" className="form-label">
+                            Duration
+                        </label>
+                        <input
+                            type="number"
+                            className="form-control"
+                            id="duration"
+                            name="duration"
+                            value={service.duration}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="cost" className="form-label">
+                            Cost
+                        </label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            id="cost"
+                            name="cost"
+                            value={service.cost}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="calendly_url" className="form-label">
+                            Calendly Link
+                        </label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            id="calendly_url"
+                            name="calendly_url"
+                            value={service.calendly_url}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div
+                        className="button-container"
+                        style={{ marginBottom: '20px' }}
                     >
-                        Delete
-                    </button>
-                    <Link to="/services" className="btn btn-secondary">
-                        Go Back
-                    </Link>
-                </div>
-            </form>
-        </div>
+                        <button type="submit" className="btn btn-success">
+                            Submit
+                        </button>
+                        <button
+                            type="delete"
+                            onClick={handleDelete}
+                            className="btn btn-danger"
+                        >
+                            Delete
+                        </button>
+                        <Link to="/services" className="btn btn-secondary">
+                            Go Back
+                        </Link>
+                    </div>
+                </form>
+            </div>
+        </main>
     )
 }

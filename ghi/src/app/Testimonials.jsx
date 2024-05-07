@@ -13,11 +13,9 @@ function Testimonials(props) {
                 {isLoggedIn && <TestimonialForm />}
                 <div className="mt-4 text-center">
                     <span> </span>
-                    <button className="btn btn-danger">
-                        <Link className="fontcolor" to="/">
-                            Back to Home
-                        </Link>
-                    </button>
+                    <Link className="fontcolor" to="/">
+                        <button className="btn btn-danger">Back to Home</button>
+                    </Link>
                 </div>
             </div>
         </main>

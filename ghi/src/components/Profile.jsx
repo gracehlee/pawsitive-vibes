@@ -5,6 +5,8 @@ import useAuthService from '../hooks/useAuthService'
 import { baseUrl } from '../services/authService'
 import corgi from '../images/dogs/Corgi.png'
 import PetList from './GetAllPets'
+import { Link } from 'react-router-dom'
+import about from '../images/assets/p1.png'
 
 function Profile(props) {
     const { isLoggedIn, user } = useAuthService()
@@ -91,32 +93,32 @@ function Profile(props) {
                                 style={{ maxWidth: '100%' }}
                             >
                                 <h5 className="card-title">
-                                    User: {userData.username}
+                                    <b>User:</b> {userData.username}
                                 </h5>
                                 <p className="card-text">
-                                    Name: {userData.name}
+                                    <b>Name:</b> {userData.name}
                                 </p>
                                 <p className="card-text">
-                                    Bio: {userData.bio} Lorem Ipsum is simply
-                                    dummy text of the printing and typesetting
-                                    industry. Lorem Ipsum has been the industrys
-                                    standard dummy text ever since the 1500s,
-                                    when an unknown printer took a galley of
-                                    type and scrambled it to make a type
-                                    specimen book. It has survived not only five
-                                    centuries, but also the leap into electronic
-                                    typesetting, remaining essentially
-                                    unchanged. It was popularised in the 1960s
-                                    with the release of Letraset sheets
-                                    containing Lorem Ipsum passages, and more
-                                    recently with desktop publishing software
-                                    like Aldus PageMaker including versions of
-                                    Lorem Ipsum.
+                                    <b>Bio:</b> {userData.bio}
+                                    <img
+                                        src={about}
+                                        alt="profile"
+                                        className=""
+                                        style={{
+                                            maxHeight: 'auto',
+                                            maxWidth: '100%',
+                                        }}
+                                    />
                                 </p>
                                 <p> </p>
-                                <button className="btn btn-danger">
-                                    Update Profile
-                                </button>
+                                <Link
+                                    className="fontcolor"
+                                    to="/profile/update"
+                                >
+                                    <button className="btn btn-danger">
+                                        Update Profile
+                                    </button>
+                                </Link>
                             </div>
                         </div>
                     </div>

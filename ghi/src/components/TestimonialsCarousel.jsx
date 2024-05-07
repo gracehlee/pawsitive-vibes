@@ -36,14 +36,24 @@ function TestimonialsCarousel(props) {
     }, [])
 
     if (error) {
-        return <p className="error">{error}</p>
+        console.log(error)
+        return
+    }
+
+    const generateStars = (rating) => {
+        return Array.from({ length: rating }, (_, index) => (
+            <span
+                key={index}
+                style={{ color: 'gold', fontSize: '30px', marginRight: '2px' }}
+            >
+                ★
+            </span>
+        ))
     }
 
     return (
-        <div className="testimonials-carousel-container">
-            <Carousel
-                variant='dark'
-            >
+        <div className="testimonials-carousel-container text-center">
+            <Carousel variant="dark">
                 {testimonials.map((testimonial) => (
                     <Carousel.Item key={testimonial.id}>
                         <div
@@ -52,8 +62,22 @@ function TestimonialsCarousel(props) {
                                 backgroundColor: darkmode ? 'black' : 'white',
                             }}
                         >
-                            <h3 className="testimonial-name">&quot; {testimonial.description}  &quot;</h3>
-                            <p className="testimonial-description">{testimonial.name}</p>
+                            <h3
+                                className="testimonial-name"
+                                style={{ color: darkmode ? 'white' : '' }}
+                            >
+                                &quot;{testimonial.description}&quot;
+                            </h3>
+                            <div>{generateStars(testimonial.rating)}</div>
+                            <p
+                                className="testimonial-description"
+                                style={{
+                                    fontSize: '25px',
+                                    color: darkmode ? 'white' : '',
+                                }}
+                            >
+                                {testimonial.name}
+                            </p>
                         </div>
                     </Carousel.Item>
                 ))}

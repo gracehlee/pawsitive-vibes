@@ -42,8 +42,6 @@ nav.darkmode a.nav-style:hover {
 }
 
 main.darkmode {
-    margin-top: 15vh;
-    padding-top: 5vh;
     padding-bottom: 10vh;
     min-height: calc(60vh);
     min-width: 100%;

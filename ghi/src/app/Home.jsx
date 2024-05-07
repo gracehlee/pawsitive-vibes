@@ -1,7 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.css'
 import '../css/index.css'
 import logo from '../images/PV_Logo.png'
-import header from '../images/assets/d3.png'
 import badge from '../images/assets/d1.png'
 import TestimonialsCarousel from '../components/TestimonialsCarousel'
 import ImageCarousel from '../components/ImageCarousel'
@@ -17,7 +16,11 @@ function Home(props) {
         <main className={`${darkmode ? ' darkmode' : ''}`}>
             <div className="row">
                 <div className="text-center">
-                    <h1></h1>
+                    <img
+                        src={logo}
+                        alt="Pawsitive Vibes Logo"
+                        style={{ height: 'auto', width: '40vw' }}
+                    />
                     <h1>Welcome to Pawsitive Vibes!</h1>
                     <h3>Experienced. Force Free. Passionate. </h3>
                     <br></br>
@@ -26,8 +29,8 @@ function Home(props) {
                     <div className="col-md-8 offset-md-2 text-center container">
                         <p>
                             Cat and Dog CPR, Human CPR, Dog Play group, and Fear
-                            free certified. Pending AKC certified trainer and a
-                            CCDPT-KA.
+                            free certified.<br></br>Pending AKC certified
+                            trainer and a CCDPT-KA.
                         </p>
                         <p style={{ fontSize: '20px' }}>
                             Pawsitive Vibes Dog Training LLC was founded in June
@@ -38,9 +41,9 @@ function Home(props) {
                             working as much with you as with your pet. Our high
                             success rates and client satisfaction is our
                             greatest source of pride!
-                            <br></br>
-                            <br></br>A list of offered services can be seen on
-                            our Services page, and logged in users may request
+                            <br />
+                            <br />A list of offered services can be seen on our
+                            Services page, and logged in users may request
                             service appointments. If you don&apos;t wish to make
                             a (free) account with us, a &quot;Contact Us&quot;
                             form is located at the bottom of each page for your
@@ -51,33 +54,33 @@ function Home(props) {
                             For admins, this is where the toggle for Create
                             Testimonials will go.
                         </p>
-                        <h3 className="testimonial-header">
+                        <h3
+                            className={`testimonial-header${
+                                darkmode ? ' fontcolor' : ''
+                            }`}
+                        >
                             What people are saying!
                         </h3>
                         <TestimonialsCarousel darkmode={darkmode} />
                         {isLoggedIn && (
                             <p>
-                                <button className="btn btn-secondary">
-                                    <Link
-                                        className="fontcolor"
-                                        to="/testimonials"
-                                    >
+                                <Link to="/testimonials">
+                                    <button className="btn btn-secondary">
                                         Submit A Testimonial!
-                                    </Link>
-                                </button>
+                                    </button>
+                                </Link>
                             </p>
                         )}
-                        {admin && (
-                            <button className="btn btn-danger">
-                                <Link
-                                    className="fontcolor"
-                                    to="/testimonials/manage"
-                                >
-                                    Manage Testimonials
+                        {isLoggedIn && admin && (
+                            <p>
+                                <Link to="/testimonials/manage">
+                                    <button className="btn btn-danger">
+                                        Manage Testimonials
+                                    </button>
                                 </Link>
-                            </button>
+                            </p>
                         )}
-                        <br></br>
+                        <br />
                         <img
                             src={badge}
                             alt="Karen Pryor Academy Badge"

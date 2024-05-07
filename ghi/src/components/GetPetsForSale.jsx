@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { baseUrl } from '../services/authService'
 import { Link } from 'react-router-dom'
 
-
 export default function SaleList(props) {
     const admin = props.admin
 
@@ -89,7 +88,7 @@ export default function SaleList(props) {
             <div className="col">
                 {props.list.map((pets, index) => {
                     return (
-                        <div key={index} className="card mb-3 shadow">
+                        <div key={index} className="card dog-card mb-3 shadow">
                             <img
                                 src={pets.picture_url}
                                 alt="Image failed to load"
@@ -126,32 +125,36 @@ export default function SaleList(props) {
                                 {handleAge(pets.birthday) == 0 && (
                                     <div>
                                         <h5 className="card-subtitle">
-                                            Born: {formatAge(pets.birthday)}
+                                            Birthday:
                                         </h5>
+                                        <p>{formatAge(pets.birthday)}</p>
                                     </div>
                                 )}
                                 <div>
                                     <h5 className="card-subtitle">
-                                        Description: {pets.description}
+                                        Description:
                                     </h5>
+                                    <p>&quot;{pets.description}&quot;</p>
                                 </div>
-                                {admin && (
-                                    <div className="btn btn-primary">
-                                        <Link to={`${pets.id}`}>
-                                            <button type="button">Edit</button>
-                                        </Link>
-                                    </div>
-                                )}
-
-                                {admin && (
-                                    <button
-                                        className="btn btn-primary"
-                                        value={pets.id}
-                                        onClick={handleRemove}
-                                    >
-                                        Remove
-                                    </button>
-                                )}
+                                <div className="text-center">
+                                    {admin && (
+                                        <>
+                                            <Link to={`${pets.id}`}>
+                                                <button className="btn btn-primary">
+                                                    Edit
+                                                </button>
+                                            </Link>
+                                            <span> </span>
+                                            <button
+                                                className="btn btn-primary"
+                                                value={pets.id}
+                                                onClick={handleRemove}
+                                            >
+                                                Remove
+                                            </button>
+                                        </>
+                                    )}
+                                </div>
                             </div>
                         </div>
                     )

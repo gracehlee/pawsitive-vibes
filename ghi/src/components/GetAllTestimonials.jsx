@@ -71,7 +71,9 @@ function TestimonialsList(props) {
 
             if (response.ok) {
                 SetTestimonials((prevTestimonials) =>
-                    prevTestimonials.filter((testimonial) => testimonial.id !== id)
+                    prevTestimonials.filter(
+                        (testimonial) => testimonial.id !== id
+                    )
                 )
             } else {
                 throw new Error('Failed to delete testimonial')
@@ -80,7 +82,6 @@ function TestimonialsList(props) {
             setError(`Error deleting testimonial: ${error.message}`)
         }
     }
-
 
     return (
         <main className={`${darkmode ? ' darkmode' : ''}`}>
@@ -98,6 +99,7 @@ function TestimonialsList(props) {
                             <th>Username</th>
                             <th>Description</th>
                             <th>Approval</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -122,7 +124,9 @@ function TestimonialsList(props) {
                                 <td>
                                     <button
                                         className="btn btn-danger"
-                                        onClick={() => deleteTestimonial(testimonial.id)}
+                                        onClick={() =>
+                                            deleteTestimonial(testimonial.id)
+                                        }
                                     >
                                         Delete
                                     </button>
@@ -133,11 +137,11 @@ function TestimonialsList(props) {
                 </table>
                 <p className="text-center">
                     <br></br>
-                    <button className="btn btn-secondary">
-                        <Link className="fontcolor" to="/">
+                    <Link className="fontcolor" to="/">
+                        <button className="btn btn-secondary">
                             Back to Home
-                        </Link>
-                    </button>
+                        </button>
+                    </Link>
                 </p>
             </div>
         </main>
