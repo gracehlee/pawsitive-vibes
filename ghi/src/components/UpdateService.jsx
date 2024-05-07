@@ -11,6 +11,7 @@ export default function UpdateService() {
         picture_url: '',
         duration: 0,
         cost: '',
+        calendly_url: '',
     })
 
     const [showMessage, setShowMessage] = useState(false)
@@ -58,6 +59,7 @@ export default function UpdateService() {
                     picture_url: '',
                     duration: 0,
                     cost: '',
+                    calendly_url: '',
                 })
             } else {
                 console.error('Error updating service:', res.statusText)
@@ -83,6 +85,7 @@ export default function UpdateService() {
                     picture_url: '',
                     duration: 0,
                     cost: '',
+                    calendly_url:'',
                 })
             } else {
                 console.error('Error deleting service:', res.statusText)
@@ -162,6 +165,19 @@ export default function UpdateService() {
                         id="cost"
                         name="cost"
                         value={service.cost}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="calendly_url" className="form-label">
+                        Calendly Link
+                    </label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        id="calendly_url"
+                        name="calendly_url"
+                        value={service.calendly_url}
                         onChange={handleChange}
                     />
                 </div>

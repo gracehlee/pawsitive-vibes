@@ -8,7 +8,8 @@ steps = [
             description TEXT DEFAULT NULL,
             picture_url TEXT DEFAULT NULL,
             duration INTEGER DEFAULT NULL,
-            cost TEXT DEFAULT NULL
+            cost TEXT DEFAULT NULL,
+            calendly_url TEXT DEFAULT NULL
         );
         """,
         # "Down" SQL statement

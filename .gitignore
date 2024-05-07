@@ -184,3 +184,7 @@ scratch-paper.txt
 
 # Configuration files
 config.js
+
+# API keys
+
+keys.py

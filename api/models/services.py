@@ -8,6 +8,7 @@ class ServiceIn(BaseModel):
     picture_url: str
     duration: int
     cost: str
+    calendly_url: str
 
 
 class ServiceOut(BaseModel):
@@ -17,6 +18,7 @@ class ServiceOut(BaseModel):
     picture_url: str
     duration: int
     cost: str
+    calendly_url: str
 
 
 class ServiceInUpdate(BaseModel):
@@ -25,3 +27,4 @@ class ServiceInUpdate(BaseModel):
     picture_url: Optional[str] = None
     duration: Optional[int] = None
     cost: Optional[str] = None
+    calendly_url: Optional[str] = None

@@ -25,17 +25,19 @@ class ServiceRepository:
                             , picture_url
                             , duration
                             , cost
+                            , calendly_url
                         )
-                        VALUES (%s, %s, %s, %s, %s)
+                        VALUES (%s, %s, %s, %s, %s, %s)
                         RETURNING id, service, description, picture_url,
-                        duration, cost;
+                        duration, cost, calendly_url;
                         """,
                         [
                             service.service,
                             service.description,
                             service.picture_url,
                             service.duration,
-                            service.cost
+                            service.cost,
+                            service.calendly_url
                         ],
                     )
                     data = db.fetchone()
@@ -48,6 +50,7 @@ class ServiceRepository:
                         picture_url=data[3],
                         duration=data[4],
                         cost=data[5],
+                        calendly_url=data[6]
                     )
                     return service
         except psycopg.Error as e:
@@ -61,7 +64,7 @@ class ServiceRepository:
                     db.execute(
                         """
                         SELECT id, service, description, picture_url,
-                        duration, cost
+                        duration, cost, calendly_url
                         FROM services
                         ORDER BY id;
                         """
@@ -74,7 +77,8 @@ class ServiceRepository:
                             description=record[2],
                             picture_url=record[3],
                             duration=record[4],
-                            cost=record[5]
+                            cost=record[5],
+                            calendly_url=record[6]
                         )
                         services.append(service)
                     return services
@@ -89,7 +93,7 @@ class ServiceRepository:
                     db.execute(
                         """
                         SELECT id, service, description, picture_url,
-                        duration, cost
+                        duration, cost, calendly_url
                         FROM services
                         WHERE id = %s;
                         """,
@@ -104,7 +108,8 @@ class ServiceRepository:
                         description=data[2],
                         picture_url=data[3],
                         duration=data[4],
-                        cost=data[5]
+                        cost=data[5],
+                        calendly_url=data[6]
                     )
                     return service
         except psycopg.Error as e:
@@ -122,7 +127,7 @@ class ServiceRepository:
                     fields = []
                     values = []
                     properties = ["service", "description", "picture_url",
-                                  "duration", "cost"]
+                                  "duration", "cost", "calendly_url"]
                     for property in properties:
                         if getattr(service, property) is not None:
                             fields.append(f"{property} = %s")
@@ -134,7 +139,7 @@ class ServiceRepository:
                         SET {', '.join(fields)}
                         WHERE id = %s
                         RETURNING id, service, description, picture_url,
-                        duration, cost;
+                        duration, cost, calendly_url;
                         """,
                         values,
                     )
@@ -147,7 +152,8 @@ class ServiceRepository:
                         description=data[2],
                         picture_url=data[3],
                         duration=data[4],
-                        cost=data[5]
+                        cost=data[5],
+                        calendly_url=data[6]
                     )
                     return updated_service
         except psycopg.Error as e:

@@ -11,6 +11,7 @@ function ServiceForm() {
         description: '',
         duration: 0,
         cost: '',
+        calendly_url: '',
     })
 
     const handleInputChange = (e) => {
@@ -49,6 +50,7 @@ function ServiceForm() {
                 }
             }
 
+            window.location.reload()
             const data = await res.json()
             setServiceFormData({
                 service: '',
@@ -56,6 +58,7 @@ function ServiceForm() {
                 description: '',
                 duration: '',
                 cost: '',
+                calendly_url: '',
             })
 
             return data
@@ -136,6 +139,19 @@ function ServiceForm() {
                                 className="form-control"
                             ></input>
                             <label htmlFor="description">Description</label>
+                        </div>
+                        <div className="form-floating mb-3">
+                            <input
+                                value={serviceFormData.calendly_url}
+                                onChange={handleInputChange}
+                                placeholder="Calendly URL"
+                                required
+                                type="url"
+                                name="calendly_url"
+                                id="calendly_url"
+                                className="form-control"
+                            ></input>
+                            <label htmlFor="calendly_url">Calendly Link</label>
                         </div>
                         <button className="btn btn-primary">Create</button>
                     </form>

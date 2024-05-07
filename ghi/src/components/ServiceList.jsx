@@ -93,12 +93,14 @@ export default function ServiceList(props) {
                             <p>Duration: {selectedService.duration}</p>
                             <p>Cost: {selectedService.cost}</p>
                             <p>Description: {selectedService.description}</p>
-
-                            <Link to="create-appt">
-                                <button className="btn btn-dark">
-                                    Book Now
-                                </button>
-                            </Link>
+                            <a
+                                href={selectedService.calendly_url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="btn btn-dark"
+                            >
+                                Book Now
+                            </a>
                             <button
                                 className="btn btn-secondary"
                                 onClick={handleBackToList}
@@ -157,3 +159,4 @@ export default function ServiceList(props) {
         </div>
     )
 }
+
