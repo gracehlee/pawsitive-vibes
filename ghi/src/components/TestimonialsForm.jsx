@@ -4,13 +4,14 @@ import useAuthService from '../hooks/useAuthService'
 import StarRating from './StarRating'
 
 function TestimonialForm() {
-    const { user, error } = useAuthService()
+    const { user, error: authError } = useAuthService()
 
     const [testimonialFormData, setTestimonialFormData] = useState({
         rating: '',
         name: '',
         description: '',
     })
+    const [formError, setFormError] = useState(null)
 
     useEffect(() => {
         if (user && user.username) {
@@ -38,34 +39,48 @@ function TestimonialForm() {
     async function handleSubmit(event) {
         event.preventDefault()
 
-        const response = await fetch(`${baseUrl}/api/testimonials`, {
-            method: 'post',
-            body: JSON.stringify(testimonialFormData),
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        })
+        // Reset form error
+        setFormError(null)
 
-        if (!response.ok) {
-            const errorData = await response.json()
-            if (errorData && errorData.errors) {
-                const errorMessage = errorData.errors
-                    .map((error) => error.message)
-                    .join(', ')
-                throw new Error(`Validation Error: ${errorMessage}`)
-            } else {
-                throw new Error('Could not add Testimonial')
-            }
+        // Validate rating
+        if (!testimonialFormData.rating || testimonialFormData.rating === 0) {
+            setFormError('Please provide a star rating before submitting.')
+            return
         }
 
-        const data = await response.json()
+        try {
+            const response = await fetch(`${baseUrl}/api/testimonials`, {
+                method: 'post',
+                body: JSON.stringify(testimonialFormData),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
 
-        setTestimonialFormData({
-            rating: 0,
-            name: user ? user.username : '',
-            description: '',
-        })
-        return data
+            if (!response.ok) {
+                const errorData = await response.json()
+                if (errorData && errorData.errors) {
+                    const errorMessage = errorData.errors
+                        .map((error) => error.message)
+                        .join(', ')
+                    setFormError(`Validation Error: ${errorMessage}`)
+                } else {
+                    setFormError('Could not add Testimonial')
+                }
+                return
+            }
+
+            const data = await response.json()
+
+            setTestimonialFormData({
+                rating: 0,
+                name: user ? user.username : '',
+                description: '',
+            })
+            return data
+        } catch (error) {
+            setFormError(`An error occurred: ${error.message}`)
+        }
     }
 
     return (
@@ -75,10 +90,13 @@ function TestimonialForm() {
                     Tell us what you think!
                 </h1>
                 <form onSubmit={handleSubmit}>
-                    {error && (
+                    {authError && (
                         <div className="alert alert-danger">
-                            {error.message}
+                            {authError.message}
                         </div>
+                    )}
+                    {formError && (
+                        <div className="alert alert-danger">{formError}</div>
                     )}
                     <div className="mb-3 text-center">
                         <StarRating

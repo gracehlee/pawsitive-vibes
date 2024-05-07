@@ -153,3 +153,10 @@ code {
     background: #ffc99c; /** background of scrollbar **/
     border: 0px solid #000; /** border around whole scrollbar **/
 }
+
+
+.testimonial-header {
+    font-family: 'fangsong';
+    font-size: 1.5em;
+    color: #333;
+}

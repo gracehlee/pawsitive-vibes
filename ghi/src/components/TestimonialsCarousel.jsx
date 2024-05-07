@@ -41,7 +41,9 @@ function TestimonialsCarousel(props) {
 
     return (
         <div className="testimonials-carousel-container">
-            <Carousel>
+            <Carousel
+                variant='dark'
+            >
                 {testimonials.map((testimonial) => (
                     <Carousel.Item key={testimonial.id}>
                         <div
@@ -50,9 +52,8 @@ function TestimonialsCarousel(props) {
                                 backgroundColor: darkmode ? 'black' : 'white',
                             }}
                         >
-                            <h3>{testimonial.name}</h3>
-                            <p>Rating: {testimonial.rating}</p>
-                            <p>&quot;{testimonial.description}&quot;</p>
+                            <h3 className="testimonial-name">&quot; {testimonial.description}  &quot;</h3>
+                            <p className="testimonial-description">{testimonial.name}</p>
                         </div>
                     </Carousel.Item>
                 ))}

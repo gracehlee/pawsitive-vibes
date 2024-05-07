@@ -59,6 +59,29 @@ function TestimonialsList(props) {
         }
     }
 
+    const deleteTestimonial = async (id) => {
+        try {
+            const response = await fetch(`${baseUrl}/api/testimonials/${id}`, {
+                method: 'DELETE',
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+
+            if (response.ok) {
+                SetTestimonials((prevTestimonials) =>
+                    prevTestimonials.filter((testimonial) => testimonial.id !== id)
+                )
+            } else {
+                throw new Error('Failed to delete testimonial')
+            }
+        } catch (error) {
+            setError(`Error deleting testimonial: ${error.message}`)
+        }
+    }
+
+
     return (
         <main className={`${darkmode ? ' darkmode' : ''}`}>
             <div className="testimonials-container">
@@ -95,6 +118,14 @@ function TestimonialsList(props) {
                                             )
                                         }
                                     />
+                                </td>
+                                <td>
+                                    <button
+                                        className="btn btn-danger"
+                                        onClick={() => deleteTestimonial(testimonial.id)}
+                                    >
+                                        Delete
+                                    </button>
                                 </td>
                             </tr>
                         ))}

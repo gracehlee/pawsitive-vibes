@@ -4,6 +4,7 @@ import logo from '../images/PV_Logo.png'
 import header from '../images/assets/d3.png'
 import badge from '../images/assets/d1.png'
 import TestimonialsCarousel from '../components/TestimonialsCarousel'
+import ImageCarousel from '../components/ImageCarousel'
 import useAuthService from '../hooks/useAuthService'
 import { Link } from 'react-router-dom'
 
@@ -16,24 +17,12 @@ function Home(props) {
         <main className={`${darkmode ? ' darkmode' : ''}`}>
             <div className="row">
                 <div className="text-center">
-                    <img
-                        src={logo}
-                        alt="Pawsitive Vibes Logo"
-                        style={{ height: 'auto', width: '40vw' }}
-                    />
                     <h1></h1>
                     <h1>Welcome to Pawsitive Vibes!</h1>
                     <h3>Experienced. Force Free. Passionate. </h3>
                     <br></br>
                     <br></br>
-                    <img
-                        src={header}
-                        alt="Pawsitive Vibes Header"
-                        style={{
-                            height: 'auto',
-                            width: '100vw',
-                        }}
-                    />
+                    <ImageCarousel darkmode={darkmode} />
                     <div className="col-md-8 offset-md-2 text-center container">
                         <p>
                             Cat and Dog CPR, Human CPR, Dog Play group, and Fear
@@ -62,6 +51,9 @@ function Home(props) {
                             For admins, this is where the toggle for Create
                             Testimonials will go.
                         </p>
+                        <h3 className="testimonial-header">
+                            What people are saying!
+                        </h3>
                         <TestimonialsCarousel darkmode={darkmode} />
                         {isLoggedIn && (
                             <p>

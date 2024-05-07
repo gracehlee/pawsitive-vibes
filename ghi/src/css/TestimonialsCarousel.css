@@ -10,6 +10,28 @@
     border: 1px solid #ddd;
     border-radius: 10px;
     background-color: #f8f8f8;
+    width: 60%;
+    max-width: 500px;
+    margin: auto;
+    max-height: 1000px;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.testimonial-name {
+    font-family: 'fangsong';
+    font-size: 1.5em;
+    color: #333;
+}
+
+.testimonial-description {
+    font-family: 'fangsong';
+    font-size: 1em;
+    color: #333;
 }
 
 .testimonial-item-d {
