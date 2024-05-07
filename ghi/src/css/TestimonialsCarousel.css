@@ -12,6 +12,13 @@
     background-color: #f8f8f8;
 }
 
+.testimonial-item-d {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: transparent;
+}
+
 .carousel-control-prev,
 .carousel-control-next {
     width: 50px;

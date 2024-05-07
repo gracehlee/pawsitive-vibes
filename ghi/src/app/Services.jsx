@@ -10,12 +10,11 @@ function Services(props) {
     const admin = props.admin
     const { isLoggedIn } = useAuthService()
     const darkmode = props.darkmode
-
-    const [createForm, setCreateForm] = useState(false)
-    const [closeForm, setCloseForm] = useState(true)
-    // const [pollService, setPollService] = useState(false)
     const [refresh, setRefresh] = useState(false)
 
+    // const [pollService, setPollService] = useState(false)
+    const [createForm, setCreateForm] = useState(false)
+    const [closeForm, setCloseForm] = useState(true)
     const handleCreateService = () => {
         setCreateForm(true)
         setCloseForm(false)

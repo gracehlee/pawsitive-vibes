@@ -2,10 +2,15 @@ import 'bootstrap/dist/css/bootstrap.css'
 import '../css/index.css'
 import logo from '../images/PV_Logo.png'
 import header from '../images/assets/d3.png'
+import badge from '../images/assets/d1.png'
 import TestimonialsCarousel from '../components/TestimonialsCarousel'
+import useAuthService from '../hooks/useAuthService'
+import { Link } from 'react-router-dom'
 
 function Home(props) {
     const darkmode = props.darkmode
+    const admin = props.admin
+    const { isLoggedIn } = useAuthService()
 
     return (
         <main className={`${darkmode ? ' darkmode' : ''}`}>
@@ -16,18 +21,26 @@ function Home(props) {
                         alt="Pawsitive Vibes Logo"
                         style={{ height: 'auto', width: '40vw' }}
                     />
-                    <h1>
-                        <br></br>
-                    </h1>
+                    <h1></h1>
                     <h1>Welcome to Pawsitive Vibes!</h1>
                     <h3>Experienced. Force Free. Passionate. </h3>
+                    <br></br>
+                    <br></br>
+                    <img
+                        src={header}
+                        alt="Pawsitive Vibes Header"
+                        style={{
+                            height: 'auto',
+                            width: '100vw',
+                        }}
+                    />
                     <div className="col-md-8 offset-md-2 text-center container">
                         <p>
                             Cat and Dog CPR, Human CPR, Dog Play group, and Fear
                             free certified. Pending AKC certified trainer and a
                             CCDPT-KA.
-                            <br></br>
-                            <br></br>
+                        </p>
+                        <p style={{ fontSize: '20px' }}>
                             Pawsitive Vibes Dog Training LLC was founded in June
                             of 2022 because it is never too late to teach an old
                             pet new behaviors. Our tailor-made services are
@@ -45,26 +58,40 @@ function Home(props) {
                             convenience. Feel free to ask specific questions and
                             create appointments!
                         </p>
-                        <p>This is where photos will go</p>
-                        <TestimonialsCarousel />
                         <p>
                             For admins, this is where the toggle for Create
                             Testimonials will go.
                         </p>
-                        <p>This is where photos will go</p>
-                        <p>This is where the Testimonials list will go</p>
-                        <p>
-                            For admins, this is where the toggle for Create
-                            Testimonials will go.
-                        </p>
+                        <TestimonialsCarousel darkmode={darkmode} />
+                        {isLoggedIn && (
+                            <p>
+                                <button className="btn btn-secondary">
+                                    <Link
+                                        className="fontcolor"
+                                        to="/testimonials"
+                                    >
+                                        Submit A Testimonial!
+                                    </Link>
+                                </button>
+                            </p>
+                        )}
+                        {admin && (
+                            <button className="btn btn-danger">
+                                <Link
+                                    className="fontcolor"
+                                    to="/testimonials/manage"
+                                >
+                                    Manage Testimonials
+                                </Link>
+                            </button>
+                        )}
+                        <br></br>
+                        <img
+                            src={badge}
+                            alt="Karen Pryor Academy Badge"
+                            style={{ height: 'auto', width: '10vw' }}
+                        />
                     </div>
-                    <br></br>
-                    <br></br>
-                    <img
-                        src={header}
-                        alt="Pawsitive Vibes Header"
-                        style={{ height: 'auto', width: '100vw' }}
-                    />
                 </div>
             </div>
         </main>

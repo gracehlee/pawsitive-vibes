@@ -218,6 +218,7 @@ Community Profile (USER GET) - DONE
 
 Today I worked on:
 
+Troubleshooting our unit tests and pipelines. We were getting an error that the DATABASE_URL from the queries our unit tests were referencing were not found. We added the variables DATABASE_URL and SIGNING_KEY and it no longer caused pipeline issues in our GitLab merge requests.
 
 
 TO DO:
@@ -226,8 +227,6 @@ TO DO:
 -   Sign Up Regex Validation - DONE
 -   Community Profile page (USER GET) - DONE
 -   Profile Update (USER PUT)
--   Meet Ups schema, model, queries, router, GET, PUT, DELETE
--   Google Maps API
 -   Account banning and blocked emails list?
 
 Advice from Paul and Rosheen for image uploads:
@@ -235,4 +234,21 @@ Advice from Paul and Rosheen for image uploads:
 - Use a Cloud Service (AWS Tier S3 Bucket) - grab from it
 - to use FastAPI instead, use static folder to serve static images
    - save images in static folder and use React FrontEnd to access them
-  
+
+Kyle said he'll take care of:
+-   Meet Ups schema, model, queries, router, GET, PUT, DELETE
+-   Google Maps API
+
+Austin is working on Calendly API for booking services.
+James is working on carousel (for images as well possibly?).
+
+## 5.7.2024
+
+Today I worked on:
+
+I troubleshooted some formatting errors after resolving merge conflicts. The App.jsx routing had to be reformatted so that public routes were listed separately from the routes that were only for logged-in users. I'm also going to try to work on CSS formatting so that darkmode is consistent across our entire app. I need to work on UPDATE for Profile, and hopefully I can figure out the image uploading.
+
+TO DO:
+
+-   Profile Update (USER PUT)
+-   Account banning and blocked emails list?

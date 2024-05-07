@@ -95,6 +95,11 @@ a.nav-style:hover {
     transition: 0.2s ease-in;
 }
 
+.fontcolor {
+    text-decoration: none;
+    color: white;
+}
+
 @media (max-width: 800px) {
     .nav {
         flex-direction: column;

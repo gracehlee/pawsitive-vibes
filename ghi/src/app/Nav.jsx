@@ -52,30 +52,18 @@ function Nav(props) {
                                     Services
                                 </NavLink>
                             </li>
-                            <li className="nav-item">
-                                <NavLink
-                                    className="nav-style"
-                                    to="/testimonials"
-                                >
-                                    Testimonials
-                                </NavLink>
-                            </li>
-
-
-
-
-                            <li className="nav-item">
-                                <NavLink
-                                    className="nav-style"
-                                    to="/meetups"
-                                >
-                                    Meetups
-                                </NavLink>
-                            </li>
-
-
-
-
+                            {!isLoggedIn ? (
+                                <li className="nav-item">
+                                    <NavLink
+                                        className="nav-style"
+                                        to="/meetups"
+                                    >
+                                        Meetups
+                                    </NavLink>
+                                </li>
+                            ) : (
+                                ''
+                            )}
                             {isLoggedIn ? (
                                 <>
                                     <li className="nav-item dropdown">
@@ -105,6 +93,12 @@ function Nav(props) {
                                                 to="/profile"
                                             >
                                                 Profile
+                                            </NavLink>
+                                            <NavLink
+                                                className="dropdown-item"
+                                                to="/meetups"
+                                            >
+                                                Meetups
                                             </NavLink>
                                         </div>
                                     </li>
