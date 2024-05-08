@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { baseUrl } from '../services/authService'
 import { useNavigate } from 'react-router-dom'
 
-
 export default function PetList(props) {
     const admin = props.admin
     const navigate = useNavigate()
@@ -72,7 +71,6 @@ export default function PetList(props) {
         let id = event.target.value
         navigate(`/pets/${id}`)
     }
-
 
     const handleRemove = async (event) => {
         event.preventDefault()
@@ -152,7 +150,10 @@ export default function PetList(props) {
                                             className="btn btn-primary"
                                             value={pets.id}
                                             onClick={handleEdit}
-                                            style={{ margin: '10px', background: 'green' }}
+                                            style={{
+                                                margin: '10px',
+                                                background: 'green',
+                                            }}
                                         >
                                             Edit
                                         </button>

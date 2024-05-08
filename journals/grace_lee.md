@@ -208,9 +208,10 @@ TO DO:
 Today I worked on:
 
 CSS
-- fine-tuned our various forms so that the placeholder and input text is properly styled with the dark mode toggle
-- fine-tuned the community page to change format if the width of the browser screen falls below a minimum width
-- fine-tuned the darkmode toggle button
+
+-   fine-tuned our various forms so that the placeholder and input text is properly styled with the dark mode toggle
+-   fine-tuned the community page to change format if the width of the browser screen falls below a minimum width
+-   fine-tuned the darkmode toggle button
 
 Community Profile (USER GET) - DONE
 
@@ -219,7 +220,6 @@ Community Profile (USER GET) - DONE
 Today I worked on:
 
 Troubleshooting our unit tests and pipelines. We were getting an error that the DATABASE_URL from the queries our unit tests were referencing were not found. We added the variables DATABASE_URL and SIGNING_KEY and it no longer caused pipeline issues in our GitLab merge requests.
-
 
 TO DO:
 
@@ -230,12 +230,14 @@ TO DO:
 -   Account banning and blocked emails list?
 
 Advice from Paul and Rosheen for image uploads:
-- HTML 5 Native for Upload
-- Use a Cloud Service (AWS Tier S3 Bucket) - grab from it
-- to use FastAPI instead, use static folder to serve static images
-   - save images in static folder and use React FrontEnd to access them
+
+-   HTML 5 Native for Upload
+-   Use a Cloud Service (AWS Tier S3 Bucket) - grab from it
+-   to use FastAPI instead, use static folder to serve static images
+    -   save images in static folder and use React FrontEnd to access them
 
 Kyle said he'll take care of:
+
 -   Meet Ups schema, model, queries, router, GET, PUT, DELETE
 -   Google Maps API
 
@@ -254,3 +256,27 @@ TO DO:
 -   Account banning and blocked emails list?
 
 Profile update is complete, where it's possible to update the name and bio. Now I'll be researching the image uploads.
+
+Resources:
+
+- https://www.youtube.com/watch?v=SE0TA_6Geqo
+- https://www.youtube.com/watch?v=iM4Pz-9oyiE
+
+I successfully created the post and get requests for the image uploads on main.py, and routed it to a static image folder in ghi. I made it so that the name of the file will always be the user_id.png, so that if someone updates their profile picture, it will remove the old one and upload the new one in its place. This way, the image file will never go beyond the number of users. This isn't the best optimal solution for image uploads, but for the sake of our project deadline, this will be a stand-in for cloud-service uploading in the future. Also, I needed a way of re-rendering my profile pic on the profile page after uploading a new pic. Since this is a SPA, the components don't always re-render unless there is a change of state. Although not the most elegant solution, I appended a timestamp to the end of my fetch URL so that it would always re-render the picture upon visiting that component route.
+
+## 5.8.2024
+
+STRETCH GOALS TO DO:
+- Account banning and blocked emails list?
+- update CSS for profile?
+- Forgot Password functionality?
+- Update Settings: User PW, email, phone number?
+
+TO DO:
+- after we are able to merge our branches, I'll work on CSS
+- then work on creating a README page with nice screenshots
+
+Today I worked on:
+
+- resolving merge conflicts
+- fixing darkmode css

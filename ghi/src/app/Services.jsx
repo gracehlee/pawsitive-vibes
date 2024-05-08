@@ -2,7 +2,6 @@ import 'bootstrap/dist/css/bootstrap.css'
 import ServiceList from '../components/GetAllServices'
 import { useNavigate } from 'react-router-dom'
 
-
 function Services(props) {
     const admin = props.admin
     const darkmode = props.darkmode
@@ -15,7 +14,8 @@ function Services(props) {
 
     return (
         <main className={`${darkmode ? ' darkmode' : ''}`}>
-            <div className="text-center" style={{ margin: "20px" }}>
+            <div className="text-center" style={{ margin: '50px' }}>
+                <ServiceList admin={admin} />
                 {admin && (
                     <button
                         className="btn btn-primary"
@@ -25,9 +25,6 @@ function Services(props) {
                         Add a Service
                     </button>
                 )}
-
-                <ServiceList admin={admin} />
-
             </div>
         </main>
     )

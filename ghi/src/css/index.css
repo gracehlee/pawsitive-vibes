@@ -16,8 +16,8 @@ body {
 }
 
 main {
-    margin-top: 15vh;
-    padding-top: 5vh;
+    margin-top: 0vh;
+    padding-top: 10vh;
     padding-bottom: 10vh;
     min-height: calc(60vh);
     min-width: 100%;
@@ -145,7 +145,7 @@ footer.footer {
     overflow-wrap: break-word;
 }
 
-.col {
+div.col {
     width: 300px;
 }
 
@@ -154,6 +154,11 @@ footer.footer {
     padding-right: 10px;
     padding-left: 10px;
     padding-bottom: 10px;
+}
+
+.error {
+    padding-left: 15vw;
+    padding-right: 15vw;
 }
 
 code {

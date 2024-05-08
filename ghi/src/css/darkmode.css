@@ -28,7 +28,7 @@
 }
 
 nav.darkmode {
-    background-color: #171717;
+    background-color: #171717 !important;
     color: white;
 }
 
@@ -75,5 +75,9 @@ main.darkmode ::placeholder {
 
 main.darkmode .form-control {
     color: white;
+    background-color: transparent;
+}
+
+div.darkmode {
     background-color: transparent;
 }

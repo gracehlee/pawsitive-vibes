@@ -4,7 +4,6 @@ import GetAllPets from '../components/GetAllPets'
 import GetPetsForSale from '../components/GetPetsForSale'
 import { useNavigate } from 'react-router-dom'
 
-
 export default function Dogs(props) {
     const admin = props.admin
     const darkmode = props.darkmode
@@ -24,6 +23,9 @@ export default function Dogs(props) {
                     deworming and a microchip. Socialized and temperament tested
                     from day one!
                 </label>
+                <div>{<GetPetsForSale admin={admin} />}</div>
+                <br />
+                <br />
                 <br />
                 {admin && (
                     <button
@@ -34,9 +36,10 @@ export default function Dogs(props) {
                         Add a dog
                     </button>
                 )}
-                <div>{<GetPetsForSale admin={admin} />}</div>
             </div>
-            <br></br>
+            <br />
+            <br />
+            <br />
             <div className="col-md-8 offset-md-2 text-center">
                 <h2 name="community">Community Pets!</h2>
                 <label htmlFor="community">
@@ -48,4 +51,3 @@ export default function Dogs(props) {
         </main>
     )
 }
-

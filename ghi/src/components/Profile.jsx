@@ -2,7 +2,6 @@ import 'bootstrap/dist/css/bootstrap.css'
 import { useState, useEffect } from 'react'
 import useAuthService from '../hooks/useAuthService'
 import { baseUrl } from '../services/authService'
-import corgi from '../images/dogs/Corgi.png'
 import PetList from './GetUserPets'
 import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
@@ -22,6 +21,8 @@ function Profile(props) {
         event.preventDefault()
         navigate('/createpet')
     }
+
+    const [profileImage, setProfileImage] = useState(null)
 
     useEffect(() => {
         if (isLoggedIn) {
@@ -52,43 +53,47 @@ function Profile(props) {
         }
     }, [isLoggedIn, user])
 
+    useEffect(() => {
+        const fetchProfileImage = async () => {
+            const id = user.id
+            try {
+                const response = await fetch(
+                    `${baseUrl}/profile_image/${id}?timestamp=${Date.now()}`
+                )
+                if (response.ok) {
+                    const imageData = await response.blob()
+                    setProfileImage(URL.createObjectURL(imageData))
+                } else {
+                    console.error('Failed to fetch profile image')
+                }
+            } catch (error) {
+                console.error('Error fetching profile image:', error)
+            }
+        }
+        fetchProfileImage()
+    }, [isLoggedIn, user])
+
     return (
         <main className={`${darkmode ? ' darkmode' : ''}`}>
             <div className="container">
-                <div className="row">
+                <div className="row justify-content-center align-items-center">
                     <div className="col-md-4">
-                        <div className="card mb-3">
+                        <div className={`mb-3${darkmode ? ' darkmode' : ''}`}>
                             <img
-                                src={corgi}
+                                src={profileImage}
                                 alt="community"
-                                className="community-image card-img-top"
+                                className="card-img-top"
                                 style={{
                                     borderRadius: '10px',
-                                    maxHeight: '200px',
-                                    maxWidth: '200px',
-                                    marginTop: '2rem',
-                                    marginBottom: '2rem',
-                                    alignSelf: 'center',
+                                    objectFit: 'cover',
+                                    height: '400px',
                                 }}
                             />
                         </div>
-                        <div className="text-center">
-                            <button
-                                className="btn btn-primary"
-                                style={{ background: 'green ' }}
-                            >
-                                Update Picture
-                            </button>
-                            <span> </span>
-                        </div>
-                        <br></br>
                     </div>
                     <div className="col-md-8">
-                        <div className="card mb-3 form-control">
-                            <div
-                                className="card-body"
-                                style={{ maxWidth: '100%' }}
-                            >
+                        <div className=" mb-3">
+                            <div className="card-body">
                                 <h5 className="card-title">
                                     <b>User:</b> {userData.username}
                                 </h5>
@@ -107,15 +112,26 @@ function Profile(props) {
                                         }}
                                     />
                                 </p>
-                                <p> </p>
+                                <Link
+                                    className="fontcolor"
+                                    to="/profile/updatepic"
+                                >
+                                    <button
+                                        className="btn btn-primary"
+                                        style={{ background: 'green ' }}
+                                    >
+                                        Update Picture
+                                    </button>
+                                </Link>
+                                <span> </span>
                                 <Link
                                     className="fontcolor"
                                     to="/profile/update"
                                 >
                                     <button
-                                    className="btn btn-primary"
-                                    style={{ background: 'green ' }}
-                                >
+                                        className="btn btn-primary"
+                                        style={{ background: 'green ' }}
+                                    >
                                         Update Profile
                                     </button>
                                 </Link>
@@ -127,14 +143,16 @@ function Profile(props) {
                     <div className="row">
                         <div className="col-md-12 text-center">
                             <h2>My Pets</h2>
+                            <PetList />
+
                             <button
                                 className="btn btn-primary"
-                                style={{ background: 'green ' }}
                                 onClick={handleNavigate}
                             >
-                                Add a dog
+                                Add a Pet
                             </button>
-                            <PetList />
+
+                            <br />
                         </div>
                     </div>
                 )}

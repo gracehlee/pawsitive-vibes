@@ -1,7 +1,7 @@
 .testimonials-carousel-container {
     margin: 20px auto;
     width: 80%;
-    max-width: 900px;
+    max-width: 100vw;
     text-align: left;
 }
 
@@ -10,8 +10,8 @@
     border: 1px solid #ddd;
     border-radius: 10px;
     background-color: #f8f8f8;
-    width: 60%;
-    max-width: 500px;
+    min-width: 90%;
+    max-width: 100vw;
     margin: auto;
     max-height: 1000px;
     overflow: auto;

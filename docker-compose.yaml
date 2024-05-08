@@ -20,6 +20,10 @@ services:
             CORS_HOST: http://localhost:5173
             DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db/${POSTGRES_DB}
             SIGNING_KEY: ${SIGNING_KEY}
+            PUBLIC_KEY: ${PUBLIC_KEY}
+            TEMPLATE_ID: ${TEMPLATE_ID}
+            SERVICE_ID: ${SERVICE_ID}
+            PV_EMAIL: ${PV_EMAIL}
         build:
             context: api
             dockerfile: Dockerfile.dev
