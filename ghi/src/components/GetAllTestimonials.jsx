@@ -138,7 +138,7 @@ function TestimonialsList(props) {
                 <p className="text-center">
                     <br></br>
                     <Link className="fontcolor" to="/">
-                        <button className="btn btn-secondary">
+                        <button className="btn btn-primary">
                             Back to Home
                         </button>
                     </Link>

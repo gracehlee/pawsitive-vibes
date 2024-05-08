@@ -1,32 +1,26 @@
 import 'bootstrap/dist/css/bootstrap.css'
-import CreatePetForm from '../components/CreatePetForm'
 import { useState, useEffect } from 'react'
 import useAuthService from '../hooks/useAuthService'
 import { baseUrl } from '../services/authService'
 import corgi from '../images/dogs/Corgi.png'
-import PetList from './GetAllPets'
+import PetList from './GetUserPets'
+import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import about from '../images/assets/p1.png'
 
 function Profile(props) {
     const { isLoggedIn, user } = useAuthService()
     const darkmode = props.darkmode
-    const [createForm, setCreateForm] = useState(false)
-    const [closeForm, setCloseForm] = useState(true)
     const [userData, setUserData] = useState({
         name: '',
         username: '',
         bio: '',
     })
 
-    const handleCreatePet = () => {
-        setCreateForm(true)
-        setCloseForm(false)
-    }
-
-    const handleCloseForm = () => {
-        setCreateForm(false)
-        setCloseForm(true)
+    const navigate = useNavigate()
+    const handleNavigate = (event) => {
+        event.preventDefault()
+        navigate('/createpet')
     }
 
     useEffect(() => {
@@ -79,7 +73,10 @@ function Profile(props) {
                             />
                         </div>
                         <div className="text-center">
-                            <button className="btn btn-danger">
+                            <button
+                                className="btn btn-primary"
+                                style={{ background: 'green ' }}
+                            >
                                 Update Picture
                             </button>
                             <span> </span>
@@ -115,7 +112,10 @@ function Profile(props) {
                                     className="fontcolor"
                                     to="/profile/update"
                                 >
-                                    <button className="btn btn-danger">
+                                    <button
+                                    className="btn btn-primary"
+                                    style={{ background: 'green ' }}
+                                >
                                         Update Profile
                                     </button>
                                 </Link>
@@ -126,29 +126,15 @@ function Profile(props) {
                 {isLoggedIn && (
                     <div className="row">
                         <div className="col-md-12 text-center">
-                            <h1>My Pets</h1>
-                            <h3>This is where list of pets go.</h3>
-                            <p>
-                                <PetList />
-                            </p>
-                            {createForm && <CreatePetForm />}
-                            {closeForm && (
-                                <button
-                                    className="btn btn-secondary"
-                                    onClick={handleCreatePet}
-                                >
-                                    Add a Pet
-                                </button>
-                            )}
-                            <br />
-                            {createForm && (
-                                <button
-                                    className="btn btn-secondary"
-                                    onClick={handleCloseForm}
-                                >
-                                    Close Form
-                                </button>
-                            )}
+                            <h2>My Pets</h2>
+                            <button
+                                className="btn btn-primary"
+                                style={{ background: 'green ' }}
+                                onClick={handleNavigate}
+                            >
+                                Add a dog
+                            </button>
+                            <PetList />
                         </div>
                     </div>
                 )}

@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
 import { baseUrl } from '../services/authService'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 
 export default function PetList(props) {
     const admin = props.admin
+    const navigate = useNavigate()
 
     const [petColumns, setPetColumns] = useState([[], [], []])
 
@@ -66,6 +67,12 @@ export default function PetList(props) {
             console.error(e)
         }
     }
+
+    const handleEdit = async (event) => {
+        let id = event.target.value
+        navigate(`/pets/${id}`)
+    }
+
 
     const handleRemove = async (event) => {
         event.preventDefault()
@@ -135,23 +142,32 @@ export default function PetList(props) {
                                         Description: {pets.description}
                                     </h5>
                                 </div>
-                                {admin && (
-                                    <div className="btn btn-primary">
-                                        <Link to={`${pets.id}`}>
-                                            <button type="button">Edit</button>
-                                        </Link>
-                                    </div>
-                                )}
 
-                                {admin && (
-                                    <button
-                                        className="btn btn-primary"
-                                        value={pets.id}
-                                        onClick={handleRemove}
-                                    >
-                                        Remove
-                                    </button>
-                                )}
+                                <div className="text-center"></div>
+                                <br></br>
+                                <div className="text-center">
+                                    {admin && (
+                                        <button
+                                            type="button"
+                                            className="btn btn-primary"
+                                            value={pets.id}
+                                            onClick={handleEdit}
+                                            style={{ margin: '10px', background: 'green' }}
+                                        >
+                                            Edit
+                                        </button>
+                                    )}
+                                    {admin && (
+                                        <button
+                                            className="btn btn-primary"
+                                            value={pets.id}
+                                            onClick={handleRemove}
+                                            style={{ background: 'red' }}
+                                        >
+                                            Remove
+                                        </button>
+                                    )}
+                                </div>
                             </div>
                         </div>
                     )

@@ -43,6 +43,11 @@ function Nav(props) {
                     >
                         <ul className="navbar-nav mr-auto">
                             <li className="nav-item">
+                                <NavLink className="nav-style" to="/">
+                                    Home
+                                </NavLink>
+                            </li>
+                            <li className="nav-item">
                                 <NavLink className="nav-style" to="/pets">
                                     Pets
                                 </NavLink>

@@ -1,25 +1,17 @@
 import 'bootstrap/dist/css/bootstrap.css'
 import '../css/index.css'
-import CreateMeetups from '../components/CreateMeetups'
 import GetAllMeetups from '../components/GetAllMeetups'
-import { useState } from 'react'
-import useAuthService from '../hooks/useAuthService'
+import { useNavigate } from 'react-router-dom'
+
 
 export default function Meetups(props) {
-    const { isLoggedIn } = useAuthService()
     const admin = props.admin
     const darkmode = props.darkmode
-    const [createForm, setCreateForm] = useState(false)
-    const [closeForm, setCloseForm] = useState(true)
+    const navigate = useNavigate()
 
-    const handleCreateMeetup = () => {
-        setCreateForm(true)
-        setCloseForm(false)
-    }
-
-    const handleCloseForm = () => {
-        setCreateForm(false)
-        setCloseForm(true)
+    const handleNavigate = (event) => {
+        event.preventDefault()
+        navigate('/meetups/create')
     }
 
     return (
@@ -27,31 +19,17 @@ export default function Meetups(props) {
             <div className="container">
                 <div className="row">
                     <div className="text-center">
-                        {isLoggedIn && admin && (
+                        {admin && (
                             <div>
-                                {createForm && <CreateMeetups admin={admin} />}
-                                {closeForm && (
                                     <button
-                                        className="btn btn-dark"
-                                        onClick={handleCreateMeetup}
+                                        className="btn btn-primary"
+                                        style={{ background: 'green ' }}
+                                        onClick={handleNavigate}
                                     >
-                                        Add a Meetup
+                                        Create a Meetup
                                     </button>
-                                )}
                             </div>
                         )}
-
-                        <div>
-                            <br></br>
-                            {createForm && admin && isLoggedIn && (
-                                <button
-                                    className="btn btn-secondary"
-                                    onClick={handleCloseForm}
-                                >
-                                    Close Form
-                                </button>
-                            )}
-                        </div>
                     </div>
                     <div>{<GetAllMeetups admin={admin} />}</div>
                 </div>

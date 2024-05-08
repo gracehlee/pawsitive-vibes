@@ -69,12 +69,11 @@ img.community-image {
 
 nav.nav {
     display: flex;
-    position: fixed;
+    position: static;
     justify-items: space-evenly;
     align-content: center;
     min-height: 15vh;
     width: 100vw;
-    position: fixed;
     z-index: 100;
     background-color: #fff;
     padding-bottom: 1vh;

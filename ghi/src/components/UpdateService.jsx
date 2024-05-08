@@ -2,9 +2,12 @@ import { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { baseUrl } from '../services/authService'
 import '../css/UpdateService.css'
+import { useNavigate } from 'react-router-dom'
+
 
 export default function UpdateService(props) {
     const darkmode = props.darkmode
+    const navigate = useNavigate()
     const { serviceId } = useParams()
     const [service, setService] = useState({
         service: '',
@@ -54,16 +57,7 @@ export default function UpdateService(props) {
                 body: JSON.stringify(service),
             })
             if (res.ok) {
-                setAlert('success')
-                setShowMessage('Service updated successfully.')
-                setService({
-                    service: '',
-                    description: '',
-                    picture_url: '',
-                    duration: 0,
-                    cost: '',
-                    calendly_url: '',
-                })
+                navigate('/services')
             } else {
                 console.error('Error updating service:', res.statusText)
                 setAlert('danger')
@@ -73,36 +67,6 @@ export default function UpdateService(props) {
             console.error('Error updating service:', error)
             setAlert('danger')
             setShowMessage('Error updating service.')
-        }
-    }
-
-    const handleDelete = async () => {
-        try {
-            const url = `${baseUrl}/api/services/${serviceId}`
-            const res = await fetch(url, {
-                method: 'DELETE',
-                credentials: 'include',
-            })
-            if (res.ok) {
-                setAlert('success')
-                setShowMessage('Service deleted successfully.')
-                setService({
-                    service: '',
-                    description: '',
-                    picture_url: '',
-                    duration: 0,
-                    cost: '',
-                    calendly_url: '',
-                })
-            } else {
-                console.error('Error deleting service:', res.statusText)
-                setAlert('danger')
-                setShowMessage('Error deleting service.')
-            }
-        } catch (error) {
-            console.error('Error deleting service:', error)
-            setAlert('danger')
-            setShowMessage('Error deleting service.')
         }
     }
 
@@ -197,19 +161,15 @@ export default function UpdateService(props) {
                         className="button-container"
                         style={{ marginBottom: '20px' }}
                     >
-                        <button type="submit" className="btn btn-success">
-                            Submit
-                        </button>
-                        <button
-                            type="delete"
-                            onClick={handleDelete}
-                            className="btn btn-danger"
-                        >
-                            Delete
-                        </button>
-                        <Link to="/services" className="btn btn-secondary">
+                        <Link to="/services"
+                        className="btn btn-primary">
                             Go Back
                         </Link>
+                        <button type="submit"
+                        className="btn btn-primary"
+                        style={{ background: "green" }}>
+                            Submit
+                        </button>
                     </div>
                 </form>
             </div>

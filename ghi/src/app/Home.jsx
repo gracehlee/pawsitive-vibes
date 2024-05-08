@@ -63,7 +63,10 @@ function Home(props) {
                         {isLoggedIn && (
                             <p>
                                 <Link to="/testimonials">
-                                    <button className="btn btn-secondary">
+                                    <button
+                                    className="btn btn-primary"
+                                    style={{ background: "green" }}
+                                    >
                                         Submit A Testimonial!
                                     </button>
                                 </Link>
@@ -72,7 +75,10 @@ function Home(props) {
                         {isLoggedIn && admin && (
                             <p>
                                 <Link to="/testimonials/manage">
-                                    <button className="btn btn-danger">
+                                    <button
+                                    className="btn btn-primary"
+                                    style={{ background: "green" }}
+                                    >
                                         Manage Testimonials
                                     </button>
                                 </Link>

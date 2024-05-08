@@ -6,26 +6,36 @@ import './css/darkmode.css'
 import icon from './images/darkmode.png'
 import light from './images/lightmode.png'
 import Home from './app/Home'
+import Footer from './app/Footer'
+import useAuthService from './hooks/useAuthService'
 import ErrorNotification from './components/ErrorNotification'
 import { Routes, Route, BrowserRouter, Navigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { baseUrl } from './services/authService'
+
+import Pets from './app/Pets'
+import CreatePetForm from './components/CreatePetForm'
+import UpdatePet from './components/UpdatePet'
+
+import Services from './app/Services'
+import CreateService from './components/CreateService'
+import GetAllServices from './components/GetAllServices'
+import UpdateService from './components/UpdateService'
+import CreateAppt from './components/CreateAppt'
+
+import Testimonials from './app/Testimonials'
+import GetAllTestimonials from './components/GetAllTestimonials'
+
 import Community from './app/Community'
+import Profile from './components/Profile'
+import UpdateProfile from './components/UpdateProfile'
+import Meetups from './app/Meetups'
+import CreateMeetups from './components/CreateMeetups'
+
+
 import SignInForm from './app/SignInForm'
 import SignUpForm from './app/SignUpForm'
 import SignOut from './components/SignOut'
-import Services from './app/Services'
-import Testimonials from './app/Testimonials'
-import Dogs from './app/Dogs'
-import UpdatePet from './components/UpdatePet'
-import useAuthService from './hooks/useAuthService'
-import Footer from './app/Footer'
-import UpdateService from './components/UpdateService'
-import TestimonialsList from './components/GetAllTestimonials'
-import Profile from './components/Profile'
-import CreateAppt from './components/CreateAppt'
-import Meetups from './app/Meetups'
-import UpdateProfile from './components/UpdateProfile'
 
 function App() {
     const { user, isLoggedIn } = useAuthService()
@@ -138,16 +148,29 @@ function App() {
                             />
                         }
                     />
+
                     <Route
-                        path="/pets"
+                        path="/createpet"
                         element={
-                            <Dogs
+                            <CreatePetForm
                                 key={refresh}
                                 admin={admin}
                                 darkmode={darkMode}
                             />
                         }
                     />
+
+                    <Route
+                        path="/pets"
+                        element={
+                            <Pets
+                                key={refresh}
+                                admin={admin}
+                                darkmode={darkMode}
+                            />
+                        }
+                    />
+
                     <Route
                         path="/services"
                         element={
@@ -158,7 +181,72 @@ function App() {
                             />
                         }
                     />
-                    {/* sign up / sign in / sign out */}
+                    <Route
+                        path="/GetAllServices"
+                        element={<GetAllServices />}
+                    />
+                    <Route
+                        path="/createservice"
+                        element={
+                            <CreateService
+                                key={refresh}
+                                admin={admin}
+                                darkmode={darkMode}
+                            />
+                        }
+                    />
+
+                    <Route
+                        path="/updateservice/:serviceId"
+                        element={
+                            <UpdateService
+                                key={refresh}
+                                admin={admin}
+                                darkmode={darkMode}
+                            />
+                        }
+                    />
+
+                    <Route
+                        path="/testimonials"
+                        element={
+                            <Testimonials
+                                key={refresh}
+                                admin={admin}
+                                darkmode={darkMode}
+                            />
+                        }
+                    />
+
+                    <Route
+                        path="/testimonials/manage"
+                        element={<GetAllTestimonials />}
+                    />
+                    <Route
+                        path="/testimonials/manage"
+                        element={<GetAllTestimonials />}
+                    />
+                    <Route
+                        path="/meetups"
+                        element={
+                            <Meetups
+                                key={refresh}
+                                admin={admin}
+                                darkmode={darkMode}
+                            />
+                        }
+                    />
+                    <Route
+                        path="/meetups/create"
+                        element={
+                            <CreateMeetups
+                                key={refresh}
+                                admin={admin}
+                                darkmode={darkMode}
+                            />
+                        }
+                    />
+
                     {!isLoggedIn ? (
                         <>
                             <Route
@@ -225,7 +313,7 @@ function App() {
                             <Route
                                 path="/testimonials/manage"
                                 element={
-                                    <TestimonialsList darkmode={darkMode} />
+                                    <GetAllTestimonials darkmode={darkMode} />
                                 }
                             />
                             <Route

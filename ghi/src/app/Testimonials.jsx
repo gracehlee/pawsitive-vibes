@@ -1,5 +1,5 @@
 import '../css/Testimonials.css'
-import TestimonialForm from '../components/TestimonialsForm'
+import TestimonialForm from '../components/CreateTestimonialsForm'
 import useAuthService from '../hooks/useAuthService'
 import { Link } from 'react-router-dom'
 
@@ -14,7 +14,7 @@ function Testimonials(props) {
                 <div className="mt-4 text-center">
                     <span> </span>
                     <Link className="fontcolor" to="/">
-                        <button className="btn btn-danger">Back to Home</button>
+                        <button className="btn btn-primary">Back to Home</button>
                     </Link>
                 </div>
             </div>

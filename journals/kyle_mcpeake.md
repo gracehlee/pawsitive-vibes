@@ -58,7 +58,9 @@ Created Meetups table
 Created meetups.py, meetups_queries, meetups_router. Functions properly, no bugs detected
 Created src/app/Meetups.jsx
 Created src/components/CreateMeetups.jsx and GetAllMeetups.jsx
-
+CSS adjusted for Home, Pets, Testimonials and Community for some consistency
+Edited Testimonials.jsx  admin condition
+Added "back" button to testimonials/manage
 
 
 TODO: Location for appointments.
@@ -78,4 +80,20 @@ TODO: Create default admin on inital setup
 
 TODO: Create another table, meetups "attending referencing (new table)" with users attending
 
-TODO: Pet creation, success redirects and changes "dark mode" back to default
+
+TODO: Pull functions out such as "formatAge", because this is a date format we want to use across the entire project. Import "formatDate" and call it when needed
+
+
+TODO: Pull out all duplicate code from Pets. FetchData and separate it, passing in relevant pets as props to display
+
+TODO: Look at Testimonials, when in dark mode
+
+TODO: Organize App.jsx
+
+TODO: Dark mode makes text unreadable when updating pet
+
+TODO: Carosel images shift page size
+
+TODO: Profile, <h5> cannot appear as a descendant of <p>, after PetList
+
+TODO: UserPets edit redirects to the main "Pets" and not autofilling petFormData for simple update

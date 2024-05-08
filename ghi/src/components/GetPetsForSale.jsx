@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
 import { baseUrl } from '../services/authService'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
-export default function SaleList(props) {
+export default function PetList(props) {
     const admin = props.admin
+    const navigate = useNavigate()
 
     const [petColumns, setPetColumns] = useState([[], [], []])
 
@@ -38,7 +39,7 @@ export default function SaleList(props) {
                 const requests = []
                 for (let pet of data) {
                     let pet_id = pet.id
-                    // pet is not for sale
+                    // pet is for sale
                     if (pet.for_sale == true) {
                         const detailUrl = `${url}/${pet_id}`
                         requests.push(fetch(detailUrl))
@@ -64,6 +65,11 @@ export default function SaleList(props) {
         } catch (e) {
             console.error(e)
         }
+    }
+
+    const handleEdit = async (event) => {
+        let id = event.target.value
+        navigate(`/pets/${id}`)
     }
 
     const handleRemove = async (event) => {
@@ -136,23 +142,33 @@ export default function SaleList(props) {
                                     </h5>
                                     <p>&quot;{pets.description}&quot;</p>
                                 </div>
+
+                                <div className="text-center"></div>
+                                <br></br>
                                 <div className="text-center">
                                     {admin && (
-                                        <>
-                                            <Link to={`${pets.id}`}>
-                                                <button className="btn btn-primary">
-                                                    Edit
-                                                </button>
-                                            </Link>
-                                            <span> </span>
-                                            <button
-                                                className="btn btn-primary"
-                                                value={pets.id}
-                                                onClick={handleRemove}
-                                            >
-                                                Remove
-                                            </button>
-                                        </>
+                                        <button
+                                            type="button"
+                                            className="btn btn-primary"
+                                            value={pets.id}
+                                            onClick={handleEdit}
+                                            style={{
+                                                margin: '10px',
+                                                background: 'green',
+                                            }}
+                                        >
+                                            Edit
+                                        </button>
+                                    )}
+                                    {admin && (
+                                        <button
+                                            className="btn btn-primary"
+                                            value={pets.id}
+                                            onClick={handleRemove}
+                                            style={{ background: 'red' }}
+                                        >
+                                            Remove
+                                        </button>
                                     )}
                                 </div>
                             </div>

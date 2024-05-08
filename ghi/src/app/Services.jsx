@@ -1,65 +1,33 @@
 import 'bootstrap/dist/css/bootstrap.css'
-import ServiceForm from '../components/CreateService'
-import { useState } from 'react'
-import useAuthService from '../hooks/useAuthService'
-import ServiceList from '../components/ServiceList'
+import ServiceList from '../components/GetAllServices'
+import { useNavigate } from 'react-router-dom'
+
 
 function Services(props) {
-    // later this isLoggedIn logic should be replaced with
-    // logic to check for admin status instead.
     const admin = props.admin
-    const { isLoggedIn } = useAuthService()
     const darkmode = props.darkmode
-    const [refresh, setRefresh] = useState(false)
+    const navigate = useNavigate()
 
-    // const [pollService, setPollService] = useState(false)
-    const [createForm, setCreateForm] = useState(false)
-    const [closeForm, setCloseForm] = useState(true)
-    const handleCreateService = () => {
-        setCreateForm(true)
-        setCloseForm(false)
-        // setPollService(true)
-        setRefresh((prevRefresh) => !prevRefresh)
-    }
-
-    const handleCloseForm = () => {
-        setCreateForm(false)
-        setCloseForm(true)
-        // setPollService(false)
+    const handleNavigate = (event) => {
+        event.preventDefault()
+        navigate('/createservice')
     }
 
     return (
         <main className={`${darkmode ? ' darkmode' : ''}`}>
-            <div className="row">
-                <div className="text-center">
-                    <ServiceList pollService={refresh} admin={admin} />
+            <div className="text-center" style={{ margin: "20px" }}>
+                {admin && (
+                    <button
+                        className="btn btn-primary"
+                        style={{ background: 'green ' }}
+                        onClick={handleNavigate}
+                    >
+                        Add a Service
+                    </button>
+                )}
 
-                    {isLoggedIn && (
-                        <div>
-                            {createForm && <ServiceForm />}
-                            {closeForm && (
-                                <button
-                                    className="btn btn-secondary"
-                                    onClick={handleCreateService}
-                                >
-                                    Add Service
-                                </button>
-                            )}
-                        </div>
-                    )}
+                <ServiceList admin={admin} />
 
-                    <div>
-                        <br></br>
-                        {createForm && isLoggedIn && (
-                            <button
-                                className="btn btn-secondary"
-                                onClick={handleCloseForm}
-                            >
-                                Close Form
-                            </button>
-                        )}
-                    </div>
-                </div>
             </div>
         </main>
     )

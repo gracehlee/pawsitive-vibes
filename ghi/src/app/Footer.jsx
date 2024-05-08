@@ -60,7 +60,11 @@ export default function Footer() {
             )}
             {closeForm && (
                 <div className="text-center">
-                    <button className="btn btn-danger" onClick={handleOpenForm}>
+                    <button
+                        className="btn btn-primary"
+                        onClick={handleOpenForm}
+                        style={{ background: 'green' }}
+                    >
                         Contact Us
                     </button>
                 </div>
@@ -68,7 +72,7 @@ export default function Footer() {
             {form && (
                 <div className="text-center">
                     <button
-                        className="btn btn-secondary"
+                        className="btn btn-primary"
                         onClick={handleCloseForm}
                     >
                         Close Form

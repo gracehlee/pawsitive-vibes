@@ -155,7 +155,11 @@ function ContactForm() {
                         <label htmlFor="message">Message</label>
                     </div>
                     <div className="text-center">
-                        <button type="submit" className="btn btn-danger">
+                        <button
+                            type="submit"
+                            className="btn btn-primary"
+                            style={{ background: 'green' }}
+                        >
                             Submit
                         </button>
                     </div>

@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react'
 import { baseUrl } from '../services/authService'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import useAuthService from '../hooks/useAuthService'
 
 export default function PetList(props) {
     const admin = props.admin
     const { user } = useAuthService()
+    const navigate = useNavigate()
 
     const [petColumns, setPetColumns] = useState([[], [], []])
 
@@ -40,7 +41,7 @@ export default function PetList(props) {
                 const requests = []
                 for (let pet of data) {
                     let pet_id = pet.id
-                    // pet is not for sale
+                    // pet is for sale
                     if (pet.owner_id == user.id) {
                         const detailUrl = `${url}/${pet_id}`
                         requests.push(fetch(detailUrl))
@@ -66,6 +67,11 @@ export default function PetList(props) {
         } catch (e) {
             console.error(e)
         }
+    }
+
+    const handleEdit = async (event) => {
+        let id = event.target.value
+        navigate(`/pets/${id}`)
     }
 
     const handleRemove = async (event) => {
@@ -136,29 +142,35 @@ export default function PetList(props) {
                                         Description: {pets.description}
                                     </h5>
                                 </div>
+
+                                <div className="text-center"></div>
+                                <br></br>
                                 <div className="text-center">
                                     {user.id == pets.owner_id && (
-                                        <>
-                                            <Link to={`../pets/${pets.id}`}>
-                                                <button className="btn btn-primary">
-                                                    Edit
-                                                </button>
-                                            </Link>
-                                        </>
+                                        <button
+                                            type="button"
+                                            className="btn btn-primary"
+                                            value={pets.id}
+                                            onClick={handleEdit}
+                                            style={{
+                                                margin: '10px',
+                                                background: 'green',
+                                            }}
+                                        >
+                                            Edit
+                                        </button>
+                                    )}
+                                    {user.id == pets.owner_id && (
+                                        <button
+                                            className="btn btn-primary"
+                                            value={pets.id}
+                                            onClick={handleRemove}
+                                            style={{ background: 'red' }}
+                                        >
+                                            Remove
+                                        </button>
                                     )}
                                 </div>
-
-                                {admin &&
-                                    user.id ==
-                                        pets.owner_id(
-                                            <button
-                                                className="btn btn-primary"
-                                                value={pets.id}
-                                                onClick={handleRemove}
-                                            >
-                                                Remove
-                                            </button>
-                                        )}
                             </div>
                         </div>
                     )

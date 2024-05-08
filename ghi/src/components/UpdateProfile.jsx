@@ -204,7 +204,7 @@ export default function UpdateProfile(props) {
                             <label htmlFor="bio">Bio</label>
                         </div>
                         <div className="text-center">
-                            <button type="submit" className="btn btn-danger">
+                            <button type="submit" className="btn btn-primary" style={{ background: "green" }}>
                                 Submit
                             </button>
                         </div>
@@ -212,7 +212,7 @@ export default function UpdateProfile(props) {
                     </form>
                     <div className="text-center">
                         <Link className="fontcolor" to="/profile">
-                            <button className="btn btn-secondary">
+                            <button className="btn btn-primary">
                                 Back to Profile
                             </button>
                         </Link>
