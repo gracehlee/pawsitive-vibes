@@ -60,9 +60,6 @@ export default function CreateAppt() {
 
     async function handleFormSubmit(e) {
         e.preventDefault()
-
-        console.log('Submitting appointment data:', apptData)
-
         const res = await fetch(`${baseUrl}/api/appointments`, {
             method: 'post',
             credentials: 'include',
@@ -71,9 +68,6 @@ export default function CreateAppt() {
                 'Content-Type': 'application/json',
             },
         })
-
-        console.log('Response from server:', res)
-
         if (!res.ok) {
             throw new Error('Could not create appointment')
         }

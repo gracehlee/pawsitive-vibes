@@ -1,8 +1,12 @@
+import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { baseUrl } from '../services/authService'
 import '../css/ServiceList.css'
+import handleFormatDate from '../components/handleFormatDate'
+import handleFormatTime from '../components/handleFormatTime'
 
-export default function MeetupsList() {
+export default function MeetupsList(props) {
+    const admin = props.admin
     const [meetups, setMeetups] = useState([])
 
     const fetchData = async () => {
@@ -17,6 +21,29 @@ export default function MeetupsList() {
             }
         } catch (error) {
             console.error('Error fetching meetups:', error)
+        }
+    }
+
+    const navigate = useNavigate()
+    const handleEdit = async (event) => {
+        let id = event.target.value
+        navigate(`/meetups/${id}`)
+    }
+
+    const handleRemove = async (event) => {
+        event.preventDefault()
+        let id = event.target.value
+        const url = `${baseUrl}/api/meetups/${id}`
+        const fetchConfig = {
+            method: 'delete',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        }
+        const response = await fetch(url, fetchConfig)
+        if (response.ok) {
+            fetchData()
         }
     }
 
@@ -37,16 +64,45 @@ export default function MeetupsList() {
                                 <th>Time</th>
                                 <th>Description</th>
                                 <th>Location</th>
+                                <th style={{ width: '1px' }}></th>
+                                <th style={{ width: '1px' }}></th>
                             </tr>
                         </thead>
                         <tbody>
                             {meetups.map((meetups, index) => (
                                 <tr key={index}>
                                     <td>{meetups.name}</td>
-                                    <td>{meetups.date}</td>
-                                    <td>{meetups.time}</td>
+                                    <td>{handleFormatDate(meetups.date)}</td>
+                                    <td>{handleFormatTime(meetups.time)}</td>
                                     <td>{meetups.description}</td>
                                     <td>{meetups.location}</td>
+                                    {admin && (
+                                        <td>
+                                            <button
+                                                className="btn btn-primary"
+                                                style={{ background: 'green' }}
+                                                value={meetups.id}
+                                                onClick={handleEdit}
+                                            >
+                                                Edit
+                                            </button>
+                                        </td>
+                                    )}
+                                    {admin && (
+                                        <td>
+                                            <button
+                                                type="delete"
+                                                onClick={handleRemove}
+                                                value={meetups.id}
+                                                className="btn btn-primary"
+                                                style={{ background: 'red' }}
+                                            >
+                                                Remove
+                                            </button>
+                                        </td>
+                                    )}
+                                    {!admin && <td></td>}
+                                    {!admin && <td></td>}
                                 </tr>
                             ))}
                         </tbody>

@@ -1,12 +1,13 @@
-import { useState } from 'react'
+// @ts-check
+import { useState, useEffect } from 'react'
 import { baseUrl } from '../services/authService'
 import useAuthService from '../hooks/useAuthService'
 import { useNavigate } from 'react-router-dom'
 
-
-export default function CreateMeetup(props) {
-    const darkmode = props.darkmode
+export default function UpdateMeetupForm(props) {
     const { error } = useAuthService()
+    const darkmode = props.darkmode
+    const meetupsId = window.location.href.split('/').pop()
 
     const [meetupFormData, setMeetupFormData] = useState({
         name: '',
@@ -15,7 +16,6 @@ export default function CreateMeetup(props) {
         description: '',
         location: '',
     })
-
 
     const handleInputChange = (event) => {
         setMeetupFormData({
@@ -28,11 +28,12 @@ export default function CreateMeetup(props) {
      * @param {React.FormEvent<HTMLFormElement>} e
      */
 
+
     async function handleFormSubmit(e) {
         e.preventDefault()
 
-        const res = await fetch(`${baseUrl}/api/meetups`, {
-            method: 'post',
+        const res = await fetch(`${baseUrl}/api/meetups/${meetupsId}`, {
+            method: 'put',
             credentials: 'include',
             body: JSON.stringify(meetupFormData),
             headers: {
@@ -45,6 +46,17 @@ export default function CreateMeetup(props) {
             throw new Error('Could not create Meetup')
         }
     }
+
+    useEffect(() => {
+        async function fetchMeetupData() {
+            const response = await fetch(`${baseUrl}/api/meetups/${meetupsId}`)
+            if (response.ok) {
+                const meetup = await response.json()
+                setMeetupFormData(meetup)
+            }
+        }
+        fetchMeetupData()
+    }, [meetupsId])
 
     const navigate = useNavigate()
     const handleNavigate = () => {
@@ -74,6 +86,7 @@ export default function CreateMeetup(props) {
                             />
                             <label htmlFor="name">Name</label>
                         </div>
+
                         <div className="form-floating mb-3">
                             <input
                                 required

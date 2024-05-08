@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react'
 import { baseUrl } from '../services/authService'
 import useAuthService from '../hooks/useAuthService'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 export default function UpdatePetForm(props) {
     const { user, error } = useAuthService()
@@ -71,7 +71,15 @@ export default function UpdatePetForm(props) {
         if (admin) {
             navigate('/pets')
         } else {
-            navigate('/community')
+            navigate('/profile')
+        }
+    }
+
+    const handleNavigate = () => {
+        if (admin) {
+            navigate('/pets')
+        } else {
+            navigate('/profile')
         }
     }
 
@@ -206,17 +214,15 @@ export default function UpdatePetForm(props) {
                                 />
                                 <label htmlFor="image_url">Image URL</label>
                             </div>
-
                             <div className="text-center">
-                                <Link to="/pets">
-                                    <button
-                                        className="btn btn-primary"
-                                        type="button"
-                                        style={{ margin: '10px' }}
-                                    >
-                                        Back
-                                    </button>
-                                </Link>
+                                <button
+                                    className="btn btn-primary"
+                                    type="button"
+                                    style={{ margin: '10px' }}
+                                    onClick={handleNavigate}
+                                >
+                                    Back
+                                </button>
                                 <button
                                     type="submit"
                                     className="btn btn-primary"

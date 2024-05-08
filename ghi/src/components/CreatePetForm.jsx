@@ -77,7 +77,6 @@ export default function SellPetForm(props) {
             },
         })
         if (res.ok) {
-            console.log('Pet created successfully')
             setShowMessage(true)
             setPetFormData({
                 ...petFormData,

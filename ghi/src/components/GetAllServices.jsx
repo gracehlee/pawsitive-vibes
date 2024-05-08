@@ -28,9 +28,7 @@ export default function ServiceList(props) {
     const handleRemove = async (event) => {
         event.preventDefault()
         const serviceId = event.target.value
-        console.log("service id is:", serviceId)
         const url = `${baseUrl}/api/services/${serviceId}`
-        console.log("services url:", url)
         const fetchConfig = {
             method: 'delete',
             credentials: 'include',

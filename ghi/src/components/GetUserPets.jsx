@@ -1,30 +1,15 @@
 import { useEffect, useState } from 'react'
 import { baseUrl } from '../services/authService'
-import { useNavigate } from 'react-router-dom'
 import useAuthService from '../hooks/useAuthService'
+import { useNavigate } from 'react-router-dom'
+import handleAge from '../components/handleAge'
+import handleFormatDate from '../components/handleFormatDate'
 
 export default function PetList(props) {
     const admin = props.admin
     const { user } = useAuthService()
     const navigate = useNavigate()
-
     const [petColumns, setPetColumns] = useState([[], [], []])
-
-    function handleAge(birthday) {
-        var today = new Date()
-        var birthDate = new Date(birthday)
-        var age = today.getFullYear() - birthDate.getFullYear()
-        var m = today.getMonth() - birthDate.getMonth()
-        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-            age--
-        }
-        return age
-    }
-
-    function formatAge(birthday) {
-        const date = birthday.split('-')
-        return `${date[1]}/${date[2]}/${date[0]}`
-    }
 
     const fetchData = async () => {
         const url = `${baseUrl}/api/pets`
@@ -41,7 +26,7 @@ export default function PetList(props) {
                 const requests = []
                 for (let pet of data) {
                     let pet_id = pet.id
-                    // pet is for sale
+                    // pet owner id == user id
                     if (pet.owner_id == user.id) {
                         const detailUrl = `${url}/${pet_id}`
                         requests.push(fetch(detailUrl))
@@ -90,13 +75,12 @@ export default function PetList(props) {
             fetchData()
         }
     }
-
     function PetColumn(props) {
         return (
             <div className="col">
                 {props.list.map((pets, index) => {
                     return (
-                        <div key={index} className="card dog-card mb-3 shadow">
+                        <div key={index} className="card mb-3 shadow">
                             <img
                                 src={pets.picture_url}
                                 alt="Image failed to load"
@@ -133,7 +117,8 @@ export default function PetList(props) {
                                 {handleAge(pets.birthday) == 0 && (
                                     <div>
                                         <h5 className="card-subtitle">
-                                            Born: {formatAge(pets.birthday)}
+                                            Born:{' '}
+                                            {handleFormatDate(pets.birthday)}
                                         </h5>
                                     </div>
                                 )}
@@ -146,7 +131,7 @@ export default function PetList(props) {
                                 <div className="text-center"></div>
                                 <br></br>
                                 <div className="text-center">
-                                    {user.id == pets.owner_id && (
+                                    {admin && (
                                         <button
                                             type="button"
                                             className="btn btn-primary"
@@ -160,7 +145,7 @@ export default function PetList(props) {
                                             Edit
                                         </button>
                                     )}
-                                    {user.id == pets.owner_id && (
+                                    {admin && (
                                         <button
                                             className="btn btn-primary"
                                             value={pets.id}
@@ -181,6 +166,7 @@ export default function PetList(props) {
 
     useEffect(() => {
         fetchData()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (
