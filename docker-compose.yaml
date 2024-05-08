@@ -24,6 +24,7 @@ services:
             VITE_TEMPLATE_ID: ${VITE_TEMPLATE_ID}
             VITE_SERVICE_ID: ${VITE_SERVICE_ID}
             VITE_PV_EMAIL: ${VITE_PV_EMAIL}
+            VITE_GOOGLE_MAPS_API_KEY: ${VITE_GOOGLE_MAPS_API_KEY}
         build:
             context: api
             dockerfile: Dockerfile.dev

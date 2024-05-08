@@ -39,10 +39,8 @@ function TestimonialForm() {
     async function handleSubmit(event) {
         event.preventDefault()
 
-        // Reset form error
         setFormError(null)
 
-        // Validate rating
         if (!testimonialFormData.rating || testimonialFormData.rating === 0) {
             setFormError('Please provide a star rating before submitting.')
             return

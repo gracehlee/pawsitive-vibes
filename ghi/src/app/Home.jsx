@@ -5,7 +5,9 @@ import badge from '../images/assets/d1.png'
 import TestimonialsCarousel from '../components/TestimonialsCarousel'
 import ImageCarousel from '../components/ImageCarousel'
 import useAuthService from '../hooks/useAuthService'
+import ServiceAreaMap from '../components/ServiceAreaMap'
 import { Link } from 'react-router-dom'
+
 
 function Home(props) {
     const darkmode = props.darkmode
@@ -92,6 +94,7 @@ function Home(props) {
                                 style={{ height: 'auto', width: '10vw' }}
                             />
                         </Link>
+                        <ServiceAreaMap />
                     </div>
                 </div>
             </div>
