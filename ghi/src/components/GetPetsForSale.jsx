@@ -3,10 +3,12 @@ import { baseUrl } from '../services/authService'
 import { useNavigate } from 'react-router-dom'
 import handleAge from '../components/handleAge'
 import handleFormatDate from '../components/handleFormatDate'
+import useAuthService from '../hooks/useAuthService'
 
 export default function PetList(props) {
     const admin = props.admin
     const navigate = useNavigate()
+    const { isLoggedIn } = useAuthService()
     const [petColumns, setPetColumns] = useState([[], [], []])
 
     const fetchData = async () => {
@@ -128,41 +130,41 @@ export default function PetList(props) {
                                       </h5>
                                   </div>
 
-                                  <div className="text-center"></div>
-                                  <br></br>
-                                  <div className="text-center">
-                                      {admin && (
-                                          <button
-                                              type="button"
-                                              className="btn btn-primary"
-                                              value={pets.id}
-                                              onClick={handleEdit}
-                                              style={{
-                                                  margin: '10px',
-                                                  background: 'green',
-                                              }}
-                                          >
-                                              Edit
-                                          </button>
-                                      )}
-                                      {admin && (
-                                          <button
-                                              className="btn btn-primary"
-                                              value={pets.id}
-                                              onClick={handleRemove}
-                                              style={{ background: 'red' }}
-                                          >
-                                              Remove
-                                          </button>
-                                      )}
-                                  </div>
-                              </div>
-                          </div>
-                      )
-                  })}
-              </div>
-          )
-      }
+                                <div className="text-center"></div>
+                                <br></br>
+                                <div className="text-center">
+                                    {isLoggedIn && admin && (
+                                        <button
+                                            type="button"
+                                            className="btn btn-primary"
+                                            value={pets.id}
+                                            onClick={handleEdit}
+                                            style={{
+                                                margin: '10px',
+                                                background: 'green',
+                                            }}
+                                        >
+                                            Edit
+                                        </button>
+                                    )}
+                                    {isLoggedIn && admin && (
+                                        <button
+                                            className="btn btn-primary"
+                                            value={pets.id}
+                                            onClick={handleRemove}
+                                            style={{ background: 'red' }}
+                                        >
+                                            Remove
+                                        </button>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+                    )
+                })}
+            </div>
+        )
+    }
 
     useEffect(() => {
         fetchData()

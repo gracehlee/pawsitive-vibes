@@ -10,6 +10,7 @@ import about from '../images/assets/p1.png'
 function Profile(props) {
     const { isLoggedIn, user } = useAuthService()
     const darkmode = props.darkmode
+    const admin = props.admin
     const [userData, setUserData] = useState({
         name: '',
         username: '',
@@ -94,23 +95,49 @@ function Profile(props) {
                     <div className="col-md-8">
                         <div className=" mb-3">
                             <div className="card-body">
-                                <h5 className="card-title">
-                                    <b>User:</b> {userData.username}
+                                <h5
+                                    className="card-title"
+                                    style={{ fontSize: '30px' }}
+                                >
+                                    {userData.username}
                                 </h5>
                                 <p className="card-text">
-                                    <b>Name:</b> {userData.name}
+                                    <br />
+                                    <b>Name:</b>
+                                    <div
+                                        className="alert alert-primary"
+                                        style={{
+                                            paddingLeft: '20px',
+                                            paddingRight: '20px',
+                                            paddingTop: '20px',
+                                            paddingBottom: '20px',
+                                        }}
+                                    >
+                                        {userData.name}
+                                    </div>
                                 </p>
                                 <p className="card-text">
-                                    <b>Bio:</b> {userData.bio}
-                                    <img
-                                        src={about}
-                                        alt="profile"
-                                        className=""
+                                    <b>Bio:</b>{' '}
+                                    <div
+                                        className="card alert alert-primary"
                                         style={{
-                                            maxHeight: 'auto',
-                                            maxWidth: '100%',
+                                            paddingLeft: '20px',
+                                            paddingRight: '20px',
+                                            paddingTop: '20px',
+                                            paddingBottom: '20px',
                                         }}
-                                    />
+                                    >
+                                        {userData.bio}
+                                        <img
+                                            src={about}
+                                            alt="profile"
+                                            className=""
+                                            style={{
+                                                maxHeight: 'auto',
+                                                maxWidth: '100%',
+                                            }}
+                                        />
+                                    </div>
                                 </p>
                                 <Link
                                     className="fontcolor"
@@ -139,22 +166,26 @@ function Profile(props) {
                         </div>
                     </div>
                 </div>
+                <br />
+                <br />
+                <br />
                 {isLoggedIn && (
                     <div className="row">
                         <div className="col-md-12 text-center">
                             <h2>My Pets</h2>
                             <PetList />
-
-                            <button
-                                className="btn btn-primary"
-                                onClick={handleNavigate}
-                            >
-                                Add a Pet
-                            </button>
-
+                            <br />
                             <br />
                         </div>
                     </div>
+                )}
+                {isLoggedIn && !admin && (
+                    <button
+                        className="btn btn-primary"
+                        onClick={handleNavigate}
+                    >
+                        Add a Pet
+                    </button>
                 )}
             </div>
         </main>

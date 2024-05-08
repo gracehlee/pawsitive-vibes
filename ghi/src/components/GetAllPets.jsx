@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { baseUrl } from '../services/authService'
+import useAuthService from '../hooks/useAuthService'
 import { useNavigate } from 'react-router-dom'
 import handleAge from '../components/handleAge'
 import handleFormatDate from '../components/handleFormatDate'
@@ -7,6 +8,8 @@ import handleFormatDate from '../components/handleFormatDate'
 export default function PetList(props) {
     const admin = props.admin
     const navigate = useNavigate()
+    const { isLoggedIn } = useAuthService()
+
     const [petColumns, setPetColumns] = useState([[], [], []])
 
     const fetchData = async () => {
@@ -129,7 +132,7 @@ export default function PetList(props) {
                                 <div className="text-center"></div>
                                 <br></br>
                                 <div className="text-center">
-                                    {admin && (
+                                    {isLoggedIn && admin && (
                                         <button
                                             type="button"
                                             className="btn btn-primary"
@@ -140,7 +143,7 @@ export default function PetList(props) {
                                             Edit
                                         </button>
                                     )}
-                                    {admin && (
+                                    {isLoggedIn && admin && (
                                         <button
                                             className="btn btn-primary"
                                             value={pets.id}

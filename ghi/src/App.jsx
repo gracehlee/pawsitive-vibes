@@ -12,7 +12,6 @@ import CreatePetForm from './components/CreatePetForm'
 import CreateService from './components/CreateService'
 import ErrorNotification from './components/ErrorNotification'
 import Footer from './app/Footer'
-import GetAllServices from './components/GetAllServices'
 import GetAllTestimonials from './components/GetAllTestimonials'
 import Home from './app/Home'
 import Meetups from './app/Meetups'
@@ -133,16 +132,15 @@ function App() {
                         element={<Home darkmode={darkMode} admin={admin} />}
                     />
                     <Route
-                        path="/createpet"
+                        path="/meetups"
                         element={
-                            <CreatePetForm
+                            <Meetups
                                 key={refresh}
                                 admin={admin}
                                 darkmode={darkMode}
                             />
                         }
                     />
-
                     <Route
                         path="/pets"
                         element={
@@ -153,7 +151,6 @@ function App() {
                             />
                         }
                     />
-
                     <Route
                         path="/services"
                         element={
@@ -164,11 +161,6 @@ function App() {
                             />
                         }
                     />
-                    <Route
-                        path="/GetAllServices"
-                        element={<GetAllServices />}
-                    />
-
                     {!isLoggedIn ? (
                         <>
                             <Route
@@ -246,16 +238,6 @@ function App() {
                                 path="/testimonials/manage"
                                 element={
                                     <GetAllTestimonials darkmode={darkMode} />
-                                }
-                            />
-                            <Route
-                                path="/meetups"
-                                element={
-                                    <Meetups
-                                        key={refresh}
-                                        admin={admin}
-                                        darkmode={darkMode}
-                                    />
                                 }
                             />
                             <Route

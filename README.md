@@ -1,4 +1,4 @@
-# Module3 Project Gamma
+# Pawsitive Vibes Dog Training Co.
 
 ## Getting started
 

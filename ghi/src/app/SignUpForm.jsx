@@ -2,11 +2,11 @@
 import { useState } from 'react'
 import { Navigate, Link } from 'react-router-dom'
 import useAuthService from '../hooks/useAuthService'
-import { PV_EMAIL } from '../../config'
 
 export default function SignInForm(props) {
     const { signup, user } = useAuthService()
     const darkmode = props.darkmode
+    const PV_EMAIL = import.meta.env.VITE_PV_EMAIL
 
     const [userFormData, setUserFormData] = useState({
         username: '',

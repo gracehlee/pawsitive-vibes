@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import useAuthService from '../hooks/useAuthService'
 import { baseUrl } from '../services/authService'
 import emailjs from '@emailjs/browser'
-import { PUBLIC_KEY, TEMPLATE_ID, SERVICE_ID, PV_EMAIL } from '../../config'
 
 function ContactForm() {
     const { error, user, isLoggedIn } = useAuthService()
@@ -15,6 +14,11 @@ function ContactForm() {
 
     const [userError, setUserError] = useState('')
     const [userSuccess, setUserSuccess] = useState('')
+
+    const SERVICE_ID = import.meta.env.VITE_SERVICE_ID
+    const TEMPLATE_ID = import.meta.env.VITE_TEMPLATE_ID
+    const PUBLIC_KEY = import.meta.env.VITE_PUBLIC_KEY
+    const PV_EMAIL = import.meta.env.VITE_PV_EMAIL
 
     useEffect(() => {
         if (isLoggedIn) {
@@ -123,8 +127,12 @@ function ContactForm() {
                             value={contactFormData.from_name}
                             name="from_name"
                             onChange={handleInputChange}
-                            className="form-control placeholder fontcolor"
+                            className="form-control"
                             placeholder="Name"
+                            style={{
+                                color: 'white',
+                                backgroundColor: 'transparent',
+                            }}
                         />
                         <label htmlFor="name">Name</label>
                     </div>
@@ -137,7 +145,11 @@ function ContactForm() {
                             type="text"
                             name="user_email"
                             id="email"
-                            className="form-control placeholder fontcolor"
+                            className="form-control"
+                            style={{
+                                color: 'white',
+                                backgroundColor: 'transparent',
+                            }}
                         />
                         <label htmlFor="email">Email</label>
                     </div>
@@ -150,7 +162,11 @@ function ContactForm() {
                             type="text"
                             name="message"
                             id="message"
-                            className="form-control placeholder fontcolor"
+                            className="form-control"
+                            style={{
+                                color: 'white',
+                                backgroundColor: 'transparent',
+                            }}
                         />
                         <label htmlFor="message">Message</label>
                     </div>

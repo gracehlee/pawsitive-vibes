@@ -56,6 +56,7 @@ export default function MeetupsList(props) {
             <div className="px-4 py-5 my-5 text-center">
                 <div>
                     <h1 className="display-5 fw-bold">Meetups</h1>
+                    <br />
                     <table className="table table-striped table-hover">
                         <thead>
                             <tr>

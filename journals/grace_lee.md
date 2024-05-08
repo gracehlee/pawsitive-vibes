@@ -279,4 +279,6 @@ TO DO:
 Today I worked on:
 
 - resolving merge conflicts
-- fixing darkmode css
+- fixing darkmode css and other minor css
+- refactor App.jsx
+- move config.js content to .env

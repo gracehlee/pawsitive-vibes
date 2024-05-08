@@ -49,7 +49,9 @@ function UpdateProfilePic(props) {
     return (
         <main className={`${darkmode ? ' darkmode' : ''}`}>
             <div className="text-center">
-                <h1>Upload File</h1>
+                <h1>Upload Profile Picture</h1>
+                <br />
+                <br />
                 <div className="error">
                     {userError && (
                         <div className="alert alert-danger">{userError}</div>
@@ -87,7 +89,8 @@ function UpdateProfilePic(props) {
                     </button>
                 </form>
                 <div className="text-center">
-                    <br></br>
+                    <br />
+                    <br />
                     <Link className="fontcolor" to="/profile">
                         <button className="btn btn-primary">
                             Back to Profile
