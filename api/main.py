@@ -12,7 +12,7 @@ from routers import (
     services_router,
     testimonials_router,
     appointment_router,
-    meetups_router
+    meetups_router,
 )
 import os
 
@@ -33,6 +33,7 @@ app.include_router(services_router.router)
 app.include_router(appointment_router.router)
 app.include_router(testimonials_router.router)
 app.include_router(meetups_router.router)
+
 
 UPLOAD_DIR = Path('static/profile_images')
 
@@ -56,5 +57,14 @@ async def get_profile_image(id: int):
     image_path = UPLOAD_DIR / f"{id}.png"
     if not image_path.is_file():
         return {"error": "Profile image not found"}
+
+    return FileResponse(str(image_path), media_type='image/png')
+
+
+@app.get('/service_image/{id}')
+async def get_service_image(id: int):
+    image_path = UPLOAD_DIR / f"{id}.png"
+    if not image_path.is_file():
+        return {"error": "Service image not found"}
 
     return FileResponse(str(image_path), media_type='image/png')

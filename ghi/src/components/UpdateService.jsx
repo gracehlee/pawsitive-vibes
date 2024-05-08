@@ -4,8 +4,7 @@ import { baseUrl } from '../services/authService'
 import '../css/UpdateService.css'
 import { useNavigate } from 'react-router-dom'
 
-
-export default function UpdateService(props) {
+export default function UpdateServiceWithPicture(props) {
     const darkmode = props.darkmode
     const navigate = useNavigate()
     const { serviceId } = useParams()
@@ -20,6 +19,7 @@ export default function UpdateService(props) {
 
     const [showMessage, setShowMessage] = useState('')
     const [alert, setAlert] = useState('')
+    const [file, setFile] = useState(null)
 
     useEffect(() => {
         const fetchService = async () => {
@@ -44,11 +44,39 @@ export default function UpdateService(props) {
         setService({ ...service, [name]: value })
     }
 
+    const handleFileInputChange = (event) => {
+        setFile(event.target.files[0])
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault()
+        const formData = new FormData()
+        formData.append('file_upload', file)
+
+        const fileName = `${serviceId}.png`
+
+        formData.append('filename', fileName)
+
         try {
-            const url = `${baseUrl}/api/services/${serviceId}`
-            const res = await fetch(url, {
+            const uploadEndpoint = `${baseUrl}/upload/`
+            const uploadResponse = await fetch(uploadEndpoint, {
+                method: 'POST',
+                credentials: 'include',
+                body: formData,
+            })
+
+            if (!uploadResponse.ok) {
+                console.error(
+                    'Error uploading file:',
+                    uploadResponse.statusText
+                )
+                setAlert('danger')
+                setShowMessage('Error uploading file.')
+                return
+            }
+
+            const updateEndpoint = `${baseUrl}/api/services/${serviceId}`
+            const updateResponse = await fetch(updateEndpoint, {
                 method: 'PUT',
                 credentials: 'include',
                 headers: {
@@ -56,15 +84,19 @@ export default function UpdateService(props) {
                 },
                 body: JSON.stringify(service),
             })
-            if (res.ok) {
+
+            if (updateResponse.ok) {
                 navigate('/services')
             } else {
-                console.error('Error updating service:', res.statusText)
+                console.error(
+                    'Error updating service:',
+                    updateResponse.statusText
+                )
                 setAlert('danger')
                 setShowMessage('Error updating service.')
             }
         } catch (error) {
-            console.error('Error updating service:', error)
+            console.error('Error:', error)
             setAlert('danger')
             setShowMessage('Error updating service.')
         }
@@ -106,16 +138,16 @@ export default function UpdateService(props) {
                         ></textarea>
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="picture_url" className="form-label">
-                            Picture URL
+                        <label htmlFor="file_upload" className="form-label">
+                            Upload Picture
                         </label>
                         <input
-                            type="text"
+                            type="file"
                             className="form-control"
-                            id="picture_url"
-                            name="picture_url"
-                            value={service.picture_url}
-                            onChange={handleChange}
+                            id="file_upload"
+                            name="file_upload"
+                            accept=".jpeg, .png, .jpg"
+                            onChange={handleFileInputChange}
                         />
                     </div>
                     <div className="mb-3">
@@ -161,13 +193,14 @@ export default function UpdateService(props) {
                         className="button-container"
                         style={{ marginBottom: '20px' }}
                     >
-                        <Link to="/services"
-                        className="btn btn-primary">
+                        <Link to="/services" className="btn btn-primary">
                             Go Back
                         </Link>
-                        <button type="submit"
-                        className="btn btn-primary"
-                        style={{ background: "green" }}>
+                        <button
+                            type="submit"
+                            className="btn btn-primary"
+                            style={{ background: 'green' }}
+                        >
                             Submit
                         </button>
                     </div>
@@ -176,3 +209,5 @@ export default function UpdateService(props) {
         </main>
     )
 }
+
+
