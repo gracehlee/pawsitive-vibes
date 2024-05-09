@@ -30,7 +30,6 @@ export default function CreateMeetup(props) {
 
     async function handleFormSubmit(e) {
         e.preventDefault()
-
         const res = await fetch(`${baseUrl}/api/meetups`, {
             method: 'post',
             credentials: 'include',
