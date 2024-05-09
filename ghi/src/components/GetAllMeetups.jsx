@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { baseUrl } from '../services/authService'
+import useAuthService from '../hooks/useAuthService'
 import '../css/ServiceList.css'
 import handleFormatDate from '../components/handleFormatDate'
 import handleFormatTime from '../components/handleFormatTime'
@@ -8,10 +9,10 @@ import handleFormatTime from '../components/handleFormatTime'
 export default function MeetupsList(props) {
     const admin = props.admin
     const [meetups, setMeetups] = useState([])
-
+    const { isLoggedIn } = useAuthService()
     const fetchData = async () => {
         try {
-            const url = `${baseUrl}/api/meetups`
+            const url = `${baseUrl}/api/meetups?timestamp=${Date.now()}`
             const res = await fetch(url)
             if (res.ok) {
                 const data = await res.json()
@@ -30,10 +31,9 @@ export default function MeetupsList(props) {
         navigate(`/meetups/${id}`)
     }
 
-    const handleRemove = async (event) => {
+    const handleRemove = async (event, meetupsId) => {
         event.preventDefault()
-        let id = event.target.value
-        const url = `${baseUrl}/api/meetups/${id}`
+        const url = `${baseUrl}/api/meetups/${meetupsId}`
         const fetchConfig = {
             method: 'delete',
             credentials: 'include',
@@ -43,7 +43,9 @@ export default function MeetupsList(props) {
         }
         const response = await fetch(url, fetchConfig)
         if (response.ok) {
-            fetchData()
+            setMeetups((prevMeetUps) =>
+                prevMeetUps.filter((meetups) => meetups.id !== meetupsId)
+            )
         }
     }
 
@@ -77,7 +79,7 @@ export default function MeetupsList(props) {
                                     <td>{handleFormatTime(meetups.time)}</td>
                                     <td>{meetups.description}</td>
                                     <td>{meetups.location}</td>
-                                    {admin && (
+                                    {isLoggedIn && admin && (
                                         <td>
                                             <button
                                                 className="btn btn-primary"
@@ -89,11 +91,13 @@ export default function MeetupsList(props) {
                                             </button>
                                         </td>
                                     )}
-                                    {admin && (
+                                    {isLoggedIn && admin && (
                                         <td>
                                             <button
                                                 type="delete"
-                                                onClick={handleRemove}
+                                                onClick={(e) =>
+                                                    handleRemove(e, meetups.id)
+                                                }
                                                 value={meetups.id}
                                                 className="btn btn-primary"
                                                 style={{ background: 'red' }}

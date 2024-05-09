@@ -4,9 +4,10 @@ import { baseUrl } from '../services/authService'
 import useAuthService from '../hooks/useAuthService'
 import { useNavigate } from 'react-router-dom'
 
-export default function UpdateMeetupForm(props) {
+export default function UpdateMeetups(props) {
     const { error } = useAuthService()
     const darkmode = props.darkmode
+
     const meetupsId = window.location.href.split('/').pop()
 
     const [meetupFormData, setMeetupFormData] = useState({
@@ -27,7 +28,6 @@ export default function UpdateMeetupForm(props) {
     /**
      * @param {React.FormEvent<HTMLFormElement>} e
      */
-
 
     async function handleFormSubmit(e) {
         e.preventDefault()
@@ -67,7 +67,13 @@ export default function UpdateMeetupForm(props) {
         <main className={`${darkmode ? ' darkmode' : ''}`}>
             <div className="container">
                 <div className="row shadow mt-4">
-                    <h1 className="card-title text-center">Add a Meetup</h1>
+                    <h1
+                        className="card-title text-center"
+                        style={{ paddingTop: '20px', paddingBottom: '20px' }}
+                    >
+                        Add a Meetup
+                    </h1>
+
                     <form onSubmit={handleFormSubmit}>
                         {error && (
                             <div className="alert alert-danger">

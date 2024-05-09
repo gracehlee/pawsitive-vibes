@@ -291,3 +291,5 @@ Today I worked on:
 - reformatted Home page so that the image carousel and testimonials carousel are side by side
 - fixed some minor css and formatting issues
 - GHI diagrams for README.md
+
+Currently, our admin verification has been set up on the front-end side. Due to that, there could be potential security issues if potential bad actors were to manipulate the client-side to access admin features. Originally I had wanted to implement a page with a GET request for all users for the admin to access, but I will hold off on this feature until we refactor our admin verification later.

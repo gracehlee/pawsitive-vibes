@@ -27,6 +27,7 @@ import UpdatePet from './components/UpdatePet'
 import UpdateProfile from './components/UpdateProfile'
 import UpdateProfilePic from './components/UpdateProfilePic'
 import UpdateService from './components/UpdateService'
+import UpdateMeetups from './components/UpdateMeetups'
 import useAuthService from './hooks/useAuthService'
 import { baseUrl } from './services/authService'
 import { useState, useEffect } from 'react'
@@ -132,16 +133,15 @@ function App() {
                         element={<Home darkmode={darkMode} admin={admin} />}
                     />
                     <Route
-                        path="/createpet"
+                        path="/meetups"
                         element={
-                            <CreatePetForm
+                            <Meetups
                                 key={refresh}
                                 admin={admin}
                                 darkmode={darkMode}
                             />
                         }
                     />
-
                     <Route
                         path="/pets"
                         element={
@@ -152,7 +152,6 @@ function App() {
                             />
                         }
                     />
-
                     <Route
                         path="/services"
                         element={
@@ -165,16 +164,6 @@ function App() {
                     />
                     {!isLoggedIn ? (
                         <>
-                            <Route
-                                path="/meetups"
-                                element={
-                                    <Meetups
-                                        key={refresh}
-                                        admin={admin}
-                                        darkmode={darkMode}
-                                    />
-                                }
-                            />
                             <Route
                                 path="/signup"
                                 element={<SignUpForm darkmode={darkMode} />}
@@ -253,9 +242,9 @@ function App() {
                                 }
                             />
                             <Route
-                                path="/meetups"
+                                path="/meetups/create"
                                 element={
-                                    <Meetups
+                                    <CreateMeetups
                                         key={refresh}
                                         admin={admin}
                                         darkmode={darkMode}
@@ -263,9 +252,9 @@ function App() {
                                 }
                             />
                             <Route
-                                path="/meetups/create"
+                                path="/meetups/:id"
                                 element={
-                                    <CreateMeetups
+                                    <UpdateMeetups
                                         key={refresh}
                                         admin={admin}
                                         darkmode={darkMode}
@@ -342,6 +331,10 @@ function App() {
                             />
                             <Route
                                 path="/meetups/create"
+                                element={<Navigate to="/" />}
+                            />
+                            <Route
+                                path="/meetups/:id"
                                 element={<Navigate to="/" />}
                             />
                             <Route

@@ -1,3 +1,10 @@
 [Return to README](../README.md)
 
-( WIP. Will work on diagrams soon.)
+# Graphical Human Interface Diagrams
+
+## Home Page
+
+### Logged Out
+
+
+### Logged In
