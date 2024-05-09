@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 import { baseUrl } from '../services/authService'
 import useAuthService from '../hooks/useAuthService'
 import '../css/ServiceList.css'
@@ -25,9 +25,8 @@ export default function ServiceList(props) {
         }
     }
 
-    const handleRemove = async (event) => {
+    const handleRemove = async (event, serviceId) => {
         event.preventDefault()
-        const serviceId = event.target.value
         const url = `${baseUrl}/api/services/${serviceId}`
         const fetchConfig = {
             method: 'delete',
@@ -38,7 +37,9 @@ export default function ServiceList(props) {
         }
         const response = await fetch(url, fetchConfig)
         if (response.ok) {
-            fetchData()
+            setServices((prevServices) =>
+                prevServices.filter((service) => service.id !== serviceId)
+            )
         }
     }
 
@@ -139,7 +140,7 @@ export default function ServiceList(props) {
                                     <td>
                                         <button
                                             type="delete"
-                                            onClick={handleRemove}
+                                            onClick={(e) => handleRemove(e, service.id)}
                                             value={service.id}
                                             className="btn btn-primary"
                                             style={{ background: 'red' }}
@@ -155,12 +156,6 @@ export default function ServiceList(props) {
                                 {!user && <td></td>}
                                 {user && (
                                     <td>
-                                        {/* <button
-                                            className="btn btn-primary"
-                                            style={{ background: 'green' }}
-                                        >
-                                            Request Appointment
-                                        </button> */}
                                         <a
                                             href={service.calendly_url}
                                             className="btn btn-primary"
@@ -180,4 +175,5 @@ export default function ServiceList(props) {
         </main>
     )
 }
+
 

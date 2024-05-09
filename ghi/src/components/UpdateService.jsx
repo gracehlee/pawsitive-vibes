@@ -58,7 +58,7 @@ export default function UpdateServiceWithPicture(props) {
         formData.append('filename', fileName)
 
         try {
-            const uploadEndpoint = `${baseUrl}/upload/`
+            const uploadEndpoint = `${baseUrl}/upload_service_image/`
             const uploadResponse = await fetch(uploadEndpoint, {
                 method: 'POST',
                 credentials: 'include',
