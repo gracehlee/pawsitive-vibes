@@ -14,7 +14,6 @@ Submitting user endpoints
 Working on Frontend for user signup form
 Created user signup form with additional fields, in SignUpForm.jsx
 Group is working on the POST form for each endpoint, while Grace works on frontend Navigation connecting them
-Group is working on the POST form for each endpoint, while Grace works on frontend Navigation connecting them
 Working on POST for pets, CreatePetForm.jsx
 "for_sale" Checkbox results in boolean value added to form
 Price input is displayed when "for_sale" is checked (true)
@@ -23,9 +22,6 @@ Refactored tables for additional fields and updated all corresponding code so en
 Removed "age" from pets, in all corresponding code
 Required fields on CreatePetForm, so pets submits properly and receives 200 OK response
 Added "date" and "time" to appointments table
-Changed Appointment table "event" to "service_id" and referenced services table "id", ON DELETE RESTRICT to preserve appointments
-Changed Appointment table "user_id" to reference users ("id"), ON DELETE RESTRICT to preserve appointments
-Removed test print statements
 Changed Appointment table "event" to "service_id" and referenced services table "id", ON DELETE RESTRICT to preserve appointments
 Changed Appointment table "user_id" to reference users ("id"), ON DELETE RESTRICT to preserve appointments
 Removed test print statements
@@ -48,13 +44,9 @@ Created src/components/CreateMeetups.jsx and GetAllMeetups.jsx
 ## 5.6.2024 - 5.10.2024
 CSS adjusted for Home, Pets, Testimonials and Community for some consistency
 Debugged multiple errors and made corrections
-Debugged multiple errors and made corrections
 Edited Testimonials.jsx  admin condition
 Added "back" button to forms
 Added update and delete functionality to Meetups as admin
-Refactored date and time functions from Pets components to imported and used where needed
-Created Unit tests for ____________
-Added target="_blank" rel="noreferrer" to footer links
 
 
 Debugging TODO:
@@ -69,6 +61,7 @@ TODO: Consolidate CreatePetForm and SellPetForm, add conditional statements
 TODO: Confirm deletion with popup
 TODO: Create default admin on inital setup
 TODO: Create another table, meetups "attending referencing (new table)" with users attending
+TODO: Pull functions out such as "formatAge", because this is a date format we want to use across the entire project. Import "formatDate" and call it when needed
 TODO: Pull out all duplicate code from Pets. FetchData and separate it, passing in relevant pets as props to display
 TODO: Look at Testimonials, when in dark mode
 TODO: Would you like to receive a phone call or email confirmation if approved?

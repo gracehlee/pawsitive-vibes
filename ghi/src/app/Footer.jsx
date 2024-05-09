@@ -32,19 +32,11 @@ export default function Footer() {
             </div>
             <br></br>
             <div className="text-center">
-                <a
-                    href="https://www.facebook.com/people/Pawsitive-Vibes-Dog-Training-LLC/100083097112386/"
-                    target="_blank"
-                    rel="noreferrer"
-                >
+                <a href="https://www.facebook.com/people/Pawsitive-Vibes-Dog-Training-LLC/100083097112386/">
                     <img src={FB_Logo} height="30" />
                 </a>
                 <span> </span>
-                <a
-                    href="https://www.instagram.com/pawsitive_vibes_dt/"
-                    target="_blank"
-                    rel="noreferrer"
-                >
+                <a href="https://www.instagram.com/pawsitive_vibes_dt/">
                     <img src={IG_Logo} height="30" />
                 </a>
                 <span> </span>
