@@ -1,14 +1,15 @@
 .image-carousel-container {
-    width: 60%;
+    width: 500px;
     margin: 20px auto;
 }
 
 .carousel-image {
-    max-width: auto;
-    max-height: 40vh;
+    width: 500px;
+    height: 500px;
     margin: auto;
     cursor: pointer;
     border-radius: 10px;
+    object-fit: cover;
 }
 
 .modal-image {

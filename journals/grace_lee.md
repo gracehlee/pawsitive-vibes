@@ -282,3 +282,4 @@ Today I worked on:
 - fixing darkmode css and other minor css
 - refactor App.jsx
 - move config.js content to .env
+- set up README.md for our project

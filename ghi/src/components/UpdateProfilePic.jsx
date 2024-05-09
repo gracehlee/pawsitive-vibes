@@ -67,14 +67,13 @@ function UpdateProfilePic(props) {
                 </div>
                 <form onSubmit={handleSubmit}>
                     <div
-                        style={{
-                            marginBottom: '20px',
-                            marginLeft: '200px',
-                            textAlign: 'center',
-                        }}
+                        className="mb-3"
+                        style={{ paddingLeft: '35vw', paddingRight: '35vw' }}
                     >
                         <input
                             type="file"
+                            className="form-control"
+                            id="file_upload"
                             name={id}
                             accept=".jpeg, .png, .jpg"
                             onChange={handleFileInputChange}

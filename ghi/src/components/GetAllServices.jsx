@@ -113,6 +113,7 @@ export default function ServiceList(props) {
                                             src={serviceImages[service.id]}
                                             className="img-fluid img-thumbnail"
                                             alt="Service"
+                                            style={{ height: '100px' }}
                                         />
                                     ) : (
                                         <span>No Image</span>
@@ -140,7 +141,9 @@ export default function ServiceList(props) {
                                     <td>
                                         <button
                                             type="delete"
-                                            onClick={(e) => handleRemove(e, service.id)}
+                                            onClick={(e) =>
+                                                handleRemove(e, service.id)
+                                            }
                                             value={service.id}
                                             className="btn btn-primary"
                                             style={{ background: 'red' }}
@@ -151,8 +154,6 @@ export default function ServiceList(props) {
                                 )}
                                 {!admin && <td></td>}
                                 {!admin && <td></td>}
-                                {!user && <td></td>}
-                                {!user && <td></td>}
                                 {!user && <td></td>}
                                 {user && (
                                     <td>
@@ -175,5 +176,3 @@ export default function ServiceList(props) {
         </main>
     )
 }
-
-

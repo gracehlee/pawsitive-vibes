@@ -51,7 +51,7 @@ main.darkmode {
 }
 
 .fontcolor {
-    color: white;
+    color: white !important;
     background-color: transparent;
 }
 
@@ -75,9 +75,5 @@ main.darkmode ::placeholder {
 
 main.darkmode .form-control {
     color: white;
-    background-color: transparent;
-}
-
-div.darkmode {
     background-color: transparent;
 }

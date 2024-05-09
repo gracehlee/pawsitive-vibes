@@ -1,153 +1,126 @@
 # Pawsitive Vibes Dog Training Co.
 
-## Getting started
+<img src="./ghi/src/images/PV_Logo.png" alt="Pawsitive Vibes Logo" width="800">
 
-You have a project repository, now what? The next section
-lists all of the deliverables that are due at the end of the
-week. Below is some guidance for getting started on the
-tasks for this week.
+### Welcome to our Pawsitive Community!
 
-## Install Extensions
+At Pawsitive Vibes, we believe in fostering connections, celebrating diversity, and creating a safe space for all pet enthusiasts. Whether you're a seasoned pet owner or considering bringing a furry friend into your life, you've come to the right place.
 
--   Prettier: <https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode>
--   Black Formatter: <https://marketplace.visualstudio.com/items?itemName=ms-python.black-formatter>
+## Project Team
 
-## Deliverables
+-   Kyle McPeake
+-   Austin Hamilton
+-   James Keyser
+-   Grace Lee
 
--   [X] Wire-frame diagrams
--   [X] API documentation
--   [ ] Project is deployed to Caprover (BE, DB) & GitLab-pages (FE)
--   [ ] GitLab issue board is setup and in use (or project management tool of choice)
--   [X] Journals
+## Design
 
-## Project layout
+-   [Demo](./docs/DEMO.md)
+-   [API](./docs/API.md)
+-   [Data Schema](./docs/DATASCHEMA.md)
+-   [GHI](./docs/GHI.md)
+-   [3rd Party Integrations](./docs/INTEGRATIONS.md)
 
-The layout of the project is just like all of the projects
-you did with `docker-compose` in module #2. You will create
-a directory in the root of the repository for each service
-that you add to your project just like those previous
-projects were setup.
+## Market
 
-### Directories
+Pawsitive Vibes Dog Training Co. aims to serve clients and their precious dog companions through a variety of training services and community events. We aim to design an informative, user-friendly business platform both to drive sales for the independent business owner and provide excellent customer satisfaction.
 
-Several directories have been added to your project. The
-directories `docs` and `journals` are places for you and
-your team-mates to, respectively, put any documentation
-about your project that you create and to put your
-project-journal entries. See the _README.md_ file in each
-directory for more info.
+## Functionality
 
-The other directories, `ghi` and `api`, are services, that
-you can start building off of.
+### Visitors
 
-Inside of `ghi` is a minimal React app that has an "under construction" page.
-This app is written using the [Vite](https://vitejs.dev/) bundler. The example
-code is also using [jsdoc](https://jsdoc.app/) to provide type hints for
-JavaScript. You are not required to use JSDoc yourself, and you will be removing
-these examples and providing your own code for `App.jsx`
+-   Visitors can view the website home page, pets page, services page, and meet ups page without having to create an account.
+-   Visitors may also submit a Contact Form with their information to send a message to the business and start an email conversation. This service is provided through EmailJS.
+-   Vistors may sign up and sign in as a user to view pages only accessible to users.
 
-Inside of `api` is a minimal FastAPI application.
-"Where are all the files?" you might ask? Well, the
-`main.py` file is the whole thing, and go take look inside
-of it... There's not even much in there..., hmm? That is
-FastAPI, we'll learn more about it in the coming days. Can
-you figure out what this little web-application does even
-though you haven't learned about FastAPI yet?
+### Users
 
-Also in `api` is a directory for your migrations.
-If you choose to use PostgreSQL, then you'll want to use
-migrations to control your database. Unlike Django, where
-migrations were automatically created for you, you'll write
-yours by hand using DDL. Don't worry about not knowing what
-DDL means; we have you covered. There's a sample migration
-in there that creates two tables so you can see what they
-look like.
+Users can enjoy additional functionality:
 
-The Dockerfile and Dockerfile.dev run your migrations
-for you automatically.
+-   Users may submit a testimonial, which will be reviewed and approved by the admin for display on the main home page.
+-   Users may Request an Appointment on the Services page, which will redirect them to the Calendly API for the business.
+-   Users may update their Profile with a profile picture and bio description; they may also update their name.
+-   Users may add their pets to be displayed on their profile and on the Pets page under Community Pets.
 
-### Other files
+### Admins
 
-The following project files have been created as a minimal
-starting point. Please follow the guidance for each one for
-a most successful project.
+Admins are granted additional administrative functionality:
 
--   `docker-compose.yaml`: there isn't much in here, just a
-    **really** simple UI and FastAPI service. Add services
-    (like a database) to this file as you did with previous
-    projects in module #2.
--   `.gitlab-ci.yml`: This is your "ci/cd" file where you will
-    configure automated unit tests, code quality checks, and
-    the building and deployment of your production system.
-    Currently, all it does is deploy an "under construction"
-    page to your production UI on GitLab and a sample backend
-    to CapRover. We will learn much more about this file.
--   `.gitignore`: This is a file that prevents unwanted files
-    from getting added to your repository, files like
-    `pyc` files, `__pycache__`, etc. We've set it up so that
-    it has a good default configuration for Python projects.
--   `.env.sample`: This file is a template to copy when
-    creating environment variables for your team. Create a
-    copy called `.env` and put your own passwords in here
-    without fear of it being committed to git (see `.env`
-    listed in `.gitignore`). You can also put team related
-    environment variables in here, things like api and signing
-    keys that shouldn't be committed; these should be
-    duplicated in your deployed environments.
+-   Admins may manage testimonials to approve them to be displayed on the Home page or delete them if needed.
+-   Admins may also submit a testimonial if they want to manually add feedback they've received in other correspondence.
+-   Admins can add dogs to be listed for sale on the pets page. They may also edit or remove any pets.
+-   Admins may add new services using the Services Form, which will then be displayed on the Services page.
+-   Admins can also edit or remove these services.
+-   Admins can add MeetUps to be displayed on the Meetups page. They can add and remove them as needed.
 
-### Installing python dependencies locally
+## Project Set Up
 
-In order for VSCode's built in code completion and intelligence to
-work correctly, it needs the dependencies from the requirements.txt file
-installed. We do this inside docker, but not in the workspace.
+1. Clone the repository to your local machine.
 
-So we need to create a virtual environment and pip install the requirements.
-
-From inside the `api` folder:
-
-```bash
-python -m venv .venv
+```
+git clone https://gitlab.com/pawsitive-vibes/pawsitive-vibes.git
 ```
 
-Then activate the virtual environment
+2. Open the new project directory.
 
-```bash
-source .venv/bin/activate # MacOS
-.venv\Scripts\Activate.ps1 # Windows
+```
+cd pawsitive-vibes
 ```
 
-And finally install the dependencies
+3. Create two .env files.
 
-```bash
-pip install -r requirements.txt
+    - the first .env file will be inside the root-directory of 'pawsitive-vibes'
+
+        - inside, you will need to add these variables.
+        - you can set your own username, password, and signing key.
+        - keep the database name as 'database_volume'
+
+        ```
+        POSTGRES_DB="database_volume"
+        POSTGRES_USER="your-username"
+        POSTGRES_PASSWORD="your-password"
+        SIGNING_KEY="your-signing-key"
+
+        ```
+
+    - the second .env file will be inside the ghi directory.
+
+        - this is a separate file from the first .env file.
+        - inside, you will list your third party API keys.
+        - for the purpose of this project, we have provided temporary keys,
+          but these will be changed in the future for security measures.
+        - PUBLIC_KEY, TEMPLATE_ID, SERVICE_ID, and PV_EMAIL are used for the EmailJS services.
+        - the google-maps-api-key is linked to your personal gmail account,
+          and is only available for business accounts that have a linked credit card.
+          as such, this is the onyl key not provided in this project demonstration.
+
+        ```
+         VITE_PUBLIC_KEY="public_key"
+         VITE_TEMPLATE_ID="contact_form"
+         VITE_SERVICE_ID="service_id"
+         VITE_PV_EMAIL = 'business_email'
+         VITE_GOOGLE_MAPS_API_KEY = 'google-maps-api-key'
+        ```
+
+4. Create the docker database volume.
+
+```
+docker volume create database_volume
 ```
 
-Then make sure the venv is selected in VSCode by checking the lower right of the
-VSCode status bar
+5. Build the docker containers.
 
-### Setup GitLab repo/project
+```
+docker compose build
+```
 
--   make sure this project is in a group. If it isn't, stop
-    now and move it to a GitLab group
--   remove the fork relationship: In GitLab go to:
+6. Run the docker containers. Make sure all the containers are running.
 
-    Settings -> General -> Advanced -> Remove fork relationship
+```
+docker compose up
+```
 
--   add these GitLab CI/CD variables:
-    -   PUBLIC_URL : this is your gitlab pages URL
-    -   VITE_APP_API_HOST: enter "blank" for now
-
-#### Your GitLab pages URL
-
-You can't find this in GitLab until after you've done a deploy
-but you can figure it out yourself from your GitLab project URL.
-
-If this is your project URL
-
-https://gitlab.com/GROUP_NAME/PROJECT_NAME
-https://gitlab.com/pawsitive-vibes/pawsitive-vibes
-
-then your GitLab pages URL will be
-
-https://GROUP_NAME.gitlab.io/PROJECT_NAME
-https://pawsitive-vibes.gitlab.io/pawsitive-vibes
+7. Access the web app at: http://localhost:5173/
+   ![readme](./docs/images/readme.png)
+8. Access the web docs at: http://localhost:8000/docs
+   ![fastapi](./docs/images/fastapi.png)

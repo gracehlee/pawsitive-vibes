@@ -101,7 +101,7 @@ function Profile(props) {
                                 >
                                     {userData.username}
                                 </h5>
-                                <p className="card-text">
+                                <div className="card-text">
                                     <br />
                                     <b>Name:</b>
                                     <div
@@ -115,8 +115,8 @@ function Profile(props) {
                                     >
                                         {userData.name}
                                     </div>
-                                </p>
-                                <p className="card-text">
+                                </div>
+                                <div className="card-text">
                                     <b>Bio:</b>{' '}
                                     <div
                                         className="card alert alert-primary"
@@ -138,7 +138,7 @@ function Profile(props) {
                                             }}
                                         />
                                     </div>
-                                </p>
+                                </div>
                                 <Link
                                     className="fontcolor"
                                     to="/profile/updatepic"

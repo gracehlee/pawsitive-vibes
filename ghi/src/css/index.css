@@ -166,6 +166,14 @@ code {
         monospace;
 }
 
+#home-carousel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
 ::-webkit-scrollbar {
     height: 0px; /** height of total scrollbar **/
     width: 0px; /** width of total scrollbar **/

@@ -33,6 +33,7 @@ function Nav(props) {
                         className="navbar-toggler"
                         type="button"
                         onClick={toggleMenu}
+                        style={{ background: 'white', opacity: '25%' }}
                     >
                         <span className="navbar-toggler-icon"></span>
                     </button>
