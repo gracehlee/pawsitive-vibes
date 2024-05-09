@@ -12,10 +12,18 @@ const ServiceAreaMap = () => {
     }
 
     return (
-        <div style={{ height: '400px', width: '100%', marginTop: '50px' }}>
+        <div
+            style={{
+                height: '400px',
+                width: '100%',
+                marginTop: '50px',
+                paddingLeft: '20vw',
+                paddingRight: '20vw',
+            }}
+        >
             <GoogleMapReact
                 bootstrapURLKeys={{
-                    key: GOOGLE_MAPS_API_KEY
+                    key: GOOGLE_MAPS_API_KEY,
                 }}
                 defaultCenter={defaultProps.center}
                 defaultZoom={defaultProps.zoom}

@@ -99,9 +99,7 @@ function Home(props) {
                         style={{ height: 'auto', width: '150px' }}
                     />
                 </Link>
-                <div style={{ paddingLeft: '20vw', paddingRight: '20vw' }}>
-                    <ServiceAreaMap />
-                </div>
+                <ServiceAreaMap />
             </div>
         </main>
     )
