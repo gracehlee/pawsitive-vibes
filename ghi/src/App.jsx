@@ -132,15 +132,16 @@ function App() {
                         element={<Home darkmode={darkMode} admin={admin} />}
                     />
                     <Route
-                        path="/meetups"
+                        path="/createpet"
                         element={
-                            <Meetups
+                            <CreatePetForm
                                 key={refresh}
                                 admin={admin}
                                 darkmode={darkMode}
                             />
                         }
                     />
+
                     <Route
                         path="/pets"
                         element={
@@ -151,6 +152,7 @@ function App() {
                             />
                         }
                     />
+
                     <Route
                         path="/services"
                         element={
@@ -163,6 +165,16 @@ function App() {
                     />
                     {!isLoggedIn ? (
                         <>
+                            <Route
+                                path="/meetups"
+                                element={
+                                    <Meetups
+                                        key={refresh}
+                                        admin={admin}
+                                        darkmode={darkMode}
+                                    />
+                                }
+                            />
                             <Route
                                 path="/signup"
                                 element={<SignUpForm darkmode={darkMode} />}
@@ -238,6 +250,16 @@ function App() {
                                 path="/testimonials/manage"
                                 element={
                                     <GetAllTestimonials darkmode={darkMode} />
+                                }
+                            />
+                            <Route
+                                path="/meetups"
+                                element={
+                                    <Meetups
+                                        key={refresh}
+                                        admin={admin}
+                                        darkmode={darkMode}
+                                    />
                                 }
                             />
                             <Route
