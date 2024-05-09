@@ -64,13 +64,14 @@ TODO: UserPets edit redirects to the main "Pets" and not autofilling petFormData
 TODO: Format time and date in meetups
 
 Stretch goals TODO:
+TODO: Pins on Google map API
+TODO: Admin page to view users, delete, update
 TODO: Location for appointments.
 TODO: Consolidate CreatePetForm and SellPetForm, add conditional statements
 TODO: Confirm deletion with popup
 TODO: Create default admin on inital setup
 TODO: Create another table, meetups "attending referencing (new table)" with users attending
 TODO: Pull out all duplicate code from Pets. FetchData and separate it, passing in relevant pets as props to display
-TODO: Look at Testimonials, when in dark mode
 TODO: Would you like to receive a phone call or email confirmation if approved?
     If yes,
     If no, "Ok, I look forward to seeing you at {location} on {date} at {time}"

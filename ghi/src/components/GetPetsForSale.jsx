@@ -84,7 +84,12 @@ export default function PetList(props) {
                       return (
                           <div key={index} className="card mb-3 shadow">
                               <img
-                                  src={pets.picture_url}
+                                  style={{
+                                      height: '274px',
+                                      width: '274px',
+                                      objectFit: 'cover',
+                                  }}
+                                  src={pets.image_url}
                                   alt="Image failed to load"
                                   className="card-img-top"
                               />
@@ -130,37 +135,37 @@ export default function PetList(props) {
                                       </h5>
                                   </div>
 
-                                <div className="text-center"></div>
-                                <br></br>
-                                <div className="text-center">
-                                    {isLoggedIn && admin && (
-                                        <button
-                                            type="button"
-                                            className="btn btn-primary"
-                                            value={pets.id}
-                                            onClick={handleEdit}
-                                            style={{
-                                                margin: '10px',
-                                                background: 'green',
-                                            }}
-                                        >
-                                            Edit
-                                        </button>
-                                    )}
-                                    {isLoggedIn && admin && (
-                                        <button
-                                            className="btn btn-primary"
-                                            value={pets.id}
-                                            onClick={handleRemove}
-                                            style={{ background: 'red' }}
-                                        >
-                                            Remove
-                                        </button>
-                                    )}
-                                </div>
-                            </div>
-                        </div>
-                    )
+                                  <div className="text-center"></div>
+                                  <br></br>
+                                  <div className="text-center">
+                                      {isLoggedIn && admin && (
+                                          <button
+                                              type="button"
+                                              className="btn btn-primary"
+                                              value={pets.id}
+                                              onClick={handleEdit}
+                                              style={{
+                                                  margin: '10px',
+                                                  background: 'green',
+                                              }}
+                                          >
+                                              Edit
+                                          </button>
+                                      )}
+                                      {isLoggedIn && admin && (
+                                          <button
+                                              className="btn btn-primary"
+                                              value={pets.id}
+                                              onClick={handleRemove}
+                                              style={{ background: 'red' }}
+                                          >
+                                              Remove
+                                          </button>
+                                      )}
+                                  </div>
+                              </div>
+                          </div>
+                      )
                 })}
             </div>
         )

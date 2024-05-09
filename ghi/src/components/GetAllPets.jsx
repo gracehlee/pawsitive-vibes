@@ -84,7 +84,8 @@ export default function PetList(props) {
                     return (
                         <div key={index} className="card mb-3 shadow">
                             <img
-                                src={pets.picture_url}
+                                style={{height: '274px', width: '274px', objectFit:'cover'}}
+                                src={pets.image_url}
                                 alt="Image failed to load"
                                 className="card-img-top"
                             />
@@ -119,7 +120,8 @@ export default function PetList(props) {
                                 {handleAge(pets.birthday) == 0 && (
                                     <div>
                                         <h5 className="card-subtitle">
-                                            Born: {handleFormatDate(pets.birthday)}
+                                            Born:{' '}
+                                            {handleFormatDate(pets.birthday)}
                                         </h5>
                                     </div>
                                 )}
@@ -138,7 +140,10 @@ export default function PetList(props) {
                                             className="btn btn-primary"
                                             value={pets.id}
                                             onClick={handleEdit}
-                                            style={{ margin: '10px', background: 'green' }}
+                                            style={{
+                                                margin: '10px',
+                                                background: 'green',
+                                            }}
                                         >
                                             Edit
                                         </button>

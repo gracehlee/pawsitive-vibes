@@ -55,14 +55,13 @@ function Home(props) {
                     darkmode ? ' fontcolor' : ''
                 }`}
             >
-                What people are saying!
             </h3>
             <div className="text-center" id="home-carousel">
                 <div className="d-flex">
                     <div>
                         <ImageCarousel darkmode={darkmode} />
                     </div>
-                    <div style={{ width: '600px' }}>
+                    <div name="testimonial" style={{ width: '600px' }}>
                         <TestimonialsCarousel darkmode={darkmode} />
                     </div>
                 </div>

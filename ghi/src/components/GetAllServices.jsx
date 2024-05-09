@@ -101,6 +101,7 @@ export default function ServiceList(props) {
                             <th style={{ width: '1px' }}></th>
                             <th style={{ width: '1px' }}></th>
                             <th style={{ width: '1px' }}></th>
+                            <th style={{ width: '1px' }}></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -155,6 +156,8 @@ export default function ServiceList(props) {
                                 {!admin && <td></td>}
                                 {!admin && <td></td>}
                                 {!user && <td></td>}
+                                {!user && <td></td>}
+                                {user && <td></td>}
                                 {user && (
                                     <td>
                                         <a

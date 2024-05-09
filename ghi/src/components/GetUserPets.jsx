@@ -82,7 +82,12 @@ export default function PetList(props) {
                     return (
                         <div key={index} className="card mb-3 shadow">
                             <img
-                                src={pets.picture_url}
+                                style={{
+                                    height: '274px',
+                                    width: '274px',
+                                    objectFit: 'cover',
+                                }}
+                                src={pets.image_url}
                                 alt="Image failed to load"
                                 className="card-img-top"
                             />
