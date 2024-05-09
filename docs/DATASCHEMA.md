@@ -4,36 +4,38 @@
 
 ## Overview
 
-![alt text](./images/overview.png)
+![Overview](./images/overview.png)
 
 ## Detail View
 
 ### Pets
 
-![alt text](./images/pets.png)
+![Pets](./images/pets.png)
 
 ### Users
 
-![alt text](./images/users.png)
+![Users](./images/users.png)
 
 ### Testimonials
 
-![alt text](./images/testimonials.png)
+![Testimonials](./images/testimonials.png)
 
 ### Services
 
-![alt text](./images/services.png)
+![Services](./images/services.png)
 
 ### Meetups
 
-![alt text](./images/meetups.png)
+![Meetups](./images/meetups.png)
 
 # !!! Optional !!!
 
+If the business owner would rather use our optional built in appointments endpoints instead of using Calendly services, here is the additional schema.
+
 ### Appointments
 
-![alt text](./images/appointments.png)
+![Appointments](./images/appointments.png)
 
 # optional chart:
 
-![alt text](./images/altoverview.png)
+![AltOverview](./images/altoverview.png)

@@ -16,7 +16,6 @@ export default function CreateMeetups(props) {
         location: '',
     })
 
-
     const handleInputChange = (event) => {
         setMeetupFormData({
             ...meetupFormData,
@@ -54,7 +53,12 @@ export default function CreateMeetups(props) {
         <main className={`${darkmode ? ' darkmode' : ''}`}>
             <div className="container">
                 <div className="row shadow mt-4">
-                    <h1 className="card-title text-center">Add a Meetup</h1>
+                    <h1
+                        className="card-title text-center"
+                        style={{ paddingTop: '20px', paddingBottom: '20px' }}
+                    >
+                        Add a Meetup
+                    </h1>
                     <form onSubmit={handleFormSubmit}>
                         {error && (
                             <div className="alert alert-danger">

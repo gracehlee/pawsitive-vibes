@@ -9,7 +9,7 @@ import handleFormatTime from '../components/handleFormatTime'
 export default function MeetupsList(props) {
     const admin = props.admin
     const [meetups, setMeetups] = useState([])
-    const { isLoggedIn } = useAuthService()
+    const { isLoggedIn, user } = useAuthService()
     const fetchData = async () => {
         try {
             const url = `${baseUrl}/api/meetups?timestamp=${Date.now()}`
@@ -67,8 +67,12 @@ export default function MeetupsList(props) {
                                 <th>Time</th>
                                 <th>Description</th>
                                 <th>Location</th>
-                                <th style={{ width: '1px' }}></th>
-                                <th style={{ width: '1px' }}></th>
+                                {user && admin && (
+                                    <>
+                                        <th style={{ width: '1px' }}></th>
+                                        <th style={{ width: '1px' }}></th>
+                                    </>
+                                )}
                             </tr>
                         </thead>
                         <tbody>
@@ -106,8 +110,6 @@ export default function MeetupsList(props) {
                                             </button>
                                         </td>
                                     )}
-                                    {!admin && <td></td>}
-                                    {!admin && <td></td>}
                                 </tr>
                             ))}
                         </tbody>
