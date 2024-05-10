@@ -28,10 +28,13 @@ Key: If a page displays varying content based on user status:
 ## Manage Testimonials Page
 
 ## Pets Page
+![Pets Page](./images/petsPage.jpg)
 
 ### Add a Pet Page
+![Add a Pet Page](./images/addPetPage.jpg)
 
 ### Edit a Pet Page
+![Edit a Pet Page](./images/editPetPage.jpg)
 
 ## Services Page
 
@@ -46,6 +49,9 @@ Key: If a page displays varying content based on user status:
 ![Edit a Service](./images/EditService.png)
 
 ## Community Page
+
+### Meetups Page
+![Meetups Page](./images/petsPage.jpg)
 
 Only accessible to users and admins.
 
@@ -65,8 +71,8 @@ Only accessible to users and admins.
 
 ![Update Profile](./images/updateprofile.png)
 
-### Meetups Page
-
 #### Add a Meetup Page
+![Add a Meetup Page](./images/addMeetupsPage.jpg)
 
 #### Edit a Meetup Page
+![Edit a Meetup Page](./images/editMeetupsPage.jpg)

@@ -9,6 +9,7 @@ Started working on authorization, and it is now required for pet POST
 More work done on endpoints
 Created endpoints for users - get all, get one, update and delete
 
+
 ## 4.22.2024 - 4.26.2024
 Submitting user endpoints
 Working on Frontend for user signup form
@@ -53,25 +54,19 @@ Edited Testimonials.jsx  admin condition
 Added "back" button to forms
 Added update and delete functionality to Meetups as admin
 Refactored date and time functions from Pets components to imported and used where needed
-Created Unit tests for ____________
+Created Unit tests for meetups_queries
 Added target="_blank" rel="noreferrer" to footer links
 
-
-Debugging TODO:
-TODO: Organize App.jsx
-TODO: Carosel images shift page size
-TODO: UserPets edit redirects to the main "Pets" and not autofilling petFormData for simple update
-TODO: Format time and date in meetups
 
 Stretch goals TODO:
 TODO: Pins on Google map API
 TODO: Admin page to view users, delete, update
+TODO: Add function to handle image size, or use image API
 TODO: Location for appointments.
-TODO: Consolidate CreatePetForm and SellPetForm, add conditional statements
+TODO: Consolidate and refactor Pets components
 TODO: Confirm deletion with popup
 TODO: Create default admin on inital setup
 TODO: Create another table, meetups "attending referencing (new table)" with users attending
-TODO: Pull out all duplicate code from Pets. FetchData and separate it, passing in relevant pets as props to display
 TODO: Would you like to receive a phone call or email confirmation if approved?
     If yes,
     If no, "Ok, I look forward to seeing you at {location} on {date} at {time}"
