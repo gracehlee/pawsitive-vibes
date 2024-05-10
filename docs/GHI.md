@@ -51,7 +51,7 @@ Key: If a page displays varying content based on user status:
 ## Community Page
 
 ### Meetups Page
-![Meetups Page](./images/petsPage.jpg)
+![Meetups Page](./images/meetupsPage.jpg)
 
 Only accessible to users and admins.
 
