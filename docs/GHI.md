@@ -24,8 +24,10 @@ Key: If a page displays varying content based on user status:
 ![Contact Form](./images/contactform.png)
 
 ## Add Testimonials Page
+![Testimonial Form](./images/testimonialform.png)
 
 ## Manage Testimonials Page
+![Testimonial List](./images/testimonialslistpage.png)
 
 ## Pets Page
 ![Pets Page](./images/petsPage.jpg)
