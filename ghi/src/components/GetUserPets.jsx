@@ -136,7 +136,7 @@ export default function PetList(props) {
                                 <div className="text-center"></div>
                                 <br></br>
                                 <div className="text-center">
-                                    {admin && (
+                                    {!admin && (
                                         <button
                                             type="button"
                                             className="btn btn-primary"
@@ -150,7 +150,7 @@ export default function PetList(props) {
                                             Edit
                                         </button>
                                     )}
-                                    {admin && (
+                                    {!admin && (
                                         <button
                                             className="btn btn-primary"
                                             value={pets.id}
