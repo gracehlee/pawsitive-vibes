@@ -8,6 +8,7 @@ import useAuthService from '../hooks/useAuthService'
 import ServiceAreaMap from '../components/ServiceAreaMap'
 import { Link } from 'react-router-dom'
 
+
 function Home(props) {
     const darkmode = props.darkmode
     const admin = props.admin
