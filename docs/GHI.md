@@ -35,9 +35,15 @@ Key: If a page displays varying content based on user status:
 
 ## Services Page
 
+![Service Page](./images/serviceList.png)
+
 ### Add a Service Page
 
+![Add a Service](./images/CreateAService.png)
+
 ### Edit a Service Page
+
+![Edit a Service](./images/EditService.png)
 
 ## Community Page
 
