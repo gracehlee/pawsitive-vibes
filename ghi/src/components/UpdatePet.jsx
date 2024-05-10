@@ -83,8 +83,6 @@ export default function UpdatePetForm(props) {
         }
     }
 
-
-
     useEffect(() => {
         async function fetchPetData() {
             const response = await fetch(`${baseUrl}/api/pets/${pet_id}`)
@@ -98,13 +96,10 @@ export default function UpdatePetForm(props) {
 
     return (
         <main className={`${darkmode ? ' darkmode' : ''}`}>
-            <div className="container">
-                <div className="card shadow mt-4">
-                    <div className="card-body">
-                        <br></br>
-                        <h1 className="card-title text-center">
-                            Edit Pet Info
-                        </h1>
+            <div className="service-form">
+                <div className="text-center offset-3 col-6">
+                    <div className="shadow p-4 mt-4">
+                        <h1>Edit Pet Info</h1>
                         <br></br>
                         <form onSubmit={handleFormSubmit}>
                             {error && (

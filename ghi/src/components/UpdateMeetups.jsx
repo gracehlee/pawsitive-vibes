@@ -71,7 +71,7 @@ export default function UpdateMeetups(props) {
                         className="card-title text-center"
                         style={{ paddingTop: '20px', paddingBottom: '20px' }}
                     >
-                        Add a Meetup
+                        Edit Meetup
                     </h1>
 
                     <form onSubmit={handleFormSubmit}>

@@ -52,20 +52,24 @@ function UpdateProfilePic(props) {
                 <h1>Upload Profile Picture</h1>
                 <br />
                 <br />
-                <div className="error">
-                    {userError && (
-                        <div className="alert alert-danger">{userError}</div>
-                    )}
-                    {userSuccess && (
-                        <div className="alert alert-success">{userSuccess}</div>
-                    )}
-                    {error && (
-                        <div className="alert alert-danger">
-                            {error.message}
-                        </div>
-                    )}
-                </div>
                 <form onSubmit={handleSubmit}>
+                    <div className="error">
+                        {userError && (
+                            <div className="alert alert-danger">
+                                {userError}
+                            </div>
+                        )}
+                        {userSuccess && (
+                            <div className="alert alert-success">
+                                {userSuccess}
+                            </div>
+                        )}
+                        {error && (
+                            <div className="alert alert-danger">
+                                {error.message}
+                            </div>
+                        )}
+                    </div>
                     <div
                         className="mb-3"
                         style={{ paddingLeft: '35vw', paddingRight: '35vw' }}

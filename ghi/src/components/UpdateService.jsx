@@ -105,109 +105,121 @@ export default function UpdateServiceWithPicture(props) {
     return (
         <main className={`${darkmode ? ' darkmode' : ''}`}>
             <div className="container">
-                <h1 className="text-center my-5 ">Edit Service</h1>
-                {showMessage && (
-                    <div className={`alert alert-${alert}`} role="alert">
-                        {showMessage}
-                    </div>
-                )}
-                <form className="updateform" onSubmit={handleSubmit}>
-                    <div className="mb-3">
-                        <label htmlFor="service" className="form-label">
-                            Service Name
-                        </label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            id="service"
-                            name="service"
-                            value={service.service}
-                            onChange={handleChange}
-                        />
-                    </div>
-                    <div className="mb-3">
-                        <label htmlFor="description" className="form-label">
-                            Description
-                        </label>
-                        <textarea
-                            className="form-control"
-                            id="description"
-                            name="description"
-                            value={service.description}
-                            onChange={handleChange}
-                        ></textarea>
-                    </div>
-                    <div className="mb-3">
-                        <label htmlFor="file_upload" className="form-label">
-                            Upload Picture
-                        </label>
-                        <input
-                            type="file"
-                            className="form-control"
-                            id="file_upload"
-                            name="file_upload"
-                            accept=".jpeg, .png, .jpg"
-                            onChange={handleFileInputChange}
-                        />
-                    </div>
-                    <div className="mb-3">
-                        <label htmlFor="duration" className="form-label">
-                            Duration
-                        </label>
-                        <input
-                            type="number"
-                            className="form-control"
-                            id="duration"
-                            name="duration"
-                            value={service.duration}
-                            onChange={handleChange}
-                        />
-                    </div>
-                    <div className="mb-3">
-                        <label htmlFor="cost" className="form-label">
-                            Cost
-                        </label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            id="cost"
-                            name="cost"
-                            value={service.cost}
-                            onChange={handleChange}
-                        />
-                    </div>
-                    <div className="mb-3">
-                        <label htmlFor="calendly_url" className="form-label">
-                            Calendly Link
-                        </label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            id="calendly_url"
-                            name="calendly_url"
-                            value={service.calendly_url}
-                            onChange={handleChange}
-                        />
-                    </div>
-                    <div
-                        className="button-container"
-                        style={{ marginBottom: '20px' }}
-                    >
-                        <Link to="/services" className="btn btn-primary">
-                            Go Back
-                        </Link>
-                        <button
-                            type="submit"
-                            className="btn btn-primary"
-                            style={{ background: 'green' }}
+                <div
+                    className="row shadow mt-4 text-center"
+                    style={{ justifyContent: 'center' }}
+                >
+                    <h1 style={{ paddingTop: '20px', paddingBottom: '20px' }}>
+                        Edit Service
+                    </h1>
+                    <form className="updateform" onSubmit={handleSubmit}>
+                        {showMessage && (
+                            <div
+                                className={`alert alert-${alert}`}
+                                role="alert"
+                            >
+                                {showMessage}
+                            </div>
+                        )}
+                        <div className="mb-3">
+                            <label htmlFor="service" className="form-label">
+                                Service Name
+                            </label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="service"
+                                name="service"
+                                value={service.service}
+                                onChange={handleChange}
+                                placeholder="Service Name"
+                            />
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="description" className="form-label">
+                                Description
+                            </label>
+                            <textarea
+                                className="form-control"
+                                id="description"
+                                name="description"
+                                value={service.description}
+                                onChange={handleChange}
+                            ></textarea>
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="file_upload" className="form-label">
+                                Upload Picture
+                            </label>
+                            <input
+                                type="file"
+                                className="form-control"
+                                id="file_upload"
+                                name="file_upload"
+                                accept=".jpeg, .png, .jpg"
+                                onChange={handleFileInputChange}
+                            />
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="duration" className="form-label">
+                                Duration
+                            </label>
+                            <input
+                                type="number"
+                                className="form-control"
+                                id="duration"
+                                name="duration"
+                                value={service.duration}
+                                onChange={handleChange}
+                            />
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="cost" className="form-label">
+                                Cost
+                            </label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="cost"
+                                name="cost"
+                                value={service.cost}
+                                onChange={handleChange}
+                            />
+                        </div>
+                        <div className="mb-3">
+                            <label
+                                htmlFor="calendly_url"
+                                className="form-label"
+                            >
+                                Calendly Link
+                            </label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="calendly_url"
+                                name="calendly_url"
+                                value={service.calendly_url}
+                                onChange={handleChange}
+                            />
+                        </div>
+                        <div
+                            className="button-container"
+                            style={{ marginBottom: '20px' }}
                         >
-                            Submit
-                        </button>
-                    </div>
-                </form>
+                            <Link to="/services" className="btn btn-primary">
+                                Go Back
+                            </Link>
+                            <button
+                                type="submit"
+                                className="btn btn-primary"
+                                style={{ background: 'green' }}
+                            >
+                                Submit
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </main>
     )
 }
-
-
