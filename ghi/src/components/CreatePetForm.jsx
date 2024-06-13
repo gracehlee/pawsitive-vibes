@@ -4,7 +4,6 @@ import useAuthService from '../hooks/useAuthService'
 import { useNavigate } from 'react-router-dom'
 import '../css/UpdateService.css'
 
-
 export default function SellPetForm(props) {
     const { user, error } = useAuthService()
     const admin = props.admin
@@ -88,7 +87,7 @@ export default function SellPetForm(props) {
                 description: '',
             })
         } else {
-             throw new Error('Could not create new pet')
+            throw new Error('Could not create new pet')
         }
     }
 
@@ -96,7 +95,13 @@ export default function SellPetForm(props) {
         <main className={`${darkmode ? ' darkmode' : ''}`}>
             <div className="container">
                 <div className="row shadow mt-4">
+                    <div>
+                        <br />
+                    </div>
                     <h1 className="card-title text-center">Add a Pet</h1>
+                    <div>
+                        <br />
+                    </div>
                     {showMessage && (
                         <div className="alert alert-success" role="alert">
                             Pet successfully added
@@ -207,14 +212,21 @@ export default function SellPetForm(props) {
                             <button
                                 className="btn btn-primary"
                                 onClick={handleNavigate}
-                                style={{ margin: '10px' }}
+                                style={{
+                                    background: darkmode ? 'black' : 'blue',
+                                    color: darkmode ? 'white' : '',
+                                    margin: '10px',
+                                }}
                             >
                                 Back
                             </button>
                             <button
                                 type="submit"
                                 className="btn btn-primary"
-                                style={{ background: 'green' }}
+                                style={{
+                                    background: darkmode ? 'black' : 'green',
+                                    color: darkmode ? 'white' : '',
+                                }}
                             >
                                 Submit
                             </button>

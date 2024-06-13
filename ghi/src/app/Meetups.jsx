@@ -17,7 +17,7 @@ export default function Meetups(props) {
 
     return (
         <main className={`${darkmode ? ' darkmode' : ''}`}>
-            <div className="row">
+            <div className="row col-12">
                 <div>{<GetAllMeetups admin={admin} />}</div>
                 <div className="text-center">
                     {admin && isLoggedIn && (

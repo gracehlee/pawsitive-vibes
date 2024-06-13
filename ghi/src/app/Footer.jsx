@@ -25,7 +25,7 @@ export default function Footer() {
     }
 
     return (
-        <footer className="footer mt-auto py-3 text-white bottom">
+        <footer id="footer" className="footer mt-auto py-3 text-white bottom">
             <div className="text-center">
                 <br></br>
                 <h3>Contact Us</h3>
@@ -71,7 +71,7 @@ export default function Footer() {
                     <button
                         className="btn btn-primary"
                         onClick={handleOpenForm}
-                        style={{ background: 'green' }}
+                        style={{ background: 'black', color: 'white' }}
                     >
                         Contact Us
                     </button>
@@ -82,6 +82,7 @@ export default function Footer() {
                     <button
                         className="btn btn-primary"
                         onClick={handleCloseForm}
+                        style={{ background: 'black', color: 'white' }}
                     >
                         Close Form
                     </button>

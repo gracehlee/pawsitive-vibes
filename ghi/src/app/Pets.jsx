@@ -16,6 +16,13 @@ export default function Dogs(props) {
         navigate('/createpet')
     }
 
+    const scroll = (id) => {
+        const element = document.getElementById(id)
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth' })
+        }
+    }
+
     return (
         <main className={`${darkmode ? ' darkmode' : ''}`}>
             <div className="text-center">
@@ -31,10 +38,28 @@ export default function Dogs(props) {
                 </label>
                 <br />
                 <br />
+                <button
+                    className="btn btn-primary text-center"
+                    style={{
+                        cursor: 'pointer',
+                        background: darkmode ? 'black' : 'green',
+                        color: darkmode ? 'white' : '',
+                    }}
+                >
+                    <span onClick={() => scroll('footer')}>
+                        Interested in a dog?
+                    </span>
+                </button>
+                <br />
+                <br />
+
                 {admin && isLoggedIn && (
                     <button
                         className="btn btn-primary"
-                        style={{ background: 'green ' }}
+                        style={{
+                            background: darkmode ? 'black' : 'green',
+                            color: darkmode ? 'white' : '',
+                        }}
                         onClick={handleNavigate}
                     >
                         Add a dog

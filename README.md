@@ -6,12 +6,14 @@
 
 At Pawsitive Vibes, we believe in fostering connections, celebrating diversity, and creating a safe space for all pet enthusiasts. Whether you're a seasoned pet owner or considering bringing a furry friend into your life, you've come to the right place.
 
+Video: [Watch Demo](https://youtu.be/IxjdZSEP9zI)
+
 ## Project Team
 
+-   Grace Lee (authored most current updates, see New Updates)
 -   Kyle McPeake
 -   Austin Hamilton
 -   James Keyser
--   Grace Lee
 
 ## Design
 
@@ -20,6 +22,8 @@ At Pawsitive Vibes, we believe in fostering connections, celebrating diversity, 
 -   [Data Schema](./docs/DATASCHEMA.md)
 -   [GHI](./docs/GHI.md)
 -   [3rd Party Integrations](./docs/INTEGRATIONS.md)
+-   [New Updates](./docs/UPDATES.md)
+
 
 ## Market
 
