@@ -85,113 +85,135 @@ export default function ServiceList(props) {
         fetchServiceImages()
     }, [services])
 
+    useEffect(() => {
+        const script = document.createElement('script')
+        script.src = 'https://assets.calendly.com/assets/external/widget.js'
+        script.async = true
+        document.body.appendChild(script)
+
+        return () => {
+            document.body.removeChild(script)
+        }
+    }, [])
+
     return (
-        <div>
-            <h1 className="display-5 fw-bold">Services</h1>
-            <br />
-            <table className="table table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th>Service</th>
-                        <th>Image</th>
-                        <th>Description</th>
-                        <th>Cost</th>
-                        {user && admin && (
-                            <>
-                                <th style={{ width: '1px' }}></th>
-                                <th style={{ width: '1px' }}></th>
-                                <th style={{ width: '1px' }}></th>
-                                <th style={{ width: '1px' }}></th>
-                            </>
-                        )}
-                        {user && !admin && (
-                            <>
-                                <th style={{ width: '1px' }}></th>
-                                <th style={{ width: '1px' }}></th>
-                                <th style={{ width: '1px' }}></th>
-                                <th style={{ width: '1px' }}></th>
-                            </>
-                        )}
-                    </tr>
-                </thead>
-                <tbody>
-                    {services.map((service, index) => (
-                        <tr key={index}>
-                            <td className="w-25">{service.service}</td>
-                            <td>
-                                {serviceImages[service.id] ? (
-                                    <img
-                                        src={serviceImages[service.id]}
-                                        className="img-fluid img-thumbnail"
-                                        alt="Service"
-                                        style={{ height: '100px' }}
-                                    />
-                                ) : (
-                                    <span>No Image</span>
-                                )}
-                            </td>
-                            <td>{service.description}</td>
-                            <td>{service.cost}</td>
-                            {isLoggedIn && admin && (
-                                <td>
-                                    <Link to={`/updateservice/${service.id}`}>
-                                        <button
-                                            className="btn btn-primary"
-                                            style={{
-                                                background: 'green',
-                                            }}
-                                        >
-                                            Edit
-                                        </button>
-                                    </Link>
-                                </td>
-                            )}
-                            {isLoggedIn && admin && (
-                                <td>
-                                    <button
-                                        type="delete"
-                                        onClick={(e) =>
-                                            handleRemove(e, service.id)
-                                        }
-                                        value={service.id}
-                                        className="btn btn-primary"
-                                        style={{ background: 'red' }}
-                                    >
-                                        Remove
-                                    </button>
-                                </td>
-                            )}
-                            {user && !admin && (
-                                <>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </>
-                            )}
-                            {user && admin && (
-                                <>
-                                    <td></td>
-                                </>
-                            )}
-                            {user && (
-                                <td>
-                                    <a
-                                        href={service.calendly_url}
-                                        className="btn btn-primary"
-                                        style={{ background: 'green' }}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                    >
-                                        Request Appointment
-                                    </a>
-                                </td>
-                            )}
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+        <div className="container-fluid">
+            <div className="row">
+                <div className="col-12">
+                    <div className="px-4 py-5 my-5">
+                        <h1 className="display-5 fw-bold text-center mb-4">
+                            Services
+                        </h1>
+                        <p>
+                            Mobile view? Swipe left to request an appointment.
+                        </p>
+                        <div className="table-responsive">
+                            <table className="table table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Service</th>
+                                        <th>Image</th>
+                                        <th>Description</th>
+                                        <th>Cost</th>
+                                        {user && admin && (
+                                            <>
+                                                <th>Edit</th>
+                                                <th>Remove</th>
+                                            </>
+                                        )}
+                                        {user && !admin && (
+                                            <>
+                                                <th>Request Appointment</th>
+                                            </>
+                                        )}
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {services.map((service, index) => (
+                                        <tr key={index}>
+                                            <td>{service.service}</td>
+                                            <td>
+                                                {serviceImages[service.id] ? (
+                                                    <img
+                                                        src={
+                                                            serviceImages[
+                                                                service.id
+                                                            ]
+                                                        }
+                                                        className="img-fluid img-thumbnail"
+                                                        alt="Service"
+                                                        style={{
+                                                            height: '100px',
+                                                        }}
+                                                    />
+                                                ) : (
+                                                    <span>No Image</span>
+                                                )}
+                                            </td>
+                                            <td>{service.description}</td>
+                                            <td>{service.cost}</td>
+                                            {isLoggedIn && admin && (
+                                                <>
+                                                    <td>
+                                                        <Link
+                                                            to={`/updateservice/${service.id}`}
+                                                        >
+                                                            <button
+                                                                className="btn btn-primary"
+                                                                style={{
+                                                                    background:
+                                                                        'green',
+                                                                }}
+                                                            >
+                                                                Edit
+                                                            </button>
+                                                        </Link>
+                                                    </td>
+                                                    <td>
+                                                        <button
+                                                            type="button"
+                                                            onClick={(e) =>
+                                                                handleRemove(
+                                                                    e,
+                                                                    service.id
+                                                                )
+                                                            }
+                                                            className="btn btn-primary"
+                                                            style={{
+                                                                background:
+                                                                    'red',
+                                                            }}
+                                                        >
+                                                            Remove
+                                                        </button>
+                                                    </td>
+                                                </>
+                                            )}
+                                            {user && !admin && (
+                                                <td>
+                                                    <a
+                                                        href={
+                                                            service.calendly_url
+                                                        }
+                                                        className="btn btn-primary"
+                                                        style={{
+                                                            background: 'green',
+                                                        }}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                    >
+                                                        Request Appointment
+                                                    </a>
+                                                </td>
+                                            )}
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }
-
-

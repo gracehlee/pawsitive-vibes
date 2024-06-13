@@ -77,95 +77,215 @@ export default function PetList(props) {
         }
     }
 
-      function PetColumn(props) {
-          return (
-              <div className="col">
-                  {props.list.map((pets, index) => {
-                      return (
-                          <div key={index} className="card mb-3 shadow">
-                              <img
-                                  style={{
-                                      height: '274px',
-                                      width: '274px',
-                                      objectFit: 'cover',
-                                  }}
-                                  src={pets.image_url}
-                                  alt="Image failed to load"
-                                  className="card-img-top"
-                              />
-                              <div className="card-body">
-                                  <div>
-                                      <h5 className="card-title">
-                                          Name: {pets.pet_name}
-                                      </h5>
-                                  </div>
+    function PetColumn(props) {
+        return (
+            <div className="col">
+                {props.list.map((pets, index) => {
+                    return (
+                        <div key={index} className="card mb-3 shadow">
+                            <img
+                                style={{
+                                    height: '274px',
+                                    width: '100%',
+                                    objectFit: 'cover',
+                                }}
+                                src={pets.image_url}
+                                alt="Pet"
+                                className="card-img-top"
+                            />
+                            <div className="card-body">
+                                <div
+                                    style={{
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        marginBottom: '8px',
+                                    }}
+                                >
+                                    <h5
+                                        className="card-title"
+                                        style={{
+                                            marginRight: '8px',
+                                            marginBottom: '0',
+                                        }}
+                                    >
+                                        Name:
+                                    </h5>
+                                    <p
+                                        style={{
+                                            margin: '0',
+                                            fontSize: '20px',
+                                        }}
+                                    >
+                                        {pets.pet_name}
+                                    </p>
+                                </div>
 
-                                  {pets.for_sale && (
-                                      <div>
-                                          <h5 className="card-subtitle">
-                                              Price: ${pets.price}
-                                          </h5>
-                                      </div>
-                                  )}
+                                {pets.for_sale && (
+                                    <div
+                                        style={{
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            marginBottom: '8px',
+                                        }}
+                                    >
+                                        <h5
+                                            className="card-subtitle"
+                                            style={{
+                                                marginRight: '8px',
+                                                marginBottom: '0',
+                                            }}
+                                        >
+                                            Price:
+                                        </h5>
+                                        <p
+                                            style={{
+                                                margin: '0',
+                                                fontSize: '20px',
+                                            }}
+                                        >
+                                            ${pets.price}
+                                        </p>
+                                    </div>
+                                )}
 
-                                  <div>
-                                      <h5 className="card-subtitle">
-                                          Breed: {pets.breed}
-                                      </h5>
-                                  </div>
+                                <div
+                                    style={{
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        marginBottom: '8px',
+                                    }}
+                                >
+                                    <h5
+                                        className="card-subtitle"
+                                        style={{
+                                            marginRight: '8px',
+                                            marginBottom: '0',
+                                        }}
+                                    >
+                                        Breed:
+                                    </h5>
+                                    <p
+                                        style={{
+                                            margin: '0',
+                                            fontSize: '20px',
+                                        }}
+                                    >
+                                        {pets.breed}
+                                    </p>
+                                </div>
 
-                                  {handleAge(pets.birthday) > 0 && (
-                                      <div>
-                                          <h5 className="card-subtitle">
-                                              Age: {handleAge(pets.birthday)}
-                                          </h5>
-                                      </div>
-                                  )}
-                                  {handleAge(pets.birthday) == 0 && (
-                                      <div>
-                                          <h5 className="card-subtitle">
-                                              Born:{' '}
-                                              {handleFormatDate(pets.birthday)}
-                                          </h5>
-                                      </div>
-                                  )}
-                                  <div>
-                                      <h5 className="card-subtitle">
-                                          Description: {pets.description}
-                                      </h5>
-                                  </div>
+                                {handleAge(pets.birthday) > 0 && (
+                                    <div
+                                        style={{
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            marginBottom: '8px',
+                                        }}
+                                    >
+                                        <h5
+                                            className="card-subtitle"
+                                            style={{
+                                                marginRight: '8px',
+                                                marginBottom: '0',
+                                            }}
+                                        >
+                                            Age:
+                                        </h5>
+                                        <p
+                                            style={{
+                                                margin: '0',
+                                                fontSize: '20px',
+                                            }}
+                                        >
+                                            {handleAge(pets.birthday)}
+                                        </p>
+                                    </div>
+                                )}
+                                {handleAge(pets.birthday) === 0 && (
+                                    <div
+                                        style={{
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            marginBottom: '8px',
+                                        }}
+                                    >
+                                        <h5
+                                            className="card-subtitle"
+                                            style={{
+                                                marginRight: '8px',
+                                                marginBottom: '0',
+                                            }}
+                                        >
+                                            Born:
+                                        </h5>
+                                        <p
+                                            style={{
+                                                margin: '0',
+                                                fontSize: '20px',
+                                            }}
+                                        >
+                                            {handleFormatDate(pets.birthday)}
+                                        </p>
+                                    </div>
+                                )}
 
-                                  <div className="text-center"></div>
-                                  <br></br>
-                                  <div className="text-center">
-                                      {isLoggedIn && admin && (
-                                          <button
-                                              type="button"
-                                              className="btn btn-primary"
-                                              value={pets.id}
-                                              onClick={handleEdit}
-                                              style={{
-                                                  margin: '10px',
-                                                  background: 'green',
-                                              }}
-                                          >
-                                              Edit
-                                          </button>
-                                      )}
-                                      {isLoggedIn && admin && (
-                                          <button
-                                              className="btn btn-primary"
-                                              value={pets.id}
-                                              onClick={handleRemove}
-                                              style={{ background: 'red' }}
-                                          >
-                                              Remove
-                                          </button>
-                                      )}
-                                  </div>
-                              </div>
-                          </div>
-                      )
+                                <div
+                                    style={{
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        marginBottom: '8px',
+                                    }}
+                                >
+                                    <h5
+                                        className="card-subtitle"
+                                        style={{
+                                            marginRight: '8px',
+                                            marginBottom: '0',
+                                        }}
+                                    >
+                                        Description:
+                                    </h5>
+                                </div>
+                                <p
+                                    style={{
+                                        margin: '0',
+                                        fontSize: '20px',
+                                    }}
+                                >
+                                    {pets.description}
+                                </p>
+
+                                <div className="text-center"></div>
+                                <br></br>
+                                <div className="text-center">
+                                    {isLoggedIn && admin && (
+                                        <button
+                                            type="button"
+                                            className="btn btn-primary"
+                                            value={pets.id}
+                                            onClick={handleEdit}
+                                            style={{
+                                                margin: '10px',
+                                                background: 'green',
+                                            }}
+                                        >
+                                            Edit
+                                        </button>
+                                    )}
+                                    {isLoggedIn && admin && (
+                                        <button
+                                            className="btn btn-primary"
+                                            value={pets.id}
+                                            onClick={handleRemove}
+                                            style={{ background: 'red' }}
+                                        >
+                                            Remove
+                                        </button>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+                    )
                 })}
             </div>
         )

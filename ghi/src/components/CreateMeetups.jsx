@@ -3,7 +3,6 @@ import { baseUrl } from '../services/authService'
 import useAuthService from '../hooks/useAuthService'
 import { useNavigate } from 'react-router-dom'
 
-
 export default function CreateMeetups(props) {
     const darkmode = props.darkmode
     const { error } = useAuthService()

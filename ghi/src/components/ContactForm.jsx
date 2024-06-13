@@ -173,8 +173,8 @@ function ContactForm() {
                     <div className="text-center">
                         <button
                             type="submit"
-                            className="btn btn-primary"
-                            style={{ background: 'green' }}
+                            className="btn btn-success"
+                            style={{ background: 'black', color: 'white' }}
                         >
                             Submit
                         </button>
