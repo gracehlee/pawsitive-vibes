@@ -17,7 +17,6 @@ Video: [Watch Demo](https://youtu.be/IxjdZSEP9zI)
 
 ## Design
 
--   [Demo](./docs/DEMO.md)
 -   [API](./docs/API.md)
 -   [Data Schema](./docs/DATASCHEMA.md)
 -   [GHI](./docs/GHI.md)
