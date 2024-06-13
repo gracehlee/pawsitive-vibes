@@ -20,3 +20,34 @@ Here is a log of individual updates that I personally authored after creating a 
 - Meetups History
     - added filtering by current events for regular Meetups list
     - added history table to display all meetups ever created (for admin view only)
+
+# Updated .env files
+
+In root folder:
+```json
+POSTGRES_DB="database_volume"
+POSTGRES_USER="username"
+POSTGRES_PASSWORD="password"
+SIGNING_KEY="key"
+VITE_PUBLIC_KEY="emailjskey"
+VITE_TEMPLATE_ID="emailjsid"
+VITE_SERVICE_ID="emailjsserviceid"
+VITE_PV_EMAIL = "pawsitivevibescolorado@gmail.com"
+VITE_GOOGLE_MAPS_API_KEY = "googleapikey"
+VITE_SNAPWIDGET = "instasgramurl"
+VITE_CALENDLY = "calendlylink"
+
+```
+
+In ghi folder:
+
+```json
+VITE_PUBLIC_KEY="emailjskey"
+VITE_TEMPLATE_ID="emailjsid"
+VITE_SERVICE_ID="emailjsserviceid"
+VITE_PV_EMAIL = "pawsitivevibescolorado@gmail.com"
+VITE_GOOGLE_MAPS_API_KEY = "googleapikey"
+VITE_SNAPWIDGET = "instasgramurl"
+VITE_CALENDLY = "calendlylink"
+
+```
