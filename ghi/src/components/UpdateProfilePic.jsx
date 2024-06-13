@@ -85,7 +85,10 @@ function UpdateProfilePic(props) {
                     </div>
                     <button
                         className="btn btn-primary"
-                        style={{ background: 'green' }}
+                        style={{
+                            background: darkmode ? 'black' : 'green',
+                            color: darkmode ? 'white' : '',
+                        }}
                         type="submit"
                     >
                         Upload {file && <span>{file.name}</span>}
@@ -95,7 +98,13 @@ function UpdateProfilePic(props) {
                     <br />
                     <br />
                     <Link className="fontcolor" to="/profile">
-                        <button className="btn btn-primary">
+                        <button
+                            className="btn btn-primary"
+                            style={{
+                                background: darkmode ? 'black' : 'green',
+                                color: darkmode ? 'white' : '',
+                            }}
+                        >
                             Back to Profile
                         </button>
                     </Link>

@@ -8,11 +8,11 @@ import useAuthService from '../hooks/useAuthService'
 import ServiceAreaMap from '../components/ServiceAreaMap'
 import { Link } from 'react-router-dom'
 
-
 function Home(props) {
     const darkmode = props.darkmode
     const admin = props.admin
     const { isLoggedIn } = useAuthService()
+    const INSTAGRAM_API = import.meta.env.VITE_SNAPWIDGET
 
     return (
         <main className={`${darkmode ? 'darkmode' : ''}`}>
@@ -55,8 +55,7 @@ function Home(props) {
                 className={`text-center testimonial-header${
                     darkmode ? ' fontcolor' : ''
                 }`}
-            >
-            </h3>
+            ></h3>
             <div className="text-center" id="home-carousel">
                 <div className="d-flex">
                     <div>
@@ -72,13 +71,37 @@ function Home(props) {
                         <Link to="/testimonials">
                             <button
                                 className="btn btn-primary"
-                                style={{ background: 'green' }}
+                                style={{
+                                    background: darkmode ? 'black' : 'green',
+                                    color: darkmode ? 'white' : '',
+                                }}
                             >
                                 Submit A Testimonial!
                             </button>
                         </Link>
                     </p>
                 )}
+                <div>
+                    <br />
+                    <br />
+                    <h1>My Instagram Updates</h1>
+                    <br /> <br />
+                    <iframe
+                        src={INSTAGRAM_API}
+                        className="snapwidget-widget"
+                        frameBorder="0"
+                        scrolling="no"
+                        style={{
+                            border: 'none',
+                            overflow: 'hidden',
+                            width: '765px',
+                            height: '510px',
+                        }}
+                        title="Posts from Instagram"
+                    ></iframe>
+                </div>
+                <br />
+                <br />
                 {isLoggedIn && admin && (
                     <p>
                         <Link to="/testimonials/manage">

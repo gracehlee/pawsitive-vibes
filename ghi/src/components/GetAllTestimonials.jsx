@@ -88,57 +88,67 @@ function TestimonialsList(props) {
             <div className="testimonials-container">
                 <h1 className="text-center">Testimonials</h1>
                 <div>
-                    <br></br>
+                    <br />
                 </div>
                 {error && <p className="error">{error}</p>}
-                <table className="table">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Rating</th>
-                            <th>Username</th>
-                            <th>Description</th>
-                            <th>Approval</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {testimonials.map((testimonial) => (
-                            <tr key={testimonial.id}>
-                                <td>{testimonial.id}</td>
-                                <td>{testimonial.rating}</td>
-                                <td>{testimonial.name}</td>
-                                <td>{testimonial.description}</td>
-                                <td>
-                                    <input
-                                        type="checkbox"
-                                        checked={testimonial.approved}
-                                        onChange={() =>
-                                            handleToggleApproval(
-                                                testimonial.id,
-                                                testimonial.approved
-                                            )
-                                        }
-                                    />
-                                </td>
-                                <td>
-                                    <button
-                                        className="btn btn-danger"
-                                        onClick={() =>
-                                            deleteTestimonial(testimonial.id)
-                                        }
-                                    >
-                                        Delete
-                                    </button>
-                                </td>
+                <div className="table-responsive">
+                    <table className="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Rating</th>
+                                <th>Username</th>
+                                <th>Description</th>
+                                <th>Approval</th>
+                                <th>Action</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {testimonials.map((testimonial) => (
+                                <tr key={testimonial.id}>
+                                    <td>{testimonial.id}</td>
+                                    <td>{testimonial.rating}</td>
+                                    <td>{testimonial.name}</td>
+                                    <td>{testimonial.description}</td>
+                                    <td>
+                                        <input
+                                            type="checkbox"
+                                            checked={testimonial.approved}
+                                            onChange={() =>
+                                                handleToggleApproval(
+                                                    testimonial.id,
+                                                    testimonial.approved
+                                                )
+                                            }
+                                        />
+                                    </td>
+                                    <td>
+                                        <button
+                                            className="btn btn-danger"
+                                            onClick={() =>
+                                                deleteTestimonial(
+                                                    testimonial.id
+                                                )
+                                            }
+                                        >
+                                            Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
                 <p className="text-center">
-                    <br></br>
+                    <br />
                     <Link className="fontcolor" to="/">
-                        <button className="btn btn-primary">
+                        <button
+                            className="btn btn-primary"
+                            style={{
+                                background: darkmode ? 'black' : 'blue',
+                                color: darkmode ? 'white' : '',
+                            }}
+                        >
                             Back to Home
                         </button>
                     </Link>

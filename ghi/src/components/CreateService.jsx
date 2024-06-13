@@ -3,13 +3,11 @@ import { baseUrl } from '../services/authService'
 import useAuthService from '../hooks/useAuthService'
 import { useNavigate } from 'react-router-dom'
 
-
 function ServiceForm(props) {
     const darkmode = props.darkmode
     const { error } = useAuthService()
     const [showMessage, setShowMessage] = useState(false)
     const navigate = useNavigate()
-
 
     const [serviceFormData, setServiceFormData] = useState({
         service: '',
@@ -162,28 +160,37 @@ function ServiceForm(props) {
                                 <label htmlFor="description">Description</label>
                             </div>
                             <div className="form-floating mb-3">
-                            <input
-                                value={serviceFormData.calendly_url}
-                                onChange={handleInputChange}
-                                placeholder="Calendly URL"
-                                required
-                                type="url"
-                                name="calendly_url"
-                                id="calendly_url"
-                                className="form-control"
-                            ></input>
-                            <label htmlFor="calendly_url">Calendly Link</label>
-                        </div>
-                        <button
+                                <input
+                                    value={serviceFormData.calendly_url}
+                                    onChange={handleInputChange}
+                                    placeholder="Calendly URL"
+                                    required
+                                    type="url"
+                                    name="calendly_url"
+                                    id="calendly_url"
+                                    className="form-control"
+                                ></input>
+                                <label htmlFor="calendly_url">
+                                    Calendly Link
+                                </label>
+                            </div>
+                            <button
                                 className="btn btn-primary"
-                                style={{ margin: '10px' }}
+                                style={{
+                                    background: darkmode ? 'black' : 'blue',
+                                    color: darkmode ? 'white' : '',
+                                    margin: '10px',
+                                }}
                                 onClick={handleNavigate}
                             >
                                 Back
                             </button>
                             <button
                                 className="btn btn-primary"
-                                style={{ background: 'green' }}
+                                style={{
+                                    background: darkmode ? 'black' : 'green',
+                                    color: darkmode ? 'white' : '',
+                                }}
                             >
                                 Create
                             </button>

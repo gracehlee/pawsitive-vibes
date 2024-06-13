@@ -8,6 +8,7 @@ function Services(props) {
     const darkmode = props.darkmode
     const navigate = useNavigate()
     const { isLoggedIn } = useAuthService()
+    const CALENDLY_API = import.meta.env.VITE_CALENDLY
 
     const handleNavigate = (event) => {
         event.preventDefault()
@@ -21,12 +22,20 @@ function Services(props) {
                 {isLoggedIn && admin && (
                     <button
                         className="btn btn-primary"
-                        style={{ background: 'green ' }}
+                        style={{
+                            background: darkmode ? 'black' : 'green',
+                            color: darkmode ? 'white' : '',
+                        }}
                         onClick={handleNavigate}
                     >
                         Add a Service
                     </button>
                 )}
+                <div
+                    className="calendly-inline-widget text-center"
+                    data-url={CALENDLY_API}
+                    style={{ minWidth: '320px', height: '700px' }}
+                ></div>
             </div>
         </main>
     )

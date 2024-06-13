@@ -145,7 +145,12 @@ function Profile(props) {
                                 >
                                     <button
                                         className="btn btn-primary"
-                                        style={{ background: 'green ' }}
+                                        style={{
+                                            background: darkmode
+                                                ? 'black'
+                                                : 'green',
+                                            color: darkmode ? 'white' : '',
+                                        }}
                                     >
                                         Update Picture
                                     </button>
@@ -157,7 +162,12 @@ function Profile(props) {
                                 >
                                     <button
                                         className="btn btn-primary"
-                                        style={{ background: 'green ' }}
+                                        style={{
+                                            background: darkmode
+                                                ? 'black'
+                                                : 'green',
+                                            color: darkmode ? 'white' : '',
+                                        }}
                                     >
                                         Update Profile
                                     </button>
@@ -183,6 +193,10 @@ function Profile(props) {
                     <button
                         className="btn btn-primary"
                         onClick={handleNavigate}
+                        style={{
+                            background: darkmode ? 'black' : 'green',
+                            color: darkmode ? 'white' : '',
+                        }}
                     >
                         Add a Pet
                     </button>
