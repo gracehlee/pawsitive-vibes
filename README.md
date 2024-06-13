@@ -61,7 +61,7 @@ Admins are granted additional administrative functionality:
 1. Clone the repository to your local machine.
 
 ```
-git clone https://gitlab.com/pawsitive-vibes/pawsitive-vibes.git
+git clone https://gitlab.com/gracehlee/pawsitive-vibes.git
 ```
 
 2. Open the new project directory.
