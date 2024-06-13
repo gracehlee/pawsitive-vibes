@@ -6,7 +6,7 @@
 
 At Pawsitive Vibes, we believe in fostering connections, celebrating diversity, and creating a safe space for all pet enthusiasts. Whether you're a seasoned pet owner or considering bringing a furry friend into your life, you've come to the right place.
 
-https://youtu.be/IxjdZSEP9zI
+Video: [Watch Demo](https://youtu.be/IxjdZSEP9zI)
 
 ## Project Team
 
