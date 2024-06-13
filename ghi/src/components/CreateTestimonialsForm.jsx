@@ -3,8 +3,9 @@ import { baseUrl } from '../services/authService'
 import useAuthService from '../hooks/useAuthService'
 import StarRating from './StarRating'
 
-function TestimonialForm() {
+function TestimonialForm(props) {
     const { user, error: authError } = useAuthService()
+    const darkmode = props.darkmode
 
     const [testimonialFormData, setTestimonialFormData] = useState({
         rating: '',
@@ -125,9 +126,13 @@ function TestimonialForm() {
                         />
                     </div>
                     <div className="text-center">
-                        <button type="submit"
-                        className="btn btn-primary"
-                        style={{ background: "green" }}
+                        <button
+                            type="submit"
+                            className="btn btn-primary"
+                            style={{
+                                background: darkmode ? 'black' : 'green',
+                                color: darkmode ? 'white' : '',
+                            }}
                         >
                             Submit
                         </button>
