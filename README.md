@@ -64,10 +64,10 @@ Admins are granted additional administrative functionality:
 git clone https://gitlab.com/gracehlee/pawsitive-vibes.git
 ```
 
-2. Open the new project directory.
+2. Open the new project directory. 
 
 ```
-cd pawsitive-vibes 
+cd pawsitive-vibes
 ```
 
 3. Create two .env files.
